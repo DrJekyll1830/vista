@@ -1,0 +1,14 @@
+title: "ویستا"
+subtitle: "سوپر اپلیکیشن هوش‌مصنوعی‌محور و لایهٔ قرارداد"
+author: "امید"
+date: "۱۴۰۵"
+lang: fa
+dir: rtl
+mainfont: "Vazirmatn"
+monofont: "DejaVu Sans Mono"
+fontsize: 11pt
+documentclass: book
+toc: true
+toc-depth: 2
+numbersections: true
+geometry: "a4paper,margin=2.6cm"
