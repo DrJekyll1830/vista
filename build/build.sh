@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # ساخت PDF از پوشهٔ کتاب.
 #   ./build/build.sh full       کل کتاب
-#   ./build/build.sh strategy   فقط فصل‌هایی که strategy: true دارند
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BOOK="$ROOT/book"
 OUT="$ROOT/out"
-EDITION="${1:-full}"
+EDITION="full"
 
 command -v pandoc  >/dev/null || { echo "pandoc نصب نیست: sudo apt install pandoc"; exit 1; }
 command -v xelatex >/dev/null || { echo "xelatex نصب نیست: sudo apt install texlive-xetex texlive-lang-arabic"; exit 1; }
@@ -19,8 +18,6 @@ mapfile -t ALL < <(find "$BOOK" -name '*.md' | sort)
 
 CHAPTERS=()
 for f in "${ALL[@]}"; do
-  if [ "$EDITION" = "strategy" ]; then
-    grep -qE '^strategy:[[:space:]]*true' "$f" || continue
   fi
   CHAPTERS+=("$f")
 done

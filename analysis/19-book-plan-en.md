@@ -6,7 +6,7 @@ Short doc, as you asked, so errors surface now rather than after forty chapters.
 
 # 1. What the book is
 
-Persian only. One source tree, two build targets: the full book, and a strategy edition that drops the architecture part and the technical annexes (`strategy: true` in each chapter's frontmatter).
+Persian only. One source tree, two build targets: the full book, and a strategy edition that drops the architecture part and the technical annexes (`strategy: true` in each chapter's frontmatter). **COMMENT**: no need. just one book suffices
 
 **Primary reader:** Irancell leadership. **Secondary:** Bank Sina, and whoever they hand it to for technical review. It has to survive both without becoming two documents.
 
@@ -99,34 +99,34 @@ Everything below goes in as settled. **If any line is wrong, say so now.**
 
 **Model.** Two Chinese partners · open weights mandatory · API first, self-hosting later · a mid-size model, stated not defended · bringing your own key means you pay us nothing.
 
-**Plan.** Phase ۰ prerequisites · phase ۱ Konkooria plus Irancell self-service at rungs ۱–۲ · phase ۲ the subscriber base, rungs ۳–۴, وکالت, stored value · phase ۳ open addition, marketplace revenue, in-app chat behind licensing, voice · legal work is Irancell's obligation · liability is disclaimer as floor, signed contract as the real defence, remediation fund in year one.
+**Plan.** Phase ۰ prerequisites · phase ۱ Konkooria plus Irancell self-service at rungs ۱–۲ · phase ۲ the subscriber base, rungs ۳–۴, وکالت, stored value · phase ۳ open addition, marketplace revenue, in-app chat behind licensing, voice · legal work is Irancell's obligation · liability is disclaimer as floor, signed contract as the real defence, remediation fund in year one. **COMMENT**: it's inconsistent with the deck. where is وکالت? they should both the same. I think phase 2 is correct but the deck says sth else.
 
 ---
 
 # 4. Editorial rules
 
-**No archaeology.** Nothing argues against a position the reader has never seen, and nothing explains why something is absent. The test: is the thing being argued against something the reader knows about *the world*, or only from our conversation?
+**No archaeology.** Nothing argues against a position the reader has never seen, and nothing explains why something is absent. The test: is the thing being argued against something the reader knows about *the world*, or only from our conversation? **COMMENT**: if sth user does not know in world you should introduce early. sth user knows about our conversation should be absent.
 
-**«قرارداد» only** — «سند» does not appear. **«دستیار»** for the user-facing assistant; «عامل» only where the technical distinction matters.
+in fact **«قرارداد» only** — «سند» does not appear. **«دستیار»** for the user-facing assistant; «عامل» only where the technical distinction matters. isnt it better to use عامل or even ایجنت everywhere? why use دستیار at all?
 
-**Persian conventions.** Every paragraph opens with a Persian word, and «به واقع» appears only where a Latin term would otherwise start it · Persian digits in prose, Latin digits in code · Latin script reserved for MCP, API, SSO, HSM · terminology fixed by the glossary and applied mechanically.
+**Persian conventions.** Every paragraph opens with a Persian word, and «به واقع» appears only where a Latin term would otherwise start it · Persian digits in prose, Latin digits in code · Latin script reserved for MCP, API, SSO, HSM · terminology fixed by the glossary and applied mechanically. **COMMENT**: dont write an English doc and then translate. instead write Persian doc from beginning
 
 **Register.** First person plural throughout; first person singular in `05-05`, where the shift itself signals that the chapter is the ask.
 
 **Shape.** Each chapter opens with two or three lines saying what it argues and closes with a short summary, so a reader who skims only openings and closings still receives the argument.
 
-**Numbers sit beside the claim they support**, never in a wall.
+**Numbers sit beside the claim they support**, never in a wall. **COMMENT**: there is no wall in the book
 
 ---
 
 # 5. Eight assumptions — correct me now
 
-1. **Length.** Roughly ۱٬۵۰۰–۲٬۵۰۰ Persian words per chapter, so ۶۰–۹۰ thousand words overall. A real book. Say if you want it shorter.
-2. **وکالت** becomes a horizons annex rather than a chapter, since it left phase ۱.
+1. **Length.** Roughly ۱٬۵۰۰–۲٬۵۰۰ Persian words per chapter, so ۶۰–۹۰ thousand words overall. A real book. Say if you want it shorter. **COMMENT**: tell me about page count
+2. in fact **وکالت** becomes a horizons annex rather than a chapter, since it left phase ۱. **COMMENT**: if it's in phase 2, it needs a chapter.
 3. **The bank part is four chapters.** It is a jointly funded programme, so you may want more.
-4. **Competitor figures go in** — Bale ~۳۱M installs, Rubika ~۳۷M users, Snapp ~۷۰M registered, Eitaa's ۲٪ — each footnoted as needing re-verification before print.
+4. **Competitor figures go in** — Bale ~۳۱M installs, Rubika ~۳۷M users, Snapp ~۷۰M registered, Eitaa's ۲٪ — each footnoted as needing re-verification before print. **COMMENT**: I'm not sure about those numbers/ better say >N0m instead of ~Nnm
 5. **Konkooria's ۲۳٬۰۰۰ appears**, framed as the proving network, with Irancell self-service as the scaling channel.
-6. **The shared shareholder** — that Bonyad Mostazafan sits inside Irancell's ownership and also controls Bank Sina — **I plan to leave out.** It is real and it explains why the bank agreed, but in a document that will circulate it adds nothing and travels badly. Tell me if you want it in.
+6. **The shared shareholder** — that Bonyad Mostazafan sits inside Irancell's ownership and also controls Bank Sina — **I plan to leave out.** It is real and it explains why the bank agreed, but in a document that will circulate it adds nothing and travels badly. Tell me if you want it in. **COMMENT**: let it be
 7. **Snapp's percentage is omitted.** Public sources support only "MTN and Irancell together about ۶۰٪", so I will write "a significant minority holding" unless you give me the real figure.
 8. **Writing order.** `01-05` قرارداد and `02-14` امنیت first, since everything refers to them; then the rest of parts ۱ and ۲; then ۳ and ۵; architecture last.
 

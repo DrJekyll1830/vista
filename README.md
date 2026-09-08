@@ -21,8 +21,7 @@ analysis/                  یادداشت‌های تحلیلی دورهای ط�
 ## ساخت کتاب
 
 ```bash
-./build/build.sh full        # کل کتاب
-./build/build.sh strategy    # فقط فصل‌های راهبردی
+./build/build.sh          # ساخت PDF
 ```
 
 نیازمندی‌ها: `pandoc`, `xelatex` (پکیج `texlive-xetex`), و فونت `Vazirmatn`.
