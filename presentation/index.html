@@ -296,6 +296,133 @@ input[type=range]::-moz-range-thumb{
 .split-note{font-size:1.3cqw; color:var(--fg-3); line-height:1.7}
 .hint{font-size:1.16cqw; color:var(--fg-3); display:flex; align-items:center; gap:.5cqw}
 .hint::before{content:"◂"; color:var(--accent); font-size:1cqw}
+
+/* ---------- component 1: phone frame ---------- */
+.phone{
+  width:22cqw; aspect-ratio:9/19; border-radius:2.4cqw; background:var(--surface);
+  border:.42cqw solid var(--fg); box-shadow:var(--shadow); overflow:hidden;
+  display:flex; flex-direction:column; flex:0 0 auto; position:relative;
+}
+.phone .bar{
+  display:flex; justify-content:space-between; align-items:center; padding:.7cqw 1.4cqw .3cqw;
+  font-size:.92cqw; color:var(--fg-3); font-family:var(--f-mono); direction:ltr; flex:0 0 auto;
+}
+.phone .top{
+  display:flex; align-items:center; gap:.7cqw; padding:.7cqw 1.2cqw; border-bottom:1px solid var(--line);
+  flex:0 0 auto; background:var(--surface-2);
+}
+.phone .top .av{width:2cqw; height:2cqw; border-radius:99px; background:var(--accent); flex:0 0 auto;
+  display:grid; place-items:center; color:#fff; font-size:1cqw; font-weight:700}
+.phone .top .nm{font-size:1.12cqw; font-weight:600; line-height:1.3}
+.phone .top .st{font-size:.86cqw; color:var(--fg-3)}
+.phone .body{flex:1 1 auto; overflow:hidden; display:flex; flex-direction:column}
+.phone .foot{
+  flex:0 0 auto; padding:.7cqw 1.1cqw 1.1cqw; border-top:1px solid var(--line);
+  display:flex; gap:.6cqw; align-items:center;
+}
+.phone .inp{
+  flex:1 1 auto; border:1px solid var(--line); border-radius:99px; padding:.55cqw 1cqw;
+  font-size:.98cqw; color:var(--fg-3); background:var(--surface-2); min-height:2.2cqw; display:flex; align-items:center;
+}
+.phone .snd{width:2.2cqw; height:2.2cqw; border-radius:99px; background:var(--accent); flex:0 0 auto;
+  display:grid; place-items:center; color:#fff; font-size:1.1cqw; border:0}
+
+/* ---------- component 2: chat view ---------- */
+.chat{flex:1 1 auto; overflow-y:auto; padding:1cqw; display:flex; flex-direction:column; gap:.75cqw}
+.chat::-webkit-scrollbar{width:3px}
+.chat::-webkit-scrollbar-thumb{background:var(--line); border-radius:9px}
+.msg{max-width:86%; padding:.62cqw .9cqw; border-radius:.85cqw; font-size:.98cqw; line-height:1.65;
+  animation:pop .34s cubic-bezier(.22,.68,.32,1) backwards}
+@keyframes pop{from{opacity:0; transform:translateY(6px) scale(.97)} to{opacity:1; transform:none}}
+.msg.them{background:var(--surface-2); border:1px solid var(--line); align-self:flex-start; border-start-start-radius:.28cqw}
+.msg.me{background:var(--accent); color:#fff; align-self:flex-end; border-start-end-radius:.28cqw}
+.msg.sys{align-self:center; background:transparent; border:0; color:var(--fg-3); font-size:.88cqw; text-align:center; max-width:94%}
+.chips{display:flex; gap:.4cqw; flex-wrap:wrap; align-self:flex-start; max-width:92%}
+.chips button{
+  border:1px solid var(--accent); background:transparent; color:var(--accent);
+  border-radius:99px; padding:.36cqw .8cqw; font-size:.9cqw; font-family:var(--f-body); font-weight:600;
+}
+.chips button:hover{background:var(--azure-soft)}
+.typing{display:flex; gap:.24cqw; align-self:flex-start; padding:.7cqw .95cqw; background:var(--surface-2);
+  border:1px solid var(--line); border-radius:.85cqw}
+.typing i{width:.36cqw; height:.36cqw; border-radius:99px; background:var(--fg-3); animation:blink 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.16s} .typing i:nth-child(3){animation-delay:.32s}
+@keyframes blink{0%,60%,100%{opacity:.28} 30%{opacity:1}}
+
+/* ---------- component 3: contract as attachment ---------- */
+.att{
+  --tone:var(--accent-2);
+  align-self:flex-start; max-width:94%; width:94%; background:var(--surface); border:1px solid var(--line);
+  border-radius:.85cqw; overflow:hidden; box-shadow:var(--shadow);
+  animation:pop .38s cubic-bezier(.22,.68,.32,1) backwards;
+}
+.att .ah{display:flex; align-items:center; gap:.55cqw; padding:.62cqw .85cqw; background:var(--tone); color:#fff}
+.att .ah .lg{width:1.4cqw; height:1.4cqw; border-radius:.3cqw; background:rgba(255,255,255,.24);
+  display:grid; place-items:center; font-size:.8cqw; font-weight:700; flex:0 0 auto}
+.att .ah .an{font-size:.95cqw; font-weight:700; flex:1 1 auto}
+.att .ah .ac{font-size:.82cqw; opacity:.85; font-family:var(--f-mono); direction:ltr}
+.att .ab{padding:.7cqw .85cqw; display:flex; flex-direction:column; gap:.34cqw}
+.att .ar{display:flex; justify-content:space-between; gap:.7cqw; font-size:.92cqw; padding-block:.16cqw}
+.att .ar b{font-weight:600; color:var(--fg)}
+.att .ar span{color:var(--fg-3)}
+.att .ar .n{font-family:var(--f-mono); direction:ltr; font-variant-numeric:tabular-nums; font-weight:500}
+.att .af{padding:.6cqw .85cqw .8cqw; border-top:1px dashed var(--line); display:flex; flex-direction:column; gap:.5cqw}
+.att .sg{display:flex; gap:.4cqw; flex-wrap:wrap}
+.att .sg em{
+  font-style:normal; font-size:.82cqw; padding:.24cqw .55cqw; border-radius:99px;
+  border:1px solid var(--line); color:var(--fg-3); display:inline-flex; align-items:center; gap:.3cqw;
+}
+.att .sg em.ok{border-color:var(--tone); color:var(--tone); background:color-mix(in srgb, var(--tone) 10%, transparent)}
+.att .go{
+  border:0; border-radius:.45cqw; background:var(--tone); color:#fff; padding:.52cqw; font-size:.95cqw;
+  font-weight:700; font-family:var(--f-body); width:100%;
+}
+.att .go:disabled{background:var(--surface-2); color:var(--fg-3); border:1px solid var(--line)}
+.att.done{--tone:var(--green)}
+
+/* permission rows inside chat */
+.perm{display:flex; flex-direction:column; gap:.34cqw; padding:.55cqw .3cqw}
+.perm label{display:flex; align-items:flex-start; gap:.5cqw; font-size:.9cqw; line-height:1.5; cursor:pointer}
+.perm input{margin-top:.28cqw; accent-color:var(--accent); width:.95cqw; height:.95cqw; flex:0 0 auto}
+.perm .fin{color:var(--accent-2)}
+.perm .cap{font-size:.8cqw; color:var(--fg-3)}
+
+/* app list row */
+.arow{
+  display:flex; align-items:center; gap:.7cqw; padding:.62cqw .85cqw; border-bottom:1px solid var(--line);
+  cursor:pointer; transition:.2s; background:transparent; border-inline:0; border-top:0; width:100%; text-align:start;
+  font-family:var(--f-body); color:var(--fg);
+}
+.arow:hover{background:var(--surface-2)}
+.arow.on{background:var(--azure-soft)}
+.arow .ic{width:2.1cqw; height:2.1cqw; border-radius:.5cqw; flex:0 0 auto; display:grid; place-items:center;
+  color:#fff; font-size:.95cqw; font-weight:700}
+.arow .tx{flex:1 1 auto; min-width:0}
+.arow .t1{font-size:1cqw; font-weight:600; display:flex; align-items:center; gap:.3cqw}
+.arow .t2{font-size:.84cqw; color:var(--fg-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.tick{width:.95cqw; height:.95cqw; border-radius:99px; background:var(--azure); color:#fff; font-size:.6cqw;
+  display:inline-grid; place-items:center; flex:0 0 auto}
+.fab{
+  position:absolute; inset-block-end:1.2cqw; inset-inline-start:1.2cqw; width:2.9cqw; height:2.9cqw;
+  border-radius:99px; background:var(--accent); color:#fff; border:0; font-size:1.5cqw; display:grid;
+  place-items:center; box-shadow:var(--shadow); z-index:3;
+}
+.pane{padding:.75cqw .9cqw; display:flex; flex-direction:column; gap:.55cqw; overflow-y:auto; flex:1 1 auto}
+.pane h5{margin:0; font-family:var(--f-display); font-size:.98cqw; font-weight:700; color:var(--fg-3)}
+.pane .pc{
+  border:1px solid var(--line); border-radius:.55cqw; padding:.5cqw .7cqw; display:flex;
+  justify-content:space-between; align-items:center; gap:.6cqw; font-size:.9cqw;
+}
+.pane .pc small{color:var(--fg-3); font-size:.82cqw}
+.rvk{border:1px solid var(--accent-2); color:var(--accent-2); background:transparent; border-radius:.4cqw;
+  padding:.24cqw .55cqw; font-size:.82cqw; font-weight:600; font-family:var(--f-body)}
+.rvk:hover{background:var(--seal-soft)}
+.rvk.off{border-color:var(--line); color:var(--fg-3)}
+.back{border:0; background:transparent; color:var(--accent); font-size:.95cqw; font-family:var(--f-body);
+  font-weight:600; padding:.4cqw .85cqw; text-align:start}
+
+.proto{display:flex; gap:2.2cqw; align-items:flex-start}
+.proto .side{flex:1 1 auto; display:flex; flex-direction:column; gap:1.1cqw; padding-top:.5cqw}
 </style>
 
 <div class="deck">
@@ -337,19 +464,6 @@ input[type=range]::-moz-range-thumb{
         <div class="split-note">از این پس: یک گفت‌وگو، همهٔ خدمات</div>
       </div>
     </div>
-  </section>
-
-  <!-- 3 -->
-  <section class="slide" data-sec="چرخش">
-    <div class="eyebrow" style="--i:0">۰۲ — شواهد</div>
-    <h2 style="--i:1">این پیش‌بینی نیست؛ دارد اتفاق می‌افتد.</h2>
-    <div class="cols-4" style="--i:2">
-      <div class="card"><div class="stat">۹۷M</div><div class="v">دانلود ماهانهٔ کتابخانه‌های MCP؛ استانداردی که دستیارها را به سرویس‌ها وصل می‌کند</div></div>
-      <div class="card"><div class="stat">۵۰۰M</div><div class="v">کاربر تلگرام سراغ مینی‌اپ‌ها می‌روند؛ گردش مالی‌شان در ۲۰۲۵ از یک میلیارد دلار گذشت</div></div>
-      <div class="card"><div class="stat">۱۰×</div><div class="v">ارزان‌تر شدنِ سالانهٔ هوش مصنوعی، برای یک سطح توانایی ثابت</div></div>
-      <div class="card"><div class="stat">۱۷</div><div class="v">بانک بزرگ دنیا امسال دفتر کل تازهٔ سوئیفت را آزمایش می‌کنند</div></div>
-    </div>
-    <p style="--i:3">از خودِ این عددها مهم‌تر یک خبر است: MCP در دسامبر ۲۰۲۵ به بنیاد لینوکس واگذار شد. یعنی سرمایه‌گذاری روی این استاندارد، سرمایه‌گذاری روی یک شرکت خاص نیست. نشانهٔ دوم را هم در خودِ صنعت می‌بینیم؛ توسعه‌دهنده‌ها امروز کارشان را با دستیار پیش می‌برند، نه با خط فرمان.</p>
   </section>
 
   <!-- 4 : interactive mosaic vs vista -->
@@ -416,20 +530,20 @@ input[type=range]::-moz-range-thumb{
   <!-- 7 -->
   <section class="slide" data-sec="ویستا چیست">
     <div class="eyebrow" style="--i:0">۰۶ — تز</div>
-    <h2 style="--i:1">ویستا دو جور هوشمندی را به سرویس‌ها پمپ می‌کند.</h2>
+    <h2 style="--i:1">ویستا دو چیز به سرویس‌ها می‌دهد که خودشان ندارند.</h2>
     <div class="cols-2" style="--i:2; gap:2cqw">
       <div class="card" style="gap:1cqw">
-        <div class="chip">هوشمندی نخست</div>
-        <div class="k" style="font-size:2.2cqw">هوش مصنوعی</div>
+        <div class="chip">یک</div>
+        <div class="k" style="font-size:2.2cqw">هوشمندی</div>
         <div class="v">جستجوی معنایی، فهم خواستهٔ کاربر، حافظه و پیشنهاد. سرویس برای داشتن این‌ها لازم نیست تیم هوش مصنوعی بسازد، توکن بخرد یا کد بنویسد.</div>
       </div>
       <div class="card" style="gap:1cqw">
-        <div class="chip on">هوشمندی دوم</div>
-        <div class="k" style="font-size:2.2cqw">قرارداد هوشمند</div>
-        <div class="v">اجرای قطعی، امضای چندجانبه، تسویهٔ خودکار، تقسیم کارمزد و ردّ حسابرسی. سرویس برای داشتن این‌ها لازم نیست زیرساخت مالی بسازد.</div>
+        <div class="chip on">دو</div>
+        <div class="k" style="font-size:2.2cqw">اعتماد</div>
+        <div class="v">هر تعهدی سند دارد، امضا دارد، مجوزش روشن است و بعداً قابل اثبات است. سرویس برای داشتن این‌ها لازم نیست زیرساخت مالی و حقوقی بسازد.</div>
       </div>
     </div>
-    <p style="--i:3">اولی می‌فهمد کاربر چه می‌خواهد. دومی همان خواسته را قابل اجرا، قابل اثبات و قابل تسویه می‌کند. ما به این ترکیب می‌گوییم <strong>پمپاژ هوش</strong>.</p>
+    <p style="--i:3">اولی می‌فهمد کاربر چه می‌خواهد. دومی کاری می‌کند که آن خواسته قابل اتکا، قابل اثبات و قابل تسویه باشد. سرویس‌ها هیچ‌کدام از این دو را ندارند و ساختنشان هم برایشان صرف نمی‌کند؛ ما هر دو را به آن‌ها <strong>پمپ می‌کنیم</strong>.</p>
   </section>
 
   <!-- 8 : contract anatomy -->
@@ -446,7 +560,7 @@ input[type=range]::-moz-range-thumb{
           <div class="term"><span>کارمزد سرویس</span><span class="num">۰٫۵٪</span></div>
         </div>
         <div class="parties">
-          <span class="party signed"><i class="dot"></i>اپ (پیش‌امضا)</span>
+          <span class="party signed"><i class="dot"></i>اپ (تنظیم و امضا کرد)</span>
           <span class="party signed"><i class="dot"></i>موجر</span>
           <span class="party"><i class="dot"></i>مستأجر</span>
           <span class="party"><i class="dot"></i>شاهد</span>
@@ -454,12 +568,42 @@ input[type=range]::-moz-range-thumb{
         <div class="sigline"><i></i></div>
       </div>
       <ul class="list">
-        <li><strong>قرارداد یک‌طرفه نداریم.</strong> اپ همیشه یک طرف قرارداد است، چون قالب را او می‌دهد و کارمزد را هم او می‌گیرد.</li>
+        <li><strong>قرارداد را اپ تنظیم می‌کند، نه دستیار.</strong> دستیار از اپ می‌خواهد سندی بسازد؛ اپ آن را می‌سازد و امضا می‌کند و همان‌طور امضاشده به دست کاربر می‌رسد.</li>
         <li>امضا به <strong>هشِ شرایط</strong> گره می‌خورد. یک بند که عوض شود، همهٔ امضاهای قبلی باطل است.</li>
         <li>هر طرف فقط چیزی را امضا می‌کند که می‌بیند. موجر لازم نیست موجودی حساب مستأجر را ببیند.</li>
         <li>قرارداد مثل <strong>پیوست</strong> رد و بدل می‌شود، درست مثل عکس؛ بین بات و کاربر، بین دو کاربر، بین کاربر و دستیار.</li>
-        <li class="x">دستیار آماده می‌کند و <strong>هیچ‌وقت امضا نمی‌کند.</strong></li>
+        <li>روی هر نسخه، اول اپ امضا می‌کند و آخر کاربر. تغییر یعنی نسخهٔ تازه؛ هیچ نسخه‌ای دو بار امضا نمی‌شود.</li>
+        <li class="x">سکو و ارائه‌دهندهٔ پرداخت طرف <em>همهٔ</em> قراردادها هستند، پس در هیچ قراردادی نام برده نمی‌شوند.</li>
+        <li class="x">دستیار سند را می‌آورد و <strong>هیچ‌وقت امضا نمی‌کند.</strong></li>
       </ul>
+    </div>
+  </section>
+
+  <!-- P1 : prototype — talking to the assistant -->
+  <section class="slide" data-sec="ویستا چیست">
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — گفت‌وگو با دستیار</div>
+    <div class="proto" style="--i:1">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top">
+          <div class="av">و</div>
+          <div><div class="nm">دستیار ویستا</div><div class="st">آنلاین</div></div>
+        </div>
+        <div class="body"><div class="chat" id="p1chat"></div></div>
+        <div class="foot"><div class="inp" id="p1inp">پیام…</div><button class="snd">↑</button></div>
+      </div>
+      <div class="side">
+        <h2 style="font-size:2.8cqw">کاربر می‌گوید چه می‌خواهد. سند می‌آید.</h2>
+        <p id="p1note">دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد سندی تنظیم کند. سندی که برمی‌گردد، از پیش امضای اپ را دارد.</p>
+        <div class="row" style="gap:.8cqw">
+          <button class="btn primary" id="p1go">اجرا کن</button>
+          <button class="btn" id="p1rst">از نو</button>
+        </div>
+        <div class="card" style="background:var(--surface-2)">
+          <div class="k">آنچه در این صحنه اتفاق نمی‌افتد</div>
+          <div class="v">دستیار سند را ننوشته و امضا نکرده. فقط از اپ خواسته آن را بسازد و برای کاربر آورده است.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -654,6 +798,59 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
+  <!-- P2 : prototype — adding a new app -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — افزودن اپ تازه</div>
+    <div class="proto" style="--i:1">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top">
+          <div class="av">و</div>
+          <div><div class="nm">دستیار ویستا</div><div class="st">آنلاین</div></div>
+        </div>
+        <div class="body"><div class="chat" id="p2chat"></div></div>
+        <div class="foot"><div class="inp" id="p2inp">پیام…</div><button class="snd">↑</button></div>
+      </div>
+      <div class="side">
+        <h2 style="font-size:2.8cqw">هر اپی، از هر آدرسی</h2>
+        <p>سرویس‌دهنده اپش را هر جا که خواست بالا می‌آورد و آدرسش را می‌دهد. کاربر آن را اضافه می‌کند، قرارداد استارت را می‌خواند، مجوزها را تیک می‌زند و امضا می‌کند.</p>
+        <div class="row" style="gap:.8cqw">
+          <button class="btn primary" id="p2go">اجرا کن</button>
+          <button class="btn" id="p2rst">از نو</button>
+        </div>
+        <div class="card" style="border-color:var(--accent-2)">
+          <div class="k seal-text">مرز باز و بسته</div>
+          <div class="v">هر کسی می‌تواند هر اپی را اضافه کند. اما فقط اپِ احرازشده — همان که نشان آبی دارد — می‌تواند مجوز مالی بخواهد. باز، جایی که بازبودن ارزش دارد؛ بسته، دقیقاً همان‌جا که خسارت می‌زند.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P3 : prototype — the app list -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — فهرست اپ‌ها</div>
+    <div class="proto" style="--i:1">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top" id="p3top">
+          <div class="av">☰</div>
+          <div><div class="nm">ویستا</div><div class="st">۵ اپ فعال</div></div>
+        </div>
+        <div class="body" id="p3body"></div>
+        <button class="fab" id="p3fab">+</button>
+      </div>
+      <div class="side">
+        <h2 style="font-size:2.8cqw">هر اپ، یک گفت‌وگو و یک پرونده</h2>
+        <p>فهرست، شکلِ آشنای پیام‌رسان را دارد. روی هر اپ که بزنید می‌توانید با آن حرف بزنید، مینی‌اپش را باز کنید، قراردادهای امضاشده میان خودتان و او را ببینید و مجوزهایش را پس بگیرید.</p>
+        <p class="hint">روی یکی از اپ‌ها بزنید</p>
+        <div class="card" style="background:var(--surface-2)">
+          <div class="k">لغو، یک‌طرفه است</div>
+          <div class="v">پس‌گرفتن مجوز به موافقت اپ نیاز ندارد و همان لحظه اثر می‌کند. سقف مصرف‌شده هم همیشه دیده می‌شود.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 16 : AI down - interactive -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">۱۵ — کاربرد ۸</div>
@@ -679,8 +876,8 @@ input[type=range]::-moz-range-thumb{
         <h3 id="ai-t">حالت کامل</h3>
         <p id="ai-d">کاربر با دستیار حرف می‌زند و دستیار تصمیم می‌گیرد کدام دکمهٔ کدام بات را بزند. ظاهر برنامه تا جای ممکن شبیه چت‌جی‌پی‌تی است.</p>
         <div class="card" style="background:var(--surface-2)">
-          <div class="k">اصل معماری</div>
-          <div class="v">هر قابلیت یک بار اعلام می‌شود و از همان یک اعلام، دو سطح ساخته می‌شود: ابزار برای دستیار و دکمه برای آدم. برای همین این دو هیچ‌وقت از هم عقب نمی‌افتند.</div>
+          <div class="k">الگویی که در مقیاس جواب داده</div>
+          <div class="v">حدود ۵۰۰ میلیون کاربر تلگرام با مینی‌اپ‌ها کار می‌کنند و گردش مالی‌شان در ۲۰۲۵ از یک میلیارد دلار گذشت. ما همان الگو را برمی‌داریم: هر قابلیت یک بار اعلام می‌شود و از همان یک اعلام دو سطح ساخته می‌شود — ابزار برای دستیار و دکمه برای آدم — پس این دو هیچ‌وقت از هم عقب نمی‌افتند.</div>
         </div>
       </div>
     </div>
@@ -714,18 +911,6 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
-  <!-- 18 -->
-  <section class="slide" data-sec="کاربردها">
-    <div class="eyebrow" style="--i:0">۱۷ — کاربرد ۱۰</div>
-    <h2 style="--i:1">دارایی توکن‌شده — همان ساز و کار، قالبی دیگر</h2>
-    <div class="cols-3" style="--i:2">
-      <div class="card"><div class="chip" style="border-color:var(--brass); color:var(--brass)">قالب ۱</div><div class="k">قرارداد ریال</div><div class="v">بانک سینا آن را منتشر می‌کند. موجودی کاربر از نظر حقوقی بدهی بانک است و شناور هم نزد بانک می‌ماند.</div></div>
-      <div class="card"><div class="chip" style="border-color:var(--brass); color:var(--brass)">قالب ۲</div><div class="k">قرارداد طلا</div><div class="v">فروشندهٔ طلا فقط یک قرارداد می‌نویسد. کاربر از کیف پول ریالی‌اش می‌خرد؛ ریال کم می‌شود و توکن طلا اضافه.</div></div>
-      <div class="card"><div class="chip" style="border-color:var(--brass); color:var(--brass)">قالب ۳</div><div class="k">وام با وثیقه</div><div class="v">شرط وثیقه، آستانهٔ نقدشوندگی و اجرای خودکار، همه در همان یک سند و بدون دست زدن به هستهٔ بانک.</div></div>
-    </div>
-    <p style="--i:3">نکتهٔ مهم این است که برای هیچ‌کدام از این‌ها لازم نیست هستهٔ بانکی دست بخورد. بانک یکی از سرویس‌دهنده‌هاست که قرارداد ریال را منتشر می‌کند و بقیه روی همان بستر ساخته می‌شوند.</p>
-  </section>
-
   <!-- 19 -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">۱۸ — کاربرد ۱۱</div>
@@ -747,7 +932,7 @@ input[type=range]::-moz-range-thumb{
   <section class="slide" data-sec="امنیت">
     <div class="eyebrow" style="--i:0">۱۹ — اصل بنیادی</div>
     <div class="quote" style="--i:1; font-size:2.9cqw; max-width:44ch">خواندن آزاد است. نوشتن قرارداد است. دستیار آماده می‌کند و هیچ‌وقت امضا نمی‌کند. اجرا هم جایی انجام می‌شود که دستیار اصلاً به آن دسترسی ندارد.</div>
-    <p style="--i:2">همین چهار جمله جای کل آن دسته‌بندی سه‌سطحی و توکن‌های قابلیت و اجرا را می‌گیرد. هم ساده‌تر است، هم راحت‌تر می‌شود توضیحش داد، و از همهٔ آن‌ها محکم‌تر است.</p>
+    <p style="--i:2">هر تعاملی که وضعیتی را تغییر می‌دهد، سندی دارد که کاربر آن را دیده و امضا کرده است. هر چه بی‌اثر است — دیدن، پرسیدن، جستجو کردن — آزاد و بی‌اصطکاک انجام می‌شود.</p>
   </section>
 
   <!-- 21 : write path - interactive -->
@@ -772,6 +957,38 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
+  <!-- P4 : prototype — one contract, two palettes -->
+  <section class="slide" data-sec="امنیت">
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — محتوا و ظاهر</div>
+    <h2 style="--i:1">یک قرارداد، دو رنگ</h2>
+    <div class="row" style="--i:2; gap:1.2cqw; align-items:center">
+      <div class="toggle" id="p4tg">
+        <button class="on" data-v="food">اسنپ‌فود</button>
+        <button data-v="ride">اسنپ</button>
+        <button data-v="doc">اسنپ‌دکتر</button>
+      </div>
+      <span class="hint">اپ را عوض کنید</span>
+    </div>
+    <div class="proto" style="--i:3">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top">
+          <div class="av" id="p4av">و</div>
+          <div><div class="nm" id="p4nm">اسنپ‌فود</div><div class="st">بات · احرازشده</div></div>
+        </div>
+        <div class="body"><div class="chat" id="p4chat"></div></div>
+        <div class="foot"><div class="inp">پیام…</div><button class="snd">↑</button></div>
+      </div>
+      <div class="side">
+        <p><strong>ظاهر مالِ اپ است، ساختار مالِ سکو.</strong> اپ فقط رنگ تم، نشان و نام نمایشی را می‌دهد. چیدمان، ترتیب بندها، جای مبلغ و بلوک امضا همیشه یکسان است و در اختیار ماست.</p>
+        <p>به همین دلیل کاربر یک شکلِ سند را یاد می‌گیرد و سندِ نادرست را می‌شناسد. هیچ اپی نمی‌تواند مبلغ را کم‌رنگ کند یا امضا را شبیه یک دکمهٔ معمولی نشان دهد.</p>
+        <div class="card">
+          <div class="k">محتوا جدا، ظاهر جدا</div>
+          <div class="v">قرارداد یک سند داده‌ای است و رنگ‌ها یک لایهٔ نمایشی روی آن. همان تفکیکی که میان محتوا و شیوه‌نامه وجود دارد.</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- 22 -->
   <section class="slide" data-sec="امنیت">
     <div class="eyebrow" style="--i:0">۲۱ — پذیرش</div>
@@ -792,47 +1009,17 @@ input[type=range]::-moz-range-thumb{
   <!-- 23 : standards - interactive -->
   <section class="slide" data-sec="معماری">
     <div class="eyebrow" style="--i:0">۲۲ — استانداردها</div>
-    <h2 style="--i:1">چهار استاندارد، دو پروتکل</h2>
+    <h2 style="--i:1">سه لایه، سه استاندارد</h2>
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:.7cqw" id="layers">
         <button class="layer on" data-l="0"><span class="lname">تعامل</span><span class="lstd">Telegram-shaped</span><span class="ldesc">بات، ‎/start‎، دکمه، پیوست و مینی‌اپ؛ همان واژگانی که کاربر ایرانی از قبل بلد است.</span></button>
         <button class="layer" data-l="1"><span class="lname">عامل</span><span class="lstd">OpenAI-compatible</span><span class="ldesc">رابط استاندارد مدل. مدل یک وابستگی قابل تعویض است؛ کیوِن، جی‌ال‌ام، یا میزبانی داخلی.</span></button>
         <button class="layer" data-l="2"><span class="lname">قابلیت</span><span class="lstd">MCP + MCP Apps</span><span class="ldesc">تنها استاندارد یکپارچه‌سازی. از یک اعلام واحد، هم ابزار برای دستیار ساخته می‌شود و هم رابط تصویری برای آدم. فقط خواندن و آماده کردن قرارداد؛ نوشتن هیچ‌وقت.</span></button>
-        <button class="layer" data-l="3"><span class="lname">تسویه</span><span class="lstd">Solidity / EVM · Besu</span><span class="ldesc">قرارداد، امضا، توکن، کارمزد و حسابرسی. در فاز اول با کد خودمان، و در ادامه روی زنجیرهٔ مجوزدار؛ همان مسیری که سوئیفت در ۲۰۲۶ رفت.</span></button>
+        <button class="layer" data-l="3"><span class="lname">تسویه</span><span class="lstd">اجرای سکو</span><span class="ldesc">قرارداد امضاشده اجرا می‌شود، پول جابه‌جا می‌شود، کارمزد همان لحظه تقسیم می‌شود و ردّ حسابرسی می‌ماند. هیچ چیزی اجرا نمی‌شود که در متن امضاشده نباشد.</span></button>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.2cqw">
-        <div class="quote" style="font-size:1.95cqw">‏MCP می‌گوید سرویس‌ها چطور در دسترس‌اند، بستر قرارداد می‌گوید تعهدها چطور تسویه می‌شوند، رابط OpenAI می‌گوید مدل چطور عوض می‌شود، و تلگرام می‌گوید همهٔ این‌ها چه شکلی‌اند.</div>
-        <p class="tiny">سه‌تا از این چهارتا در واقع سه استاندارد جدا نیستند. ‏MCP Apps همان الگوی بات و مینی‌اپ است، منتها به شکل یک استاندارد باز و ساخته‌شده برای دستیارها؛ و Apps SDK شرکت اوپن‌ای‌آی هم لایه‌ای است روی همان.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 24 -->
-  <section class="slide" data-sec="معماری">
-    <div class="eyebrow" style="--i:0">۲۳ — بستر</div>
-    <h2 style="--i:1">بستر قرارداد: از ساده شروع می‌کنیم</h2>
-    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:1cqw">
-        <div class="card" style="border-color:var(--accent)">
-          <div class="k az">سابقهٔ تعیین‌کننده</div>
-          <div class="v">سوئیفت دفتر کل خودش را روی <span class="mono">Hyperledger Besu</span> ساخت و در ۲۰۲۶ با ۱۷ بانک بزرگ از شش قاره، پرداخت سپردهٔ توکن‌شدهٔ شبانه‌روزی را آزمایش کرد. سیتی و <span class="mono">DTCC</span> هم از همین استفاده می‌کنند.</div>
-        </div>
-        <ul class="list">
-          <li>سالیدیتی و همهٔ ابزار و ادبیات حسابرسی اتریوم، از جمله دانشی که از شکست‌هایش انباشته شده.</li>
-          <li>اجرای ایزوله و قطعیِ کدی که دیگران می‌نویسند، با سنجش منابع.</li>
-          <li>نیروی قابل استخدام: توسعه‌دهندهٔ سالیدیتی در ایران هست.</li>
-          <li class="x">آنچه لازم <em>نداریم</em>: اجماع بی‌مجوز، استخراج، شبکهٔ عمومی و دارایی سفته‌بازانه.</li>
-        </ul>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:1cqw">
-        <h3>چه وقت به این بستر نیاز پیدا می‌کنیم؟</h3>
-        <p>تا وقتی قرارداد‌ها را خودمان اجرا می‌کنیم، به هیچ زنجیره‌ای نیاز نیست؛ همان کد معمولی و یک دفتر افزودنی کافی است. نیاز از جایی شروع می‌شود که بخواهیم <strong>دیگران</strong> کد قرارداد بنویسند و آن کد پول کاربران را جابه‌جا کند. آن‌وقت به محیط اجرای ایزوله و قطعی احتیاج داریم، و EVM دقیقاً همان است.</p>
-        <div class="cols-2" style="gap:.9cqw">
-          <div class="tile"><span class="tn">سقف تراکنش</span><span class="td">در حساب خود کاربر اعمال می‌شود</span></div>
-          <div class="tile"><span class="tn">وکالت</span><span class="td">کلید موقت و سقف‌دار</span></div>
-          <div class="tile"><span class="tn">کارمزد شبکه</span><span class="td">کاربر اصلاً آن را نمی‌بیند</span></div>
-          <div class="tile"><span class="tn">بازیابی حساب</span><span class="td">پاسخی که تا امروز نداشتیم</span></div>
-        </div>
+        <div class="quote" style="font-size:1.95cqw">‏MCP می‌گوید سرویس‌ها چطور در دسترس‌اند، رابط OpenAI می‌گوید مدل چطور عوض می‌شود، و تلگرام می‌گوید همهٔ این‌ها چه شکلی‌اند. تسویه هم کار خودِ سکوست.</div>
+        <p class="tiny">این‌ها سه استاندارد جدا نیستند که کنار هم بچینیم. ‏MCP Apps همان الگوی بات و مینی‌اپ است، منتها به شکل یک استاندارد باز و ساخته‌شده برای دستیارها؛ و Apps SDK شرکت اوپن‌ای‌آی هم لایه‌ای است روی همان. امروز حدود ۹۷ میلیون دانلود ماهانهٔ کتابخانه‌های MCP ثبت می‌شود و این استاندارد در دسامبر ۲۰۲۵ به بنیاد لینوکس واگذار شد؛ یعنی سرمایه‌گذاری روی آن، سرمایه‌گذاری روی یک شرکت خاص نیست.</p>
       </div>
     </div>
   </section>
@@ -852,7 +1039,7 @@ input[type=range]::-moz-range-thumb{
       </div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw">
-      <p>روی زنجیرهٔ مجوزدار، وضعیت برای همهٔ اعتبارسنج‌ها دیدنی است. پس قاعدهٔ جدا کردن داده از دفتر اینجا سخت‌گیرانه‌تر می‌شود، نه سست‌تر.</p>
+      <p>دفترِ ما فقط چیزهایی را نگه می‌دارد که باید بعداً اثبات‌پذیر باشند. هر چه اثباتش ارزشی ندارد، در پایگاه دادهٔ معمولی می‌ماند و از دفتر بیرون است.</p>
       <p><strong>و همه‌چیز تراکنش نیست.</strong> خواندن، گفت‌وگو، آماده‌سازی و پیدا کردن قابلیت‌ها بیرون از دفتر می‌مانند. فقط جابه‌جایی ارزش و تعهد الزام‌آور تراکنش می‌شود.</p>
     </div>
   </section>
@@ -868,7 +1055,7 @@ input[type=range]::-moz-range-thumb{
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
       <p><strong>چرا مدل متوسط کافی است:</strong> چون دستیار فقط می‌خواند، استدلال می‌کند و سند را آماده می‌کند. هیچ‌وقت اجرا نمی‌کند. پس معیار ما این است که «قرارداد درست را آماده می‌کند یا نه»، نه اینکه «می‌شود به او اختیار داد یا نه».</p>
-      <p><strong>همین معماری امنیتی است که اجازه می‌دهد سراغ مدل ارزان برویم.</strong> مدل ضعیف‌تر کیفیت تجربه را پایین می‌آورد، نه امنیت را. کاربری هم که کیفیت بیشتری بخواهد، کلید خودش را می‌آورد.</p>
+      <p><strong>همین معماری امنیتی است که اجازه می‌دهد سراغ مدل ارزان برویم.</strong> مدل ضعیف‌تر کیفیت تجربه را پایین می‌آورد، نه امنیت را. کاربری هم که کیفیت بیشتری بخواهد، کلید خودش را می‌آورد. ضمن اینکه روند به سود ماست: هزینهٔ هوش مصنوعی برای یک سطح توانایی ثابت، سالانه حدود ده برابر ارزان‌تر می‌شود.</p>
     </div>
   </section>
 
@@ -952,7 +1139,7 @@ input[type=range]::-moz-range-thumb{
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:1cqw">
         <p>اول بودن در هوش مصنوعی دوازده تا هجده ماه جلو می‌اندازد، نه بیشتر. بله و آپ و روبیکا و اسنپ همه می‌توانند یک لایهٔ گفت‌وگو روی آنچه دارند سوار کنند.</p>
-        <p><strong>اگر حرف اصلی ما این باشد که «برنده‌ایم چون زودتر هوش مصنوعی آوردیم»، حرف سستی زده‌ایم.</strong></p>
+        <p><strong>آنچه می‌ماند، چیزهایی است که کپی‌کردنی نیستند.</strong></p>
       </div>
       <ul class="list">
         <li>پایگاه مشترکان و رابطهٔ صورتحسابی با بخش بزرگی از کشور.</li>
@@ -997,7 +1184,7 @@ input[type=range]::-moz-range-thumb{
       <div style="display:flex; flex-direction:column; gap:.8cqw">
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">سنجهٔ فارسیِ عامل‌محور</div><div class="v">کم‌هزینه است، تعیین‌کننده است، و هیچ‌کس دیگری در کشور ندارد. انتخاب مدل و برآورد هزینه هر دو به آن گره خورده‌اند.</div></div>
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">زیرساخت کلید عمومی</div><div class="v">هویت و کلید اپ‌ها، چرخش و ابطال. بعد از سخت‌افزار طولانی‌ترین زمان تدارک را دارد، و با داستان امضای سیم‌کارت مشترک است.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">نمونهٔ اولیهٔ بستر قرارداد</div><div class="v">اول با کد خودمان، و بعد آزمایش عملی روی زنجیرهٔ مجوزدار. این را نباید فرض گرفت، باید ثابت شود.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">نمونهٔ اولیهٔ لایهٔ قرارداد</div><div class="v">تنظیم، امضا، اجرا و دفترِ حسابرسی — از ابتدا تا انتها روی یک نمونهٔ واقعی، پیش از آنکه چیزی به سرویس‌ها وعده داده شود.</div></div>
       </div>
       <div style="display:flex; flex-direction:column; gap:.8cqw">
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">قرارداد شریک مدل</div><div class="v">وزن باز، حق تنظیم دقیق روی دادهٔ فارسی، کمک در تأمین سخت‌افزار، و بند خروج.</div></div>
@@ -1393,6 +1580,269 @@ input[type=range]::-moz-range-thumb{
       injectNote.innerHTML = '<strong>این مرز نرم‌افزاری نیست، معماری است.</strong> بیشتر ادبیات امنیت دستیارها دربارهٔ محدود کردن کاری است که مدلِ به‌خطر‌افتاده می‌تواند بکند. اینجا مدل اساساً توان انجام هیچ کاری ندارد.';
     }
   });
+
+  /* ================= shared prototype helpers ================= */
+  function el(tag, cls, html){
+    var n = document.createElement(tag);
+    if(cls) n.className = cls;
+    if(html != null) n.innerHTML = html;
+    return n;
+  }
+  function attach(o){
+    // o: {tone, logo, name, code, rows:[[k,v,isNum]], parties:[[name,signed]], action, done}
+    var a = el('div','att' + (o.done ? ' done' : ''));
+    a.style.setProperty('--tone', o.tone);
+    var h = el('div','ah');
+    h.appendChild(el('span','lg', o.logo));
+    h.appendChild(el('span','an', o.name));
+    h.appendChild(el('span','ac', o.code));
+    a.appendChild(h);
+    var b = el('div','ab');
+    o.rows.forEach(function(r){
+      var row = el('div','ar');
+      row.appendChild(el('span', null, r[0]));
+      row.appendChild(el('b', r[2] ? 'n' : null, r[1]));
+      b.appendChild(row);
+    });
+    a.appendChild(b);
+    var f = el('div','af');
+    var sg = el('div','sg');
+    o.parties.forEach(function(p){
+      sg.appendChild(el('em', p[1] ? 'ok' : null, (p[1] ? '✓ ' : '○ ') + p[0]));
+    });
+    f.appendChild(sg);
+    if(o.action){
+      var btn = el('button','go', o.action);
+      if(o.done){ btn.disabled = true; }
+      f.appendChild(btn);
+      a.actionBtn = btn;
+    }
+    a.appendChild(f);
+    return a;
+  }
+  function say(box, cls, html){
+    var m = el('div','msg ' + cls, html);
+    box.appendChild(m); box.scrollTop = box.scrollHeight; return m;
+  }
+  function typing(box){
+    var t = el('div','typing','<i></i><i></i><i></i>');
+    box.appendChild(t); box.scrollTop = box.scrollHeight; return t;
+  }
+  function seq(steps){
+    var i = 0, timers = [];
+    function run(){
+      if(i >= steps.length) return;
+      var st = steps[i++];
+      timers.push(setTimeout(function(){ st.do(); run(); }, st.wait));
+    }
+    run();
+    return function(){ timers.forEach(clearTimeout); };
+  }
+
+  /* ================= P1 : talking to the assistant ================= */
+  var p1chat = document.getElementById('p1chat');
+  var p1inp  = document.getElementById('p1inp');
+  var p1note = document.getElementById('p1note');
+  var p1stop = null;
+  function p1reset(){
+    if(p1stop) p1stop();
+    p1chat.innerHTML = '';
+    p1inp.textContent = 'پیام…';
+    p1note.textContent = 'دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد سندی تنظیم کند. سندی که برمی‌گردد، از پیش امضای اپ را دارد.';
+  }
+  function p1run(){
+    p1reset();
+    p1stop = seq([
+      { wait: 200, do: function(){ p1inp.textContent = 'شام امشب رو از رستوران همیشگی سفارش بده'; } },
+      { wait: 700, do: function(){ say(p1chat,'me','شام امشب رو از رستوران همیشگی سفارش بده'); p1inp.textContent = 'پیام…'; } },
+      { wait: 500, do: function(){ p1chat.appendChild(typing(p1chat)); } },
+      { wait: 1100, do: function(){
+          var t = p1chat.querySelector('.typing'); if(t) t.remove();
+          say(p1chat,'them','رستوران «شکوفه»، همان سفارش دفعهٔ قبل. از اسنپ‌فود خواستم سند را آماده کند.');
+        } },
+      { wait: 800, do: function(){
+          var a = attach({
+            tone:'#E4405F', logo:'ف', name:'اسنپ‌فود', code:'#F2201',
+            rows:[['موضوع','سفارش غذا'],['رستوران','شکوفه'],['اقلام','چلوکباب × ۲'],['مبلغ','۴۵۰٬۰۰۰ تومان',true]],
+            parties:[['اسنپ‌فود',true],['شما',false]],
+            action:'امضا و ثبت سفارش'
+          });
+          p1chat.appendChild(a); p1chat.scrollTop = p1chat.scrollHeight;
+          a.actionBtn.addEventListener('click', function(){
+            a.classList.add('done');
+            a.style.setProperty('--tone','var(--green)');
+            a.querySelectorAll('.sg em')[1].className = 'ok';
+            a.querySelectorAll('.sg em')[1].textContent = '✓ شما';
+            a.actionBtn.textContent = 'امضا شد · سفارش ثبت شد';
+            a.actionBtn.disabled = true;
+            say(p1chat,'sys','سفارش ثبت شد · ۴۵۰٬۰۰۰ تومان از کیف پول کم شد');
+            p1note.innerHTML = '<strong>همین بود.</strong> کاربر یک جمله گفت و یک سند امضا کرد. تنها امضایی که از او خواسته شد، امضای خودش بود؛ امضای اپ از قبل روی سند بود.';
+          });
+          p1note.innerHTML = 'سند آمد و <strong>امضای اسنپ‌فود از قبل روی آن است</strong>. مبلغی که می‌بینید حرفِ دستیار نیست؛ خودِ اپ آن را امضا کرده. حالا نوبت کاربر است.';
+        } }
+    ]);
+  }
+  document.getElementById('p1go').addEventListener('click', p1run);
+  document.getElementById('p1rst').addEventListener('click', p1reset);
+  p1reset();
+
+  /* ================= P2 : adding a new app ================= */
+  var p2chat = document.getElementById('p2chat');
+  var p2inp  = document.getElementById('p2inp');
+  var p2stop = null;
+  function p2reset(){ if(p2stop) p2stop(); p2chat.innerHTML=''; p2inp.textContent='پیام…'; }
+  function p2run(){
+    p2reset();
+    p2stop = seq([
+      { wait:200, do:function(){ p2inp.textContent='می‌خوام با اپ «کنکوریا» کار کنم'; } },
+      { wait:800, do:function(){ say(p2chat,'me','می‌خوام با اپ «کنکوریا» کار کنم — konkooria.ir/mcp'); p2inp.textContent='پیام…'; } },
+      { wait:450, do:function(){ p2chat.appendChild(typing(p2chat)); } },
+      { wait:1000, do:function(){
+          var t=p2chat.querySelector('.typing'); if(t) t.remove();
+          say(p2chat,'them','این اپ را پیدا کردم. برای شروع باید قرارداد استارت را امضا کنید و مجوزهای لازم را بدهید.');
+        } },
+      { wait:600, do:function(){
+          var a = attach({
+            tone:'#2C7A5B', logo:'ک', name:'کنکوریا', code:'#S0001',
+            rows:[['نوع سند','قرارداد استارت'],['آدرس','konkooria.ir/mcp'],['وضعیت','احرازشده ✓']],
+            parties:[['کنکوریا',true],['شما',false]],
+            action:'استارت و اعطای مجوزها'
+          });
+          var perm = el('div','perm',
+            '<label><input type="checkbox" checked><span>ارسال اعلان به من<div class="cap">دربارهٔ آزمون‌ها و برنامهٔ مطالعه</div></span></label>' +
+            '<label><input type="checkbox" checked><span>خواندن پروفایل من<div class="cap">نام و پایهٔ تحصیلی</div></span></label>' +
+            '<label><input type="checkbox"><span class="fin">برداشت تا سقف ۵۰۰٬۰۰۰ تومان در ماه<div class="cap">مجوز مالی · نیازمند امضای پلهٔ بالاتر · قابل لغو یک‌طرفه</div></span></label>');
+          a.querySelector('.af').insertBefore(perm, a.querySelector('.go'));
+          p2chat.appendChild(a); p2chat.scrollTop = p2chat.scrollHeight;
+          a.actionBtn.addEventListener('click', function(){
+            var fin = perm.querySelectorAll('input')[2].checked;
+            a.classList.add('done'); a.style.setProperty('--tone','var(--green)');
+            a.querySelectorAll('.sg em')[1].className='ok';
+            a.querySelectorAll('.sg em')[1].textContent='✓ شما';
+            a.actionBtn.textContent='استارت شد'; a.actionBtn.disabled=true;
+            perm.querySelectorAll('input').forEach(function(x){ x.disabled = true; });
+            say(p2chat,'sys','کنکوریا به فهرست اپ‌های شما اضافه شد' + (fin ? ' · با مجوز مالی سقف‌دار' : ' · بدون مجوز مالی'));
+            say(p2chat,'them','آماده‌ام. می‌خواهید برنامهٔ این هفته را ببینید؟');
+          });
+        } }
+    ]);
+  }
+  document.getElementById('p2go').addEventListener('click', p2run);
+  document.getElementById('p2rst').addEventListener('click', p2reset);
+  p2reset();
+
+  /* ================= P3 : the app list ================= */
+  var APPS = [
+    { id:'snappfood', n:'اسنپ‌فود', c:'#E4405F', g:'ف', v:true,  last:'سفارش شما تحویل داده شد',
+      perms:[['ارسال اعلان',false],['خواندن پروفایل',false]],
+      cons:[['سفارش غذا · ۴۵۰٬۰۰۰','۲ روز پیش'],['سفارش غذا · ۳۱۰٬۰۰۰','هفتهٔ گذشته']] },
+    { id:'snapp', n:'اسنپ', c:'#2E9E5B', g:'س', v:true, last:'سفر شما به پایان رسید',
+      perms:[['ارسال اعلان',false],['خواندن موقعیت',false]],
+      cons:[['درخواست سفر · ۱۸۵٬۰۰۰','دیروز']] },
+    { id:'bills', n:'سرویس قبوض', c:'#B07C31', g:'ق', v:true, last:'قبض برق پرداخت شد',
+      perms:[['ارسال اعلان',false],['برداشت تا ۱٬۰۰۰٬۰۰۰ در ماه',true]],
+      cons:[['وکالت پرداخت قبوض','۹۰ روزه · فعال'],['پرداخت قبض برق · ۲۴۰٬۰۰۰','۳ روز پیش']] },
+    { id:'konkooria', n:'کنکوریا', c:'#2C7A5B', g:'ک', v:true, last:'برنامهٔ این هفته آماده است',
+      perms:[['ارسال اعلان',false],['خواندن پروفایل',false]],
+      cons:[['قرارداد استارت','امروز']] },
+    { id:'x', n:'اپ آزمایشی', c:'#6B7B96', g:'؟', v:false, last:'سلام! من چه کاری می‌توانم بکنم؟',
+      perms:[['ارسال اعلان',false]],
+      cons:[['قرارداد استارت','امروز']] }
+  ];
+  var p3body = document.getElementById('p3body');
+  var p3top  = document.getElementById('p3top');
+  function p3list(){
+    p3top.innerHTML = '<div class="av">☰</div><div><div class="nm">ویستا</div><div class="st">۵ اپ فعال</div></div>';
+    var wrap = el('div', null, '');
+    wrap.style.cssText = 'flex:1 1 auto; overflow-y:auto';
+    APPS.forEach(function(a){
+      var r = el('button','arow');
+      r.innerHTML = '<span class="ic" style="background:'+a.c+'">'+a.g+'</span>' +
+        '<span class="tx"><span class="t1">'+a.n+(a.v?' <i class="tick">✓</i>':'')+'</span>' +
+        '<span class="t2">'+a.last+'</span></span>';
+      r.addEventListener('click', function(){ p3detail(a); });
+      wrap.appendChild(r);
+    });
+    p3body.innerHTML=''; p3body.appendChild(wrap);
+  }
+  function p3detail(a){
+    p3top.innerHTML = '<div class="av" style="background:'+a.c+'">'+a.g+'</div>' +
+      '<div><div class="nm">'+a.n+(a.v?' <i class="tick">✓</i>':'')+'</div>' +
+      '<div class="st">'+(a.v?'احرازشده':'احرازنشده — مجوز مالی نمی‌گیرد')+'</div></div>';
+    var pane = el('div','pane');
+    var back = el('button','back','‹ بازگشت به فهرست');
+    back.addEventListener('click', p3list);
+    pane.appendChild(back);
+    pane.appendChild(el('h5', null, 'گفت‌وگو'));
+    var acts = el('div', null, '');
+    acts.style.cssText='display:flex; gap:.4cqw';
+    var b1 = el('button','btn','چت با بات'); b1.style.fontSize='.88cqw'; b1.style.padding='.4cqw .8cqw';
+    var b2 = el('button','btn','باز کردن مینی‌اپ'); b2.style.fontSize='.88cqw'; b2.style.padding='.4cqw .8cqw';
+    acts.appendChild(b1); acts.appendChild(b2);
+    pane.appendChild(acts);
+    pane.appendChild(el('h5', null, 'قراردادهای میان شما و این اپ'));
+    a.cons.forEach(function(c){
+      pane.appendChild(el('div','pc','<span>'+c[0]+'</span><small>'+c[1]+'</small>'));
+    });
+    pane.appendChild(el('h5', null, 'مجوزها'));
+    a.perms.forEach(function(p, idx){
+      var row = el('div','pc');
+      row.innerHTML = '<span'+(p[1]?' class="seal-text"':'')+'>'+p[0]+'</span>';
+      var rv = el('button','rvk','لغو');
+      rv.addEventListener('click', function(){
+        if(rv.classList.contains('off')) return;
+        rv.classList.add('off'); rv.textContent='لغو شد';
+        row.querySelector('span').style.opacity='.45';
+        row.querySelector('span').style.textDecoration='line-through';
+      });
+      row.appendChild(rv);
+      pane.appendChild(row);
+    });
+    p3body.innerHTML=''; p3body.appendChild(pane);
+  }
+  p3list();
+  document.getElementById('p3fab').addEventListener('click', function(){
+    var pane = el('div','pane');
+    var back = el('button','back','‹ بازگشت به فهرست');
+    back.addEventListener('click', p3list);
+    pane.appendChild(back);
+    pane.appendChild(el('h5', null, 'افزودن اپ'));
+    pane.appendChild(el('div','pc','<span>آدرس اپ را وارد کنید</span>'));
+    pane.appendChild(el('div','pc','<span class="mono" style="font-size:.85cqw">https://…/mcp</span>'));
+    pane.appendChild(el('div','v','<div class="split-note">اپ لازم نیست جای خاصی میزبانی شود. کافی است آدرسش را بدهید، قرارداد استارت را بخوانید و امضا کنید.</div>'));
+    p3body.innerHTML=''; p3body.appendChild(pane);
+  });
+
+  /* ================= P4 : one contract, three palettes ================= */
+  var P4 = {
+    food: { tone:'#E4405F', logo:'ف', name:'اسنپ‌فود', code:'#F2201', av:'ف',
+      rows:[['موضوع','سفارش غذا'],['فروشنده','رستوران شکوفه'],['اقلام','چلوکباب × ۲'],['مبلغ','۴۵۰٬۰۰۰ تومان',true]] },
+    ride: { tone:'#2E9E5B', logo:'س', name:'اسنپ', code:'#T4410', av:'س',
+      rows:[['موضوع','درخواست سفر'],['مقصد','خانهٔ مادر'],['زمان','فردا ۸:۰۰'],['کرایه','۱۸۵٬۰۰۰ تومان',true]] },
+    doc:  { tone:'#2C5FA8', logo:'د', name:'اسنپ‌دکتر', code:'#D7730', av:'د',
+      rows:[['موضوع','رزرو ویزیت'],['پزشک','دکتر رضایی'],['زمان','یکشنبه ۱۶:۳۰'],['هزینه','۳۲۰٬۰۰۰ تومان',true]] }
+  };
+  var p4chat = document.getElementById('p4chat');
+  function p4render(k){
+    var d = P4[k];
+    document.getElementById('p4nm').textContent = d.name;
+    var av = document.getElementById('p4av');
+    av.textContent = d.av; av.style.background = d.tone;
+    p4chat.innerHTML = '';
+    say(p4chat,'them','سند آماده است. لطفاً بررسی و امضا کنید.');
+    var a = attach({
+      tone:d.tone, logo:d.logo, name:d.name, code:d.code,
+      rows:d.rows, parties:[[d.name,true],['شما',false]], action:'امضا'
+    });
+    p4chat.appendChild(a);
+  }
+  document.getElementById('p4tg').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    Array.prototype.forEach.call(this.children, function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    p4render(b.dataset.v);
+  });
+  p4render('food');
 
   go(0);
 })();
