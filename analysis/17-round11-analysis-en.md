@@ -60,7 +60,7 @@ Also right, and also missing. Signing is not payment, and payment is not deliver
 
 Each is an event attached to the contract, and each **appears as a message from that app in that app's chat** — «سفارش شما تحویل شد» arriving from Snappfood, under the contract it belongs to. That is how a receipt should feel, and it means the chat is also the audit trail.
 
-Book, not deck. The deck shows one signature and one outcome; the book carries the state machine.
+Book, not deck. The deck shows one signature and one outcome; the book carries the state machine. **COMMENT**: ببین داخل ارائه هم باید به این نحوی که میگم بیاد یه جایی هست که داره فهرست اپ‌ها رو نشون میده شبیه فهرست چت‌های تلگرام اولا که اینجا یه اشتباهی می‌کنه که روی هر یه دونه اپ که میزنی میره تو صفحه تنظیمات اون اپ که این اشتباهه وقتی رو یه دونه اپ میزنی باید بره به صفحه چت با اون اپ وقتی اون بالا روی اسم اپ میزنه باید بره به صفحه تنظیمات اون اپ که تو صفحه تنظیمات اون اپ خیلی چیزها هست دیگه میتونه مجوز ها رو لغو بکنه میتونه یه دونه اپ رو در واقع میوت بکنه که دیگه نوتیفیکیشن نیاد و خیلی کارهای دیگری که توی مثلاً صفحه تنظیمات یه دونه چت با نتیجه نفر کاربر یه دونه ربات میبینه اینجا هم هست مثلا تصاویری که با اون اپ به اشتراک گذاشته و از همه مهمتر قراردادهایی که با اون اپ به اشتراک گذاشته رو می‌تونه توی فهرستی تو صفحه تنظیمات اون اپ ببینه این صفحه تنظیمات یک اپ مجزا هست از صفحه چت با اون اپ تو صفحه چت با اون اپ میتونه قراردادها رو ببینه پیام های که فرستاده جوابایی که اون داده و همچنین رویدادهایی که روی قرارداد اومده رو میتونه ببینه برای همین وقتی که روی یه قرارداد یه اتفاقی میفته مثلا سفارش تحویل میشه خب یه دونه پیام میاد در پاسخ به اون قرارداد این رو میتونه یک نمونه اش رو توی همون پروتوتایپ ببینه مث روی اسنپ فوت میزنه مثلا یه دونه قرارداد سفارش غذا رو ببینه و یه پیام هم میبینه که روی اون در واقع ریپلای داده که مثلاً سفارش شما تحویل شد به همراه زمانش که مثل تلگرام اون پایینش زمان را نوشته و خلاصه اینها
 
 ---
 
@@ -96,7 +96,7 @@ I had this wrong in a way that mattered. Taking our MCP into ChatGPT cannot work
 
 What you actually want is narrower and more useful: **the user supplies a provider address and an API key and their own model drives Vista's assistant**, instead of the model we supply. The assistant, the contracts, the apps and the signatures are all still ours; only the brain is swapped.
 
-And the pricing correction: **our model is not free either.** The user pays for it. Bringing your own key is an alternative for someone who wants a stronger model, not an escape from paying.
+And the pricing correction: **our model is not free either.** The user pays for it. Bringing your own key is an alternative for someone who wants a stronger model, not an escape from paying. **COMMENT**: if they bring their own provider and api key, they dont pay. it's like Hermes.
 
 ## 3.4 Review once per company, not per version
 
@@ -126,7 +126,7 @@ Trust is green. Red is for what wants you.
 
 Your answer is better than mine: **paying to turn sponsored suggestions off.** It is a real revenue line rather than a concession, it is a pattern users already understand from every app they use, and it still gives the honest answer to a regulator — the user can always remove it.
 
-So there are two ways to be free of sponsorship: pay, or bring your own key and pay for that instead. Both are the user buying their way out with money instead of attention, which is a coherent position.
+So there are two ways to be free of sponsorship: pay, or bring your own key and pay for that instead. Both are the user buying their way out with money instead of attention, which is a coherent position. **COMMENT**: bring your key is irrelevent to this switch
 
 ---
 
