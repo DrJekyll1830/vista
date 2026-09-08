@@ -120,7 +120,7 @@ export async function probe(app: AppRow, credential?: string | null): Promise<{ 
 /** Data permission filter: only what the app declared reaches it. */
 export function contextFor(app: AppRow, user: { id: string; phone: string; first_name: string | null; last_name: string | null }, granted: string[]) {
   const data: string[] = json.parse(app.data_permissions_json, []);
-  const ctx: Record<string, unknown> = { user_ref: `u_${user.id.slice(-10)}` };
+  const ctx: Record<string, unknown> = { user_ref: `u_${user.id.slice(-10)}`, app_id: app.id };
   if (data.includes('profile.phone') && granted.includes('profile.read')) ctx.phone = user.phone;
   if (data.includes('profile.name') && granted.includes('profile.read')) ctx.name = `${user.first_name ?? ''} ${user.last_name ?? ''}`.trim();
   ctx.user_id = `user:${user.id}`;

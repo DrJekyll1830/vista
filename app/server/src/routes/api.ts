@@ -199,7 +199,14 @@ api.post('/showcase/add', async (c) => {
       reg.upsert({ id: aid, kind: 'mcp', name: host, description: `اپی که با آدرس اضافه شد: ${url}`, url, color: '#6B7B96', logo: host.slice(0, 1).toUpperCase(), in_catalog: 0, added_by: u.id, tags_json: JSON.stringify(['افزوده با آدرس']) });
       a = reg.getApp(aid)!;
     }
-    await mcp.probe(a, credential ?? null);
+    const { manifest } = await mcp.probe(a, credential ?? null);
+    // A Vista app is known by its manifest id: contracts carry app_id = manifest.id, so the registry must use the same id.
+    if (manifest?.vista === '1' && manifest.id && manifest.id !== a.id) {
+      const taken = reg.getApp(manifest.id);
+      if (taken && taken.url !== url) { q.run('DELETE FROM apps WHERE id=? AND added_by=?', a.id, u.id); return c.json({ error: 'id_taken', message: `شناسهٔ «${manifest.id}» قبلاً برای اپ دیگری ثبت شده است.` }, 409); }
+      if (taken) { q.run('DELETE FROM apps WHERE id=?', a.id); a = taken; }
+      else { const hasInstalls = q.get('SELECT 1 FROM installs WHERE app_id=?', a.id); if (!hasInstalls) { q.run('UPDATE apps SET id=? WHERE id=?', manifest.id, a.id); a = reg.getApp(manifest.id)!; } }
+    }
     return c.json({ app: reg.publicApp(reg.getApp(a.id)!, q.get('SELECT * FROM installs WHERE user_id=? AND app_id=?', u.id, a.id)) });
   } catch (e) { return err(c, e); }
 });

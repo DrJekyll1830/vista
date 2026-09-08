@@ -26,8 +26,10 @@ engine.setFulfiller(async (row, doc, platformSignature) => {
   const delegation = q.get<any>('SELECT id FROM delegations WHERE contract_id=?', row.id);
   const res = await callTool(app, app.fulfillment_tool, { contract: doc, platform_signature: platformSignature, delegation_id: delegation?.id }, { credential: inst?.credential, allowHidden: true });
   const txt = res.structured ?? (() => { try { return JSON.parse(res.content.map((c: any) => c.text ?? '').join('')); } catch { return null; } })();
-  if (!txt) return { events: res.isError ? [{ type: 'failed', text: 'اپ خطا داد' }] : [] };
-  return { events: Array.isArray(txt.events) ? txt.events : [] };
+  const events = Array.isArray(txt?.events) ? txt.events : null;
+  // The app decides what is terminal: an explicit `failed` event. An error without events is treated as transient and retried.
+  if (res.isError && !events?.length) throw new Error(`اپ خطا داد: ${res.content.map((c: any) => c.text ?? '').join(' ').slice(0, 160)}`);
+  return { events: events ?? [] };
 });
 
 const app = new Hono();

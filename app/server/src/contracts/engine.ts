@@ -364,7 +364,8 @@ export async function fulfil(cid: string) {
     if (!res) { if (row.status === 'executing' && doc.policy.settlement === 'immediate') setStatus(cid, 'settled'); return; }
     for (const ev of res.events ?? []) recordEvent(cid, ev.type, 'app', row.app_id, ev.text ?? '', ev.payload ?? {});
     const fresh = getContract(cid)!;
-    if (fresh.status === 'executing' && doc.policy.settlement === 'immediate' && !doc.effects.some((e) => e.type === 'wallet.pay')) setStatus(cid, 'settled');
+    // Immediate settlement: money already moved; the app has answered, so the contract is settled (delivery events are informational).
+    if (fresh.status === 'executing' && doc.policy.settlement === 'immediate') setStatus(cid, 'settled');
   } catch (e: any) {
     console.error('[fulfil]', cid, e?.message ?? e);
     insertEvent(cid, 'note', 'platform', 'processor', 'اپ در لحظهٔ اجرا پاسخ نداد؛ دوباره تلاش می‌شود.');
@@ -373,7 +374,7 @@ export async function fulfil(cid: string) {
 }
 /** Retry contracts still waiting on their app. */
 export async function retryPending() {
-  const rows = q.all<ContractRow>("SELECT * FROM contracts WHERE status='executing' AND executed_at < ?", new Date(Date.now() - 60_000).toISOString());
+  const rows = q.all<ContractRow>("SELECT * FROM contracts WHERE status='executing' AND executed_at < ? AND executed_at > ?", new Date(Date.now() - 60_000).toISOString(), new Date(Date.now() - 24 * 3_600_000).toISOString());
   for (const r of rows) {
     const doc = docOf(r);
     if (doc.effects.some((e) => e.type === 'wallet.topup')) continue;
