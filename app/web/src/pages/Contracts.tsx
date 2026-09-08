@@ -27,13 +27,14 @@ export function Contracts() {
   );
 }
 export function ContractDetail() {
-  const { id = '' } = useParams(); const nav = useNavigate(); const [d, setD] = useState<any>(null); const [dispute, setDispute] = useState(false); const [txt, setTxt] = useState(''); const [share, setShare] = useState<any>(null); const [busy, setBusy] = useState(false); const [raw, setRaw] = useState(false);
+  const { id = '' } = useParams(); const nav = useNavigate(); const [d, setD] = useState<any>(null); const [dispute, setDispute] = useState(false); const [txt, setTxt] = useState(''); const [share, setShare] = useState<any>(null); const [busy, setBusy] = useState(false); const [raw, setRaw] = useState(false); const [smsTo, setSmsTo] = useState('');
   const load = async () => { try { setD(await get(`/contracts/${id}`)); } catch (e: any) { toast(e.message); } };
   useEffect(() => { void load(); }, [id]);
   if (!d) return <><Top onBack={() => nav(-1)} title="…" /><div className="pad"><Spinner /></div></>;
   const c: Projection = d.contract;
   async function sendDispute() { setBusy(true); try { await post(`/contracts/${id}/dispute`, { text: txt }); toast('اعتراض به همان قرارداد چسبید و به پشتیبانی رفت'); setDispute(false); await load(); } catch (e: any) { toast(e.message); } finally { setBusy(false); } }
   async function doShare() { try { const r = await post(`/contracts/${id}/share`); setShare(r); } catch (e: any) { toast(e.message); } }
+  async function shareSms() { setBusy(true); try { const r = await post(`/contracts/${id}/share/sms`, { phone: smsTo }); toast(r.sent ? 'لینک با پیامک فرستاده شد' : `ارسال پیامک ناموفق بود (${r.provider})`); setSmsTo(''); } catch (e: any) { toast(e.message); } finally { setBusy(false); } }
   return (
     <>
       <Top onBack={() => nav(-1)} avatar={<Avatar color={c.app.color} logo={c.app.logo} />} title={<>{c.app.name}<Tick show={c.app.verified} /></>} sub={`قرارداد · نسخهٔ ${fa(c.version)} · ${c.created_label}`} right={<button className="act" onClick={() => nav(`/chat/${c.app.id}`)}>گفت‌وگو</button>} />
@@ -50,7 +51,8 @@ export function ContractDetail() {
           {['executing', 'settled', 'failed'].includes(c.status) && <button className="btn danger" onClick={() => setDispute(true)}>اعتراض</button>}
           <button className="btn ghost" onClick={() => setRaw(!raw)}>{raw ? 'پنهان کردن سند' : 'سند خام'}</button>
         </div>
-          {share && <div className="ok-box" style={{ marginTop: 10 }}>لینک: <a href={share.url} dir="ltr">{share.url}</a><br /><small>می‌توانید با پیامک یا هر پیام‌رسانی بفرستید. گیرنده با شمارهٔ خودش وارد می‌شود.</small></div>}
+          {share && <div className="ok-box" style={{ marginTop: 10 }}>لینک: <a href={share.url} dir="ltr">{share.url}</a><br /><small>با هر پیام‌رسانی بفرستید، یا همین‌جا با پیامک. گیرنده با شمارهٔ خودش وارد می‌شود.</small>
+            <div style={{ display: 'flex', gap: 8, marginTop: 8 }}><input dir="ltr" inputMode="tel" placeholder="09xxxxxxxxx" value={smsTo} onChange={(e) => setSmsTo(e.target.value)} /><button className="btn sm" disabled={busy || smsTo.length < 10} onClick={shareSms}>ارسال با پیامک</button></div></div>}
           {raw && <pre className="mono" style={{ whiteSpace: 'pre-wrap', marginTop: 10, background: 'var(--surface-2)', padding: 10, borderRadius: 10, direction: 'ltr', textAlign: 'left' }}>{JSON.stringify(d.doc, null, 2)}</pre>}
         </div>
       </div>

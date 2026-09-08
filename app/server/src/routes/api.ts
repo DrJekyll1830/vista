@@ -6,7 +6,8 @@ import { q, json } from '../db.js';
 import { id, now, plusMinutes } from '../util/ids.js';
 import { normalizePhone, toman } from '../util/persian.js';
 import { formatJalaliDateTime, isoToJalali } from '../util/jalali.js';
-import { ledgerVerify } from '../ledger.js';
+import { ledgerVerify, ledgerAppend } from '../ledger.js';
+import { sendSms } from '../sms/index.js';
 import * as auth from '../auth/service.js';
 import type { User } from '../auth/service.js';
 import * as chats from '../chats/service.js';
@@ -330,6 +331,19 @@ api.post('/contracts/:id/share', (c) => {
   const token = r.share_token ?? id('sh', 24);
   if (!r.share_token) q.run('UPDATE contracts SET share_token=? WHERE id=?', token, r.id);
   return c.json({ url: `${config.publicUrl}/c/${token}`, sms_text: `قرارداد «${r.title}» در ویستا: ${config.publicUrl}/c/${token}` });
+});
+api.post('/contracts/:id/share/sms', async (c) => {
+  try {
+    const u = c.get('user'); const r = engine.getContract(c.req.param('id'));
+    if (!r || r.user_id !== u.id) return c.json({ error: 'not_found', message: 'قرارداد یافت نشد' }, 404);
+    const { phone } = await body(c, z.object({ phone: z.string() }));
+    const p = normalizePhone(phone); if (!p) return c.json({ error: 'phone', message: 'شمارهٔ موبایل معتبر نیست.' }, 400);
+    const token = r.share_token ?? id('sh', 24); if (!r.share_token) q.run('UPDATE contracts SET share_token=? WHERE id=?', token, r.id);
+    const sender = u.first_name ? `${u.first_name} ${u.last_name ?? ''}`.trim() : u.phone;
+    const res = await sendSms(p, `ویستا\n${sender} قرارداد «${r.title}» را برای شما فرستاد:\n${config.publicUrl}/c/${token}`);
+    ledgerAppend('contract.shared', { contractId: r.id, via: 'sms', to: p.slice(0, 4) + '****' + p.slice(-3) }, { refType: 'contract', refId: r.id, userId: u.id, appId: r.app_id });
+    return c.json({ sent: res.ok, provider: res.provider, url: `${config.publicUrl}/c/${token}` });
+  } catch (e) { return err(c, e); }
 });
 api.get('/share/:token', (c) => {
   const u = c.get('user'); const r = q.get<engine.ContractRow>('SELECT * FROM contracts WHERE share_token=?', c.req.param('token'));
