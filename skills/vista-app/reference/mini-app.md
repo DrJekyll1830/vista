@@ -12,7 +12,7 @@ https://app.example.ir/vista/mini?token=<base64url(json)>.<signature>
 
 توکن دو بخش دارد که با نقطه جدا شده‌اند:
 
-1. `base64url` از این JSON:
+1. بخش اول: `base64url` از این JSON:
    ```json
    { "user_id": "usr_v2kqzs0nybxn61np", "user_ref": "u_zs0nybxn61", "exp": 1788173400000 }
    ```
@@ -57,7 +57,7 @@ const payload = verifyMiniAppToken(PLATFORM_PUBLIC_KEY, url.searchParams.get('to
 
 ## سبک
 
-- `<html lang="fa" dir="rtl">` و `<meta name="viewport" content="width=device-width,initial-scale=1">`
+- نشانه‌گذاری: `<html lang="fa" dir="rtl">` و `<meta name="viewport" content="width=device-width,initial-scale=1">`
 - قلم: `font-family: Vazirmatn, system-ui, sans-serif` (اگر Vazirmatn را خودتان سرو می‌کنید، `font-display: swap`)
 - واکنش‌گرا و بدون عرض ثابت؛ صفحه در موبایل، در یک ستون، داخل iframe باز می‌شود
 - رنگ برند خودتان مجاز است (همان `appearance.color` مانیفست بهتر است)؛ چیدمان ساده و سبک

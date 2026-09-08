@@ -86,9 +86,9 @@ interface OpenClause { key: string; owner: string; label: string; kind?: Clause[
 { "type": "app.installed", "app_id": "konkooria" }
 ```
 
-- `wallet.sufficient`: اعلام اینکه اجرا به موجودی کافی وابسته است. خودِ مسدودی (`hold`) موجودی را می‌سنجد؛ در قراردادهای `wallet.pay` بگذارید.
-- `delegation.active`: در اجرای زیر وکالت **الزامی** است و پردازشگر فعال بودن وکالت را با آن می‌سنجد.
-- `app.installed`: پذیرفته می‌شود؛ در این نسخه اجرا آن را نمی‌سنجد (نصب بودن اپ پیش از هر فراخوانی ابزار بررسی شده است).
+- شرط `wallet.sufficient`: اعلام اینکه اجرا به موجودی کافی وابسته است. خودِ مسدودی (`hold`) موجودی را می‌سنجد؛ در قراردادهای `wallet.pay` بگذارید.
+- شرط `delegation.active`: در اجرای زیر وکالت **الزامی** است و پردازشگر فعال بودن وکالت را با آن می‌سنجد.
+- شرط `app.installed`: پذیرفته می‌شود؛ در این نسخه اجرا آن را نمی‌سنجد (نصب بودن اپ پیش از هر فراخوانی ابزار بررسی شده است).
 
 ## اثرها (`effects`)
 
@@ -120,9 +120,9 @@ interface Fee { beneficiary: string; amount: number; label?: string; visible?: b
 { "min_rung": 1, "quorum": "all", "settlement": "on_delivery" }
 ```
 
-- `min_rung`: کف پلهٔ امضا که قالب می‌خواهد (۱ تا ۵)؛ سکو می‌تواند بالا ببرد (جدول پایین). برای خرید معمولی ۱، برای وکالت ۲.
-- `quorum`: در این نسخه فقط `'all'`.
-- `settlement`:
+- فیلد `min_rung`: کف پلهٔ امضا که قالب می‌خواهد (۱ تا ۵)؛ سکو می‌تواند بالا ببرد (جدول پایین). برای خرید معمولی ۱، برای وکالت ۲.
+- فیلد `quorum`: در این نسخه فقط `'all'`.
+- فیلد `settlement`:
   - `on_delivery` — هنگام اجرا مبلغ **مسدود** می‌شود (`held`)؛ وقتی اپ رویداد `delivered` بدهد **کسر** می‌شود (`deducted`) و قرارداد `settled` می‌شود. `cancelled` یا `failed` مسدودی را آزاد می‌کند. برای خدمتی که تحویلش لحظه‌ای نیست، این را انتخاب کنید.
   - `immediate` — هنگام اجرا مسدود و بلافاصله کسر می‌شود. ابزار تحویل باز هم صدا زده می‌شود؛ `delivered` فقط وضعیت را `settled` می‌کند.
 
@@ -136,10 +136,10 @@ interface Fee { beneficiary: string; amount: number; label?: string; visible?: b
 
 ## یکتاها و زمان‌ها
 
-- `id`: یکتا در کل سکو؛ تکراری → خطای `dup`. از `newId('ctr')` استفاده کنید.
-- `nonce`: یکتا در کل سکو و **یک‌بارمصرف**؛ تکراری → خطای `nonce`. برای هر سند (حتی نسخهٔ تازه) `nonce` تازه بسازید.
-- `created_at`: زمان ساخت (ISO). `expires_at`: مهلت امضا؛ اگر هنگام ثبت گذشته باشد → `expired`. مرسوم: ۱۵ دقیقه برای خرید، ۶۰ دقیقه برای استارت/وکالت، حداکثر ۲۴ ساعت. سکو هر دقیقه قراردادهای منقضی را می‌بندد.
-- `version` / `prev_version_id`: هر تغییر در بندها یعنی سند تازه با `version + 1`، `prev_version_id` = شناسهٔ قبلی، **`id` و `nonce` تازه**، و امضای تازهٔ اپ. امضاهای نسخهٔ قبل به درد نسخهٔ تازه نمی‌خورند چون هش عوض شده است.
+- شناسهٔ `id`: یکتا در کل سکو؛ تکراری → خطای `dup`. از `newId('ctr')` استفاده کنید.
+- یکتای `nonce`: یکتا در کل سکو و **یک‌بارمصرف**؛ تکراری → خطای `nonce`. برای هر سند (حتی نسخهٔ تازه) `nonce` تازه بسازید.
+- زمان `created_at`: زمان ساخت (ISO). `expires_at`: مهلت امضا؛ اگر هنگام ثبت گذشته باشد → `expired`. مرسوم: ۱۵ دقیقه برای خرید، ۶۰ دقیقه برای استارت/وکالت، حداکثر ۲۴ ساعت. سکو هر دقیقه قراردادهای منقضی را می‌بندد.
+- نسخه: `version` / `prev_version_id` — هر تغییر در بندها یعنی سند تازه با `version + 1`، `prev_version_id` = شناسهٔ قبلی، **`id` و `nonce` تازه**، و امضای تازهٔ اپ. امضاهای نسخهٔ قبل به درد نسخهٔ تازه نمی‌خورند چون هش عوض شده است.
 
 ## مبلغ قرارداد
 
@@ -242,7 +242,7 @@ rejected / expired                                      │  signed  │  همه
 }
 ```
 
-JSON متعارف (یک خط، ۱۳۴۰ نویسه؛ توجه به ترتیب کلیدها و نبودِ `appearance`):
+نمایش JSON متعارف (یک خط، ۱۳۴۰ نویسه؛ توجه به ترتیب کلیدها و نبودِ `appearance`):
 
 ```
 {"app_id":"konkooria","clauses":[{"key":"subject","label":"موضوع","value":"ثبت‌نام در دورهٔ آموزشی"},{"key":"course","label":"دوره","value":"ریاضی جامع کنکور — ۴۸ جلسه"},{"key":"amount","kind":"amount","label":"مبلغ","value":1850000},{"key":"access","label":"دسترسی","value":"بلافاصله پس از امضا؛ مبلغ اول مسدود و پس از فعال شدن دسترسی کسر می‌شود"},{"key":"refund","kind":"note","label":"بازگشت وجه","value":"تا ۷ روز، اگر کمتر از ۳ جلسه دیده شده باشد"}],"conditions":[{"type":"wallet.sufficient"}],"created_at":"2026-09-08T10:00:00.000Z","effects":[{"amount":1850000,"memo":"ریاضی جامع کنکور","payee_app_id":"konkooria","type":"wallet.pay"},{"action":"enroll","params":{"course_id":"math-101"},"type":"app.action"}],"expires_at":"2026-09-08T10:15:00.000Z","fees":[{"amount":18500,"beneficiary":"vista","label":"کارمزد سکو","visible":false}],"id":"ctr_k7f2m9q1x4z8b3n6","nonce":"n_8h2k5m9p1r4t7w0y3a6c","open_clauses":[],"parties":[{"id":"app:konkooria","kind":"app","label":"کنکوریا","must_sign":true,"role":"provider"},{"id":"user:usr_v2kqzs0nybxn61np","kind":"user","label":"شما","must_sign":true,"role":"payer"}],"policy":{"min_rung":1,"quorum":"all","settlement":"on_delivery"},"prev_version_id":null,"template_ref":"konkooria/enrollment","title":"ثبت‌نام دوره · ریاضی جامع کنکور","type":"konkooria.enrollment","version":1,"vista":"1"}

@@ -169,7 +169,7 @@ server.registerTool('build_course_enrollment_contract',
 inputSchema: { exam_id: z.string().describe('شناسهٔ آزمون از list_exams'), venue: z.enum(['online', 'in_person']).default('online') }
 ```
 
-- `type: 'konkooria.exam'`, `template_ref: 'konkooria/exam'`, `settlement: 'on_delivery'`.
+- نوع: `type: 'konkooria.exam'`, `template_ref: 'konkooria/exam'`, `settlement: 'on_delivery'`.
 - بندها: موضوع، آزمون و تاریخ، محل (آنلاین/حضوری)، مبلغ ۱۲۰٬۰۰۰، تحویل («صندلی پس از امضا رزرو و کد ورود در مینی‌اپ نمایش داده می‌شود؛ مبلغ پس از رزرو کسر می‌شود»)، لغو («تا ۴۸ ساعت پیش از آزمون؛ بازگشت کامل»).
 - اثرها: `wallet.pay 120000` + `app.action register_exam { exam_id, venue }`.
 - `expires_at`: ۱۵ دقیقه. ظرفیت را در ساخت رزرو نکنید؛ در تحویل رزرو کنید و اگر پر شد `cancelled` بدهید (مسدودی آزاد می‌شود).
@@ -181,7 +181,7 @@ inputSchema: { plan_id: z.enum(['monthly']).default('monthly'), months: z.number
                cap_toman: z.number().int().min(200000).max(2400000).optional().describe('سقف کل؛ پیش‌فرض قیمت × ماه‌ها') }
 ```
 
-- `type: 'konkooria.subscription-delegation'`, `template_ref: 'konkooria/auto-subscription'`, `min_rung: 2`, `settlement: 'immediate'`, `conditions: []`.
+- نوع: `type: 'konkooria.subscription-delegation'`, `template_ref: 'konkooria/auto-subscription'`, `min_rung: 2`, `settlement: 'immediate'`, `conditions: []`.
 - اثرها: `delegation.grant { app_id:'konkooria', scope:'konkooria/subscription', label:'تمدید خودکار طرح ماهانه', cap: cap_toman ?? 200000*months, per_use_cap: 200000, expires_at: plusDays(30*months) }` + `app.action activate_auto_subscription { plan_id }`.
 - بندها: موضوع، محدوده («فقط تمدید طرح ماهانه (۲۰۰٬۰۰۰ تومان) در سررسید هر ماه»)، سقف کل، سقف هر بار، انقضا، قواعد (واگذاری ممنوع · لغو یک‌طرفه · اطلاع هر مصرف).
 - فقط وقتی کار می‌کند که کنکوریا نشان آبی داشته باشد.
