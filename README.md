@@ -5,11 +5,21 @@
 ## ساختار
 
 ```
+app/                       محصول زندهٔ اثبات مفهوم (سرور + وب‌کلاینت + اپ نمونهٔ مرجع) — app/README.md
+skills/vista-app/          اسکیل «اپ ویستا» برای شرکا (کنکوریا): مشخصات، کتابخانهٔ امضا، آزمون انطباق
 presentation/index.html    ارائهٔ تعاملی (فارسی، دسکتاپ، خودبسنده)
 book/                      کتاب؛ هر فصل یک فایل .md
 build/build.sh             ساخت PDF از پوشهٔ کتاب
 analysis/                  یادداشت‌های تحلیلی دورهای طراحی (انگلیسی)
 ```
+
+## محصول زنده
+
+```bash
+cd app && cp .env.example .env && pnpm install && pnpm build && pnpm start   # http://localhost:8787
+```
+
+پیکربندی پیامک، مدل زبانی و درگاه در `app/.env.example` توضیح داده شده است. جزئیات در `app/README.md`.
 
 ## ارائه
 

@@ -1,0 +1,14 @@
+{
+  "name": "vista-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "ویستا — محصول زندهٔ اثبات مفهوم",
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "start": "node server/dist/index.js",
+    "seed:reset": "rm -f data/vista.db",
+    "conformance": "node ../skills/vista-app/scripts/conformance.mjs"
+  },
+  "engines": { "node": ">=22.13" }
+}
