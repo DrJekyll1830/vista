@@ -423,6 +423,18 @@ input[type=range]::-moz-range-thumb{
 
 .proto{display:flex; gap:2.2cqw; align-items:flex-start}
 .proto .side{flex:1 1 auto; display:flex; flex-direction:column; gap:1.1cqw; padding-top:.5cqw}
+
+.arow.sys{background:color-mix(in srgb, var(--azure) 6%, transparent)}
+.arow.down{opacity:.42}
+.arow.down .ic{filter:grayscale(1)}
+.badge{
+  font-size:.78cqw; font-weight:700; padding:.2cqw .5cqw; border-radius:99px;
+  background:var(--accent-2); color:#fff; flex:0 0 auto;
+}
+.badge.q{background:transparent; color:var(--fg-3); border:1px solid var(--line); font-weight:600}
+.sysmark{font-size:.76cqw; color:var(--azure); border:1px solid var(--azure); border-radius:.28cqw;
+  padding:.06cqw .3cqw; flex:0 0 auto}
+.dead{font-size:.78cqw; color:var(--fg-3); flex:0 0 auto}
 </style>
 
 <div class="deck">
@@ -603,6 +615,27 @@ input[type=range]::-moz-range-thumb{
           <div class="k">آنچه در این صحنه اتفاق نمی‌افتد</div>
           <div class="v">دستیار سند را ننوشته و امضا نکرده. فقط از اپ خواسته آن را بسازد و برای کاربر آورده است.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYS : the system layer -->
+  <section class="slide" data-sec="ویستا چیست">
+    <div class="eyebrow" style="--i:0">لایهٔ سیستمی</div>
+    <h2 style="--i:1">شش اپ که از روز اول آنجا هستند</h2>
+    <div class="cols-3" style="--i:2">
+      <div class="card"><div class="k">دستیار</div><div class="v">گفت‌وگوی پیش‌فرض. برنامه که باز می‌شود، اینجاست.</div></div>
+      <div class="card"><div class="k">ویترین</div><div class="v">هر اپ دیگری از اینجا پیدا و نصب می‌شود؛ با نظر کاربران، تصویر، و فهرست مجوزهایی که می‌خواهد.</div></div>
+      <div class="card"><div class="k">مالی</div><div class="v">کیف پول، تراکنش‌ها، و سابقهٔ پرداخت.</div></div>
+      <div class="card"><div class="k">قراردادهای من</div><div class="v">هر سندی که تا امروز امضا کرده‌اید، در یک جا. مجوزها هم همین‌جا هستند، چون مجوز خودش یک قرارداد است.</div></div>
+      <div class="card"><div class="k">پشتیبانی</div><div class="v">شکایت، اختلاف، و مشکل حساب. هر اختلاف، رویدادی امضاشده روی همان قرارداد است.</div></div>
+      <div class="card"><div class="k">تنظیمات</div><div class="v">احراز هویت، کلیدهای امضا، ظاهر، و صفحهٔ پیش‌فرض.</div></div>
+    </div>
+    <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
+      <p>در نخستین اجرا، کاربر می‌بیند چه چیزهایی از پیش نصب است و هر کدام چه می‌کنند — و همان را یک بار امضا می‌کند. <strong>قرارداد آغاز</strong> همین است.</p>
+      <div class="card" style="border-color:var(--accent-2)">
+        <div class="k seal-text">قاعده</div>
+        <div class="v">ماژول سیستمی از <strong>اجازه گرفتن</strong> معاف است، نه از <strong>سند دادن</strong>. مالی هیچ‌وقت مجوز نمی‌خواهد، اما هیچ‌وقت هم بدون سند امضاشده پولی جابه‌جا نمی‌کند.</div>
       </div>
     </div>
   </section>
@@ -826,6 +859,33 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
+  <!-- P5 : install by asking -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — نصب با درخواست</div>
+    <div class="proto" style="--i:1">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top">
+          <div class="av">و</div>
+          <div><div class="nm">دستیار ویستا</div><div class="st">آنلاین</div></div>
+        </div>
+        <div class="body"><div class="chat" id="p5chat"></div></div>
+        <div class="foot"><div class="inp" id="p5inp">پیام…</div><button class="snd">↑</button></div>
+      </div>
+      <div class="side">
+        <h2 style="font-size:2.6cqw">پیدا کردن اپ، با گفتن نیاز</h2>
+        <p>کاربر نمی‌داند چه اپی وجود دارد و لازم هم نیست بداند. نیازش را می‌گوید؛ دستیار در ویترین می‌گردد و قرارداد استارت را می‌آورد.</p>
+        <div class="row" style="gap:.8cqw">
+          <button class="btn primary" id="p5go">اجرا کن</button>
+          <button class="btn" id="p5rst">از نو</button>
+        </div>
+        <div class="card" style="background:var(--surface-2)">
+          <div class="k">کاری که فهرست نمی‌تواند بکند</div>
+          <div class="v">در یک فروشگاه، کاربر باید بداند دنبال چه بگردد. اینجا نیاز را می‌گوید و پاسخ می‌آید. این یکی از معدود جاهایی است که دستیار کاری می‌کند که هیچ منویی از پسش برنمی‌آید.</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- P3 : prototype — the app list -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">نمونهٔ کار — فهرست اپ‌ها</div>
@@ -876,8 +936,8 @@ input[type=range]::-moz-range-thumb{
         <h3 id="ai-t">حالت کامل</h3>
         <p id="ai-d">کاربر با دستیار حرف می‌زند و دستیار تصمیم می‌گیرد کدام دکمهٔ کدام بات را بزند. ظاهر برنامه تا جای ممکن شبیه چت‌جی‌پی‌تی است.</p>
         <div class="card" style="background:var(--surface-2)">
-          <div class="k">الگویی که در مقیاس جواب داده</div>
-          <div class="v">حدود ۵۰۰ میلیون کاربر تلگرام با مینی‌اپ‌ها کار می‌کنند و گردش مالی‌شان در ۲۰۲۵ از یک میلیارد دلار گذشت. ما همان الگو را برمی‌داریم: هر قابلیت یک بار اعلام می‌شود و از همان یک اعلام دو سطح ساخته می‌شود — ابزار برای دستیار و دکمه برای آدم — پس این دو هیچ‌وقت از هم عقب نمی‌افتند.</div>
+          <div class="k">چرا شبیه چیزهایی که می‌شناسند</div>
+          <div class="v">جیکوب نیلسن قاعده را این‌طور می‌گوید: کاربر بیشتر وقتش را جای دیگری می‌گذراند، پس مدل ذهنی‌اش را آنجا ساخته و انتظار دارد اینجا هم همان‌طور کار کند. فهرست را از تلگرام می‌گیریم و گفت‌وگو را از چت‌جی‌پی‌تی؛ <strong>قرارداد تنها چیز تازه است، و همین که داخل قابی آشنا می‌نشیند، تازه‌بودنش قابل تحمل می‌شود.</strong> حدود ۵۰۰ میلیون کاربر تلگرام با مینی‌اپ‌ها کار می‌کنند و گردش مالی‌شان در ۲۰۲۵ از یک میلیارد دلار گذشت؛ ما همان الگو را برمی‌داریم.</div>
         </div>
       </div>
     </div>
@@ -1160,20 +1220,20 @@ input[type=range]::-moz-range-thumb{
       <div class="phase">
         <span class="pn">STAGE 01</span>
         <span class="pt">اثبات</span>
-        <div class="v" style="font-size:1.3cqw; color:var(--fg-2); line-height:1.7">کنکوریا با حدود ۲۳٬۰۰۰ کاربر: جمعیتی فشرده، به‌هم‌پیوسته و درگیر، با نیاز واقعی به پرداخت. مهم‌تر اینکه سرویس‌دهنده‌اش را خودمان در اختیار داریم.<br><br><strong>چه چیزی اثبات می‌شود:</strong> اینکه قرارداد و امضا و پرداخت و اشتراک‌گذاری و دستیار، با کاربر واقعی و پول واقعی کار می‌کنند.</div>
+        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">کنکوریا با حدود ۲۳٬۰۰۰ کاربر، و خدمات خود ایرانسل.<br><br>شش اپ سیستمی · موتور قرارداد · <strong>امضای پلهٔ ۱ و ۲</strong> · بات و مینی‌اپ · پرداخت روی ریل بانک سینا · اشتراک‌گذاری سند با لینک و پیامک · نسخهٔ اول SDK · رسیدگی به اختلاف.</div>
       </div>
       <div class="phase p2">
         <span class="pn">STAGE 02</span>
         <span class="pt">مقیاس</span>
-        <div class="v" style="font-size:1.3cqw; color:var(--fg-2); line-height:1.7">خدمات خود ایرانسل روی پایگاه مشترکان؛ پرتکرارترین تراکنش‌ها، بدون هیچ مذاکره‌ای.<br><br><strong>چه چیزی اثبات می‌شود:</strong> اینکه ساز و کار در مقیاس ده‌ها میلیون دوام می‌آورد و ارزش مخابراتی واقعاً وجود دارد.</div>
+        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">پایگاه مشترکان ایرانسل.<br><br><strong>امضای پلهٔ ۳ و ۴</strong> — کلید گوشی و سیم‌کارت · وکالت · کیف پول زیر مجوز بانک · اپ‌های شخص ثالث در سطح احرازشده · پمپاژ هوش به‌عنوان محصول · مسیریابی چندلایهٔ مدل و آغاز میزبانی داخلی.</div>
       </div>
       <div class="phase p3">
         <span class="pn">STAGE 03</span>
         <span class="pt">گشایش</span>
-        <div class="v" style="font-size:1.3cqw; color:var(--fg-2); line-height:1.7">سرویس‌های شخص ثالث از طریق <span class="mono">SDK</span>؛ بازارچهٔ قابلیت‌ها؛ قرارداد و دارایی توکن‌شده.<br><br><strong>چه چیزی اثبات می‌شود:</strong> اینکه یکپارچه‌سازی آن‌قدر ارزان هست که شریک خودش انجامش بدهد.</div>
+        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">افزودن آزاد اپ با آدرس، در مقیاس · درآمد بازارچه · گفت‌وگوی کاربر با کاربر، پشت مجوز پیام‌رسان · صدا · و برای بررسی، نه وعده: دارایی توکن‌شده و قرارداد خوداجرا.</div>
       </div>
     </div>
-    <p style="--i:3" class="tiny">فاز اول به هیچ شریک بیرونی نیاز ندارد. با اسنپ وقتی مذاکره می‌کنیم که ترافیک اثبات‌شده داشته باشیم، نه اینکه عرضه‌مان گروِ آمدن او باشد.</p>
+    <p style="--i:3" class="tiny">فاز اول به هیچ شریک بیرونی نیاز ندارد. نکتهٔ سنجیده در این ترتیب، جای نردبان امضاست: پله‌های ۱ و ۲ همان چیزی است که کاربر ایرانی از هر اپ بانکی می‌شناسد و از روز اول کار می‌کند؛ پله‌های ۳ و ۴ — که مزیت تکرارناپذیر اپراتور است — به زیرساخت کلید عمومی وابسته‌اند و در فاز دوم می‌آیند.</p>
   </section>
 
   <!-- 33 -->
@@ -1667,6 +1727,10 @@ input[type=range]::-moz-range-thumb{
             parties:[['اسنپ‌فود',true],['شما',false]],
             action:'امضا و ثبت سفارش'
           });
+          var fw = el('button','rvk','↱ پرسیدن از دستیار');
+          fw.style.cssText='align-self:flex-start; border-color:var(--accent); color:var(--accent)';
+          fw.addEventListener('click', function(){ fw.remove(); p1forward(); });
+          a.querySelector('.af').insertBefore(fw, a.actionBtn);
           p1chat.appendChild(a); p1chat.scrollTop = p1chat.scrollHeight;
           a.actionBtn.addEventListener('click', function(){
             a.classList.add('done');
@@ -1681,6 +1745,17 @@ input[type=range]::-moz-range-thumb{
           p1note.innerHTML = 'سند آمد و <strong>امضای اسنپ‌فود از قبل روی آن است</strong>. مبلغی که می‌بینید حرفِ دستیار نیست؛ خودِ اپ آن را امضا کرده. حالا نوبت کاربر است.';
         } }
     ]);
+  }
+  var p1ask = null;
+  function p1forward(){
+    say(p1chat,'sys','↱ سند به دستیار فوروارد شد');
+    say(p1chat,'me','این قرارداد یعنی چی؟ چیزی هست که باید حواسم باشه؟');
+    p1chat.appendChild(typing(p1chat));
+    setTimeout(function(){
+      var t=p1chat.querySelector('.typing'); if(t) t.remove();
+      say(p1chat,'them','با امضای این سند، ۴۵۰٬۰۰۰ تومان از کیف پول شما کم می‌شود و سفارش برای رستوران شکوفه ثبت می‌شود. تخفیف یا بازگشت وجه ندارد و تا ۱۵ دقیقه معتبر است. اسنپ‌فود این شرایط را امضا کرده، پس مبلغ قابل تغییر نیست.');
+      p1note.innerHTML = '<strong>سند را می‌شود به دستیار فوروارد کرد و پرسید یعنی چه.</strong> دستیاری که سند را برایت توضیح می‌دهد، ولی نمی‌تواند امضایش کند.';
+    }, 1100);
   }
   document.getElementById('p1go').addEventListener('click', p1run);
   document.getElementById('p1rst').addEventListener('click', p1reset);
@@ -1733,42 +1808,67 @@ input[type=range]::-moz-range-thumb{
 
   /* ================= P3 : the app list ================= */
   var APPS = [
-    { id:'snappfood', n:'اسنپ‌فود', c:'#E4405F', g:'ف', v:true,  last:'سفارش شما تحویل داده شد',
+    { id:'assistant', n:'دستیار ویستا', c:'#2C5FA8', g:'و', sys:true, v:true, up:true,
+      last:'سفارش شما ثبت شد',
+      perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
+      cons:[['قرارداد آغاز','روز نصب']] },
+    { id:'vitrin', n:'ویترین', c:'#7A4FA3', g:'ی', sys:true, v:true, up:true,
+      last:'۳ اپ تازه در دستهٔ آموزش',
+      perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
+      cons:[['قرارداد آغاز','روز نصب']] },
+    { id:'wallet', n:'مالی', c:'#B07C31', g:'م', sys:true, v:true, up:true,
+      last:'۴۵۰٬۰۰۰ تومان — اسنپ‌فود',
+      perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
+      cons:[['قرارداد آغاز','روز نصب']] },
+    { id:'mycons', n:'قراردادهای من', c:'#C13B2F', g:'ق', sys:true, v:true, up:true,
+      last:'۱۴ سند امضاشده',
+      perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
+      cons:[['قرارداد آغاز','روز نصب']] },
+    { id:'snappfood', n:'اسنپ‌فود', c:'#E4405F', g:'ف', v:true, up:true,
+      last:'سفارش شما تحویل داده شد', wait:0,
       perms:[['ارسال اعلان',false],['خواندن پروفایل',false]],
-      cons:[['سفارش غذا · ۴۵۰٬۰۰۰','۲ روز پیش'],['سفارش غذا · ۳۱۰٬۰۰۰','هفتهٔ گذشته']] },
-    { id:'snapp', n:'اسنپ', c:'#2E9E5B', g:'س', v:true, last:'سفر شما به پایان رسید',
+      cons:[['سفارش غذا · ۴۵۰٬۰۰۰','اجرا شد · ۲ روز پیش'],['سفارش غذا · ۳۱۰٬۰۰۰','منقضی شد · هفتهٔ گذشته']] },
+    { id:'snapp', n:'اسنپ', c:'#2E9E5B', g:'س', v:true, up:true,
+      last:'سند سفر آمادهٔ امضاست', wait:1,
       perms:[['ارسال اعلان',false],['خواندن موقعیت',false]],
-      cons:[['درخواست سفر · ۱۸۵٬۰۰۰','دیروز']] },
-    { id:'bills', n:'سرویس قبوض', c:'#B07C31', g:'ق', v:true, last:'قبض برق پرداخت شد',
+      cons:[['درخواست سفر · ۱۸۵٬۰۰۰','در انتظار امضای شما'],['درخواست سفر · ۹۲٬۰۰۰','اجرا شد · دیروز']] },
+    { id:'bills', n:'سرویس قبوض', c:'#8A6D3B', g:'ق', v:true, up:true,
+      last:'قبض برق پرداخت شد',
       perms:[['ارسال اعلان',false],['برداشت تا ۱٬۰۰۰٬۰۰۰ در ماه',true]],
-      cons:[['وکالت پرداخت قبوض','۹۰ روزه · فعال'],['پرداخت قبض برق · ۲۴۰٬۰۰۰','۳ روز پیش']] },
-    { id:'konkooria', n:'کنکوریا', c:'#2C7A5B', g:'ک', v:true, last:'برنامهٔ این هفته آماده است',
+      cons:[['وکالت پرداخت قبوض','۹۰ روزه · فعال'],['پرداخت قبض برق · ۲۴۰٬۰۰۰','اجرا شد · ۳ روز پیش']] },
+    { id:'konkooria', n:'کنکوریا', c:'#2C7A5B', g:'ک', v:true, up:true,
+      last:'آزمون فردا ساعت ۸ صبح',
       perms:[['ارسال اعلان',false],['خواندن پروفایل',false]],
-      cons:[['قرارداد استارت','امروز']] },
-    { id:'x', n:'اپ آزمایشی', c:'#6B7B96', g:'؟', v:false, last:'سلام! من چه کاری می‌توانم بکنم؟',
+      cons:[['قرارداد آغاز','امروز']] },
+    { id:'x', n:'اپ آزمایشی', c:'#6B7B96', g:'؟', v:false, up:false,
+      last:'در دسترس نیست',
       perms:[['ارسال اعلان',false]],
-      cons:[['قرارداد استارت','امروز']] }
+      cons:[['قرارداد آغاز','امروز']] }
   ];
   var p3body = document.getElementById('p3body');
   var p3top  = document.getElementById('p3top');
   function p3list(){
-    p3top.innerHTML = '<div class="av">☰</div><div><div class="nm">ویستا</div><div class="st">۵ اپ فعال</div></div>';
+    p3top.innerHTML = '<div class="av">☰</div><div><div class="nm">ویستا</div><div class="st">۹ اپ</div></div>';
     var wrap = el('div', null, '');
     wrap.style.cssText = 'flex:1 1 auto; overflow-y:auto';
     APPS.forEach(function(a){
-      var r = el('button','arow');
+      var r = el('button','arow' + (a.sys ? ' sys' : '') + (a.up === false ? ' down' : ''));
+      var tail = '';
+      if(a.up === false)      tail = '<span class="dead">در دسترس نیست</span>';
+      else if(a.wait)         tail = '<span class="badge">' + fa(a.wait) + ' امضا</span>';
+      else if(a.sys)          tail = '<span class="sysmark">سیستمی</span>';
       r.innerHTML = '<span class="ic" style="background:'+a.c+'">'+a.g+'</span>' +
-        '<span class="tx"><span class="t1">'+a.n+(a.v?' <i class="tick">✓</i>':'')+'</span>' +
-        '<span class="t2">'+a.last+'</span></span>';
+        '<span class="tx"><span class="t1">'+a.n+(a.v && !a.sys ?' <i class="tick">✓</i>':'')+'</span>' +
+        '<span class="t2">'+a.last+'</span></span>' + tail;
       r.addEventListener('click', function(){ p3detail(a); });
       wrap.appendChild(r);
     });
     p3body.innerHTML=''; p3body.appendChild(wrap);
   }
   function p3detail(a){
-    p3top.innerHTML = '<div class="av" style="background:'+a.c+'">'+a.g+'</div>' +
-      '<div><div class="nm">'+a.n+(a.v?' <i class="tick">✓</i>':'')+'</div>' +
-      '<div class="st">'+(a.v?'احرازشده':'احرازنشده — مجوز مالی نمی‌گیرد')+'</div></div>';
+    p3top.innerHTML = '<div class="av" style="background:'+a.c+(a.up===false?';filter:grayscale(1)':'')+'">'+a.g+'</div>' +
+      '<div><div class="nm">'+a.n+(a.v && !a.sys?' <i class="tick">✓</i>':'')+'</div>' +
+      '<div class="st">'+(a.up===false ? 'در دسترس نیست' : (a.sys?'ماژول سیستمی':(a.v?'احرازشده':'احرازنشده — مجوز مالی نمی‌گیرد')))+'</div></div>';
     var pane = el('div','pane');
     var back = el('button','back','‹ بازگشت به فهرست');
     back.addEventListener('click', p3list);
@@ -1776,28 +1876,39 @@ input[type=range]::-moz-range-thumb{
     pane.appendChild(el('h5', null, 'گفت‌وگو'));
     var acts = el('div', null, '');
     acts.style.cssText='display:flex; gap:.4cqw';
-    var b1 = el('button','btn','چت با بات'); b1.style.fontSize='.88cqw'; b1.style.padding='.4cqw .8cqw';
-    var b2 = el('button','btn','باز کردن مینی‌اپ'); b2.style.fontSize='.88cqw'; b2.style.padding='.4cqw .8cqw';
+    var b1 = el('button','btn','چت'); var b2 = el('button','btn','مینی‌اپ');
+    [b1,b2].forEach(function(b){ b.style.fontSize='.88cqw'; b.style.padding='.4cqw .8cqw';
+      if(a.up===false){ b.disabled = true; } });
     acts.appendChild(b1); acts.appendChild(b2);
     pane.appendChild(acts);
     pane.appendChild(el('h5', null, 'قراردادهای میان شما و این اپ'));
     a.cons.forEach(function(c){
-      pane.appendChild(el('div','pc','<span>'+c[0]+'</span><small>'+c[1]+'</small>'));
-    });
-    pane.appendChild(el('h5', null, 'مجوزها'));
-    a.perms.forEach(function(p, idx){
+      var pending = c[1].indexOf('در انتظار') === 0;
+      var expired = c[1].indexOf('منقضی') === 0;
       var row = el('div','pc');
-      row.innerHTML = '<span'+(p[1]?' class="seal-text"':'')+'>'+p[0]+'</span>';
-      var rv = el('button','rvk','لغو');
-      rv.addEventListener('click', function(){
-        if(rv.classList.contains('off')) return;
-        rv.classList.add('off'); rv.textContent='لغو شد';
-        row.querySelector('span').style.opacity='.45';
-        row.querySelector('span').style.textDecoration='line-through';
-      });
-      row.appendChild(rv);
+      row.innerHTML = '<span'+(expired?' style="opacity:.5"':'')+'>'+c[0]+'</span>' +
+        (pending ? '<span class="badge">'+c[1]+'</span>' : '<small>'+c[1]+'</small>');
       pane.appendChild(row);
     });
+    pane.appendChild(el('h5', null, 'مجوزها'));
+    a.perms.forEach(function(p){
+      var row = el('div','pc');
+      row.innerHTML = '<span'+(p[1]?' class="seal-text"':'')+(p[2]?' style="color:var(--fg-3)"':'')+'>'+p[0]+'</span>';
+      if(!p[2]){
+        var rv = el('button','rvk','لغو');
+        rv.addEventListener('click', function(){
+          if(rv.classList.contains('off')) return;
+          rv.classList.add('off'); rv.textContent='لغو شد';
+          row.querySelector('span').style.opacity='.45';
+          row.querySelector('span').style.textDecoration='line-through';
+        });
+        row.appendChild(rv);
+      }
+      pane.appendChild(row);
+    });
+    if(a.up === false){
+      pane.appendChild(el('div','split-note','این اپ در دسترس نیست. تا وقتی برنگردد، سندی از او امضا نمی‌شود.'));
+    }
     p3body.innerHTML=''; p3body.appendChild(pane);
   }
   p3list();
@@ -1843,6 +1954,41 @@ input[type=range]::-moz-range-thumb{
     p4render(b.dataset.v);
   });
   p4render('food');
+
+  /* ================= P5 : install by asking ================= */
+  var p5chat=document.getElementById('p5chat'), p5inp=document.getElementById('p5inp'), p5stop=null;
+  function p5reset(){ if(p5stop) p5stop(); p5chat.innerHTML=''; p5inp.textContent='پیام…'; }
+  function p5run(){
+    p5reset();
+    p5stop = seq([
+      { wait:200, do:function(){ p5inp.textContent='یه اپ برای تمرین زبان برام نصب کن'; } },
+      { wait:800, do:function(){ say(p5chat,'me','یه اپ برای تمرین زبان برام نصب کن'); p5inp.textContent='پیام…'; } },
+      { wait:450, do:function(){ p5chat.appendChild(typing(p5chat)); } },
+      { wait:1200, do:function(){
+          var t=p5chat.querySelector('.typing'); if(t) t.remove();
+          say(p5chat,'them','در ویترین گشتم. «زبان‌یار» بیشترین امتیاز را دارد و فقط دو مجوز ساده می‌خواهد. «واژه‌بان» هم اسپانسر ماست.');
+        } },
+      { wait:700, do:function(){
+          var a = attach({
+            tone:'#7A4FA3', logo:'ز', name:'زبان‌یار', code:'#S1140',
+            rows:[['نوع سند','قرارداد استارت'],['امتیاز','۴٫۷ از ۵ · ۲٬۳۰۰ نظر'],['مجوزها','اعلان · پروفایل'],['وضعیت','احرازشده ✓']],
+            parties:[['زبان‌یار',true],['شما',false]],
+            action:'نصب و استارت'
+          });
+          p5chat.appendChild(a); p5chat.scrollTop=p5chat.scrollHeight;
+          a.actionBtn.addEventListener('click', function(){
+            a.classList.add('done'); a.style.setProperty('--tone','var(--green)');
+            a.querySelectorAll('.sg em')[1].className='ok';
+            a.querySelectorAll('.sg em')[1].textContent='✓ شما';
+            a.actionBtn.textContent='نصب شد'; a.actionBtn.disabled=true;
+            say(p5chat,'sys','زبان‌یار به فهرست اپ‌های شما اضافه شد');
+          });
+        } }
+    ]);
+  }
+  document.getElementById('p5go').addEventListener('click', p5run);
+  document.getElementById('p5rst').addEventListener('click', p5reset);
+  p5reset();
 
   go(0);
 })();

@@ -72,7 +72,7 @@ Building the prototypes from three reusable pieces, as you specified:
 | **نمای گفت‌وگو** | message list — user bubbles, assistant bubbles, system notes, chips, buttons | adding an app · talking to the assistant · talking to a bot directly |
 | **قرارداد به‌عنوان پیوست** | the contract card *inside* the conversation — terms, parties, signature state, action | everywhere a contract appears, in-chat and standalone |
 
-The third is the important one: a contract rendered inside a chat bubble is the single image that explains the product. It is also what makes the styling demonstration work — the same card, the same layout, two different palettes.
+The third is the important one: a contract rendered inside a chat bubble is the single image that explains the product. It is also what makes the styling demonstration work — the same card, the same layout, two different palettes. **COMMENT**: another component is "App List" we should think that it's like Telegram chatlist or like Android App deck. I prefer Telegram chat list. but maybe a settings help?
 
 ---
 
