@@ -1,7 +1,7 @@
 apiVersion: k8s.kubit.ir/v1alpha1
 kind: Pack
 metadata:
-  name: vista-app-prod
+  name: vista-app
   namespace: konkooria
 spec:
   chart:

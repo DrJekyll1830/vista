@@ -9,7 +9,7 @@ include:
   - component: git.kubit.dev/eitala/common/ci-cd/rules@main
   - component: git.kubit.dev/eitala/common/ci-cd/tag-build-deploy@main
     inputs:
-      environment: vista-app-prod
+      environment: app-prod
       build_context: app
       condition: .only_main
       when: always
