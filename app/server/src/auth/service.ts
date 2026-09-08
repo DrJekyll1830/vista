@@ -51,7 +51,7 @@ export async function getOrCreateUser(phone: string): Promise<User> {
   if (!u) {
     const uid = id('usr');
     await q.run('INSERT INTO users (id, phone, created_at) VALUES (?,?,?)', uid, phone, now());
-    await q.run('INSERT INTO wallets (user_id, balance, held, updated_at) VALUES (?,0,?)', uid, now());
+    await q.run('INSERT INTO wallets (user_id, balance, held, updated_at) VALUES (?,0,0,?)', uid, now());
     u = (await q.get<User>('SELECT * FROM users WHERE id=?', uid))!;
     await ledgerAppend('user.created', { userId: uid, phone }, { userId: uid, refType: 'user', refId: uid });
   }

@@ -8,7 +8,7 @@ export interface Wallet { user_id: string; balance: number; held: number; update
 export async function getWallet(userId: string): Promise<Wallet> {
   let w = await q.get<Wallet>('SELECT * FROM wallets WHERE user_id=?', userId);
   if (!w) {
-    await q.run('INSERT INTO wallets (user_id, balance, held, updated_at) VALUES (?,0,?)', userId, now());
+    await q.run('INSERT INTO wallets (user_id, balance, held, updated_at) VALUES (?,0,0,?)', userId, now());
     w = (await q.get<Wallet>('SELECT * FROM wallets WHERE user_id=?', userId))!;
   }
   return w;
