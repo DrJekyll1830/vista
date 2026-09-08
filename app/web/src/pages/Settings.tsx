@@ -16,7 +16,7 @@ export default function Settings() {
     <>
       <Top onBack={() => nav('/apps')} avatar={<Avatar color="#6B7B96" logo="ت" />} title="تنظیمات" sub="احراز هویت، کلید مدل، ظاهر، صفحهٔ پیش‌فرض" />
       <div className="body pad">
-        <div className="card"><h3>هویت</h3><div className="kv"><span>نام</span><b>{u.first_name} {u.last_name}</b><span>شماره</span><b dir="ltr">{fa(u.phone)}</b><span>کد ملی</span><b dir="ltr">{u.national_id_masked}</b><span>تاریخ تولد</span><b>{u.birth_date_jalali}</b><span>تطبیق شاهکار</span><b>{u.shahkar_matched ? 'انجام شد (شبیه‌سازی)' : 'انجام نشد'}</b><span>سطح احراز</span><b>{fa(u.kyc_level)}</b></div>
+        <div className="card"><h3>هویت</h3><div className="kv"><span>نام</span><b>{u.first_name} {u.last_name}</b><span>شماره</span><b dir="ltr">{fa(u.phone)}</b><span>کد ملی</span><b dir="ltr">{fa(u.national_id_masked ?? "")}</b><span>تاریخ تولد</span><b dir="ltr">{fa(u.birth_date_jalali ?? "")}</b><span>تطبیق شاهکار</span><b>{u.shahkar_matched ? 'انجام شد (شبیه‌سازی)' : 'انجام نشد'}</b><span>سطح احراز</span><b>{fa(u.kyc_level)}</b></div>
           <p className="hint" style={{ marginTop: 8 }}>امضای پله‌های ۱ و ۲ فعال است. پله‌های ۳ و ۴ (کلید گوشی و سیم‌کارت) در نسخهٔ بعد می‌آیند.</p></div>
         <div className="card"><h3>دستیار و مدل زبانی</h3>
           <p className="hint">وضعیت: {me?.assistant_available ? `در دسترس (${me.provider === 'byok' ? 'مدل شما' : 'مدل سکو'})` : 'در دسترس نیست — نه مدل سکو پیکربندی شده، نه کلید شما'}</p>

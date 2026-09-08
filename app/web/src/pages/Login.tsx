@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { post, setToken, fa } from '../api';
 import { useAuth } from '../auth';
 import { Field, Spinner } from '../ui';
 
 export default function Login() {
-  const nav = useNavigate(); const { refresh } = useAuth();
+  const nav = useNavigate(); const loc = useLocation(); const { refresh } = useAuth();
+  const from = (loc.state as any)?.from as string | undefined;
   const [phone, setPhone] = useState(''); const [otp, setOtp] = useState<any>(null); const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false); const [err, setErr] = useState('');
   async function send() { setBusy(true); setErr(''); try { setOtp(await post('/auth/otp', { phone })); } catch (e: any) { setErr(e.message); } finally { setBusy(false); } }
   async function verify() {
     setBusy(true); setErr('');
-    try { const r = await post('/auth/verify', { otp_id: otp.otp_id, phone: otp.phone, code }); setToken(r.token); await refresh(); nav(r.user.onboarded ? '/' : '/onboarding', { replace: true }); }
+    try { const r = await post('/auth/verify', { otp_id: otp.otp_id, phone: otp.phone, code }); setToken(r.token); await refresh(); nav(r.user.onboarded ? from ?? '/' : '/onboarding', { replace: true, state: { from } }); }
     catch (e: any) { setErr(e.message); } finally { setBusy(false); }
   }
   return (

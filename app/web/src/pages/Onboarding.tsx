@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { get, post } from '../api';
 import { useAuth } from '../auth';
 import { Field, Spinner } from '../ui';
 import { ContractCard, type Projection } from '../contract';
 
 export default function Onboarding() {
-  const nav = useNavigate(); const { me, refresh } = useAuth();
+  const nav = useNavigate(); const loc = useLocation(); const { me, refresh } = useAuth();
+  const from = (loc.state as any)?.from as string | undefined;
   const u = me?.user;
   const initial = !u ? 0 : !u.national_id_masked ? 0 : !u.first_name ? 1 : 2;
   const [step, setStep] = useState(initial);
@@ -38,7 +39,7 @@ export default function Onboarding() {
       {step === 2 && (<>
         <p className="hint" style={{ marginBottom: 12 }}>ویستا شش اپ سیستمی دارد که از اجازه گرفتن معاف‌اند، نه از قرارداد دادن. این‌جا می‌بینید چه چیزهایی از پیش نصب است و هر کدام چه می‌کنند — و همان را یک بار امضا می‌کنید.</p>
         {err && <div className="err" style={{ marginBottom: 10 }}>{err}</div>}
-        {genesis ? <ContractCard c={genesis} allowAsk={false} showEvents={false} onChange={async (c) => { setGenesis(c); if (['settled', 'executing'].includes(c.status)) { await refresh(); nav('/chat/assistant', { replace: true }); } }} /> : <Spinner />}
+        {genesis ? <ContractCard c={genesis} allowAsk={false} showEvents={false} onChange={async (c) => { setGenesis(c); if (['settled', 'executing'].includes(c.status)) { await refresh(); nav(from ?? '/chat/assistant', { replace: true }); } }} /> : <Spinner />}
       </>)}
     </div></div>
   );
