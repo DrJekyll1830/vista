@@ -1,6 +1,8 @@
-out/
+out/*.html
 *.pdf
 .DS_Store
 *~
 .venv/
 node_modules/
+out/*.html
+!out/vista.pdf
