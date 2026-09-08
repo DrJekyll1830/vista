@@ -1,7 +1,7 @@
 FROM docker.kubit.dev/node:22-alpine AS build
 
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@12.3.4 --activate
+RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
 
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY server/package.json server/package.json
