@@ -108,11 +108,11 @@ export async function probe(app: AppRow, credential?: string | null): Promise<{ 
         category: manifest.category ?? app.category, manifest_json: JSON.stringify(manifest),
       });
     }
-    upsert({ ...app, ...patch, verified: app.verified, in_catalog: app.in_catalog, health: 'up' });
-    q.run("UPDATE apps SET health='up', health_checked_at=?, last_error=NULL WHERE id=?", now(), app.id);
+    await upsert({ ...app, ...patch, verified: app.verified, in_catalog: app.in_catalog, health: 'up' });
+    await q.run("UPDATE apps SET health='up', health_checked_at=?, last_error=NULL WHERE id=?", now(), app.id);
     return { manifest, tools };
   } catch (e: any) {
-    q.run("UPDATE apps SET health='down', health_checked_at=?, last_error=? WHERE id=?", now(), String(e?.message ?? e).slice(0, 200), app.id);
+    await q.run("UPDATE apps SET health='down', health_checked_at=?, last_error=? WHERE id=?", now(), String(e?.message ?? e).slice(0, 200), app.id);
     throw e;
   }
 }
@@ -136,18 +136,18 @@ export async function callTool(app: AppRow, toolName: string, args: Record<strin
   if (!t.exposed && !opts.allowHidden) throw new Error(`قابلیت ${toolName} در ویستا منتشر نشده است (${t.reason ?? 'اثر دارد'})`);
   const client = await open(app, opts.credential);
   const res: any = await client.callTool({ name: toolName, arguments: args, _meta: opts.meta ? { vista: opts.meta } : undefined });
-  if (opts.meta && (opts.meta as any).sensitive) ledgerAppend('disclosure', { appId: app.id, tool: toolName, fields: Object.keys(opts.meta) }, { appId: app.id, userId: String((opts.meta as any).user_id ?? '').replace('user:', '') });
+  if (opts.meta && (opts.meta as any).sensitive) await ledgerAppend('disclosure', { appId: app.id, tool: toolName, fields: Object.keys(opts.meta) }, { appId: app.id, userId: String((opts.meta as any).user_id ?? '').replace('user:', '') });
   return { content: res.content ?? [], structured: res.structuredContent, isError: !!res.isError };
 }
 
 /** Periodic health — the list greys out apps that are down. */
 export async function healthSweep() {
-  const apps = q.all<AppRow>("SELECT * FROM apps WHERE kind IN ('vista','mcp') AND url IS NOT NULL");
+  const apps = await q.all<AppRow>("SELECT * FROM apps WHERE kind IN ('vista','mcp') AND url IS NOT NULL");
   for (const a of apps) {
     const auth = json.parse<any>(a.auth_json, null);
     if (auth?.required && !a.tools_json.includes('"name"')) {
       // cannot probe without a credential; mark unknown rather than down
-      q.run("UPDATE apps SET health=CASE WHEN health='up' THEN 'up' ELSE 'unknown' END, health_checked_at=? WHERE id=?", now(), a.id);
+      await q.run("UPDATE apps SET health=CASE WHEN health='up' THEN 'up' ELSE 'unknown' END, health_checked_at=? WHERE id=?", now(), a.id);
       continue;
     }
     try { await probe(a); } catch { /* recorded in probe */ }

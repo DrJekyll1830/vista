@@ -66,14 +66,14 @@ const CATALOG: Partial<AppRow>[] = [
   },
 ];
 
-export function seedApps() {
-  for (const a of SYSTEM) upsert({ ...a, in_catalog: a.in_catalog ?? 0, verified: 1, health: 'up' });
-  for (const a of CATALOG) upsert({ ...a, in_catalog: 1 });
-  ensureKey('platform');
-  for (const a of SYSTEM) ensureKey(a.id!);
+export async function seedApps() {
+  for (const a of SYSTEM) await upsert({ ...a, in_catalog: a.in_catalog ?? 0, verified: 1, health: 'up' });
+  for (const a of CATALOG) await upsert({ ...a, in_catalog: 1 });
+  await ensureKey('platform');
+  for (const a of SYSTEM) await ensureKey(a.id!);
 }
-export function upsert(a: Partial<AppRow>) {
-  const cur = q.get<AppRow>('SELECT * FROM apps WHERE id=?', a.id);
+export async function upsert(a: Partial<AppRow>) {
+  const cur = await q.get<AppRow>('SELECT * FROM apps WHERE id=?', a.id);
   const row: AppRow = {
     id: a.id!, kind: a.kind ?? 'mcp', name: a.name ?? a.id!, description: a.description ?? '', long_description: a.long_description ?? '', url: a.url ?? null, mini_app_url: a.mini_app_url ?? null,
     color: a.color ?? '#2C5FA8', logo: a.logo ?? (a.name ?? '?').slice(0, 1), company: a.company ?? null, verified: a.verified ?? 0, public_key: a.public_key ?? null,
@@ -82,7 +82,7 @@ export function upsert(a: Partial<AppRow>) {
     reviews_json: a.reviews_json ?? '[]', tags_json: a.tags_json ?? '[]', health: (a.health ?? cur?.health ?? 'unknown') as AppRow['health'], health_checked_at: cur?.health_checked_at ?? null, last_error: cur?.last_error ?? null,
     manifest_json: a.manifest_json ?? cur?.manifest_json ?? null, tools_json: a.tools_json ?? cur?.tools_json ?? '[]', added_by: a.added_by ?? cur?.added_by ?? null, created_at: cur?.created_at ?? now(),
   };
-  q.run(`INSERT INTO apps (id, kind, name, description, long_description, url, mini_app_url, color, logo, company, verified, public_key, permissions_json, financial_permissions_json, data_permissions_json, fulfillment_tool, auth_json, in_catalog, category, rating, reviews_json, tags_json, health, health_checked_at, last_error, manifest_json, tools_json, added_by, created_at)
+  await q.run(`INSERT INTO apps (id, kind, name, description, long_description, url, mini_app_url, color, logo, company, verified, public_key, permissions_json, financial_permissions_json, data_permissions_json, fulfillment_tool, auth_json, in_catalog, category, rating, reviews_json, tags_json, health, health_checked_at, last_error, manifest_json, tools_json, added_by, created_at)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         ON CONFLICT(id) DO UPDATE SET kind=excluded.kind, name=excluded.name, description=excluded.description, long_description=excluded.long_description, url=excluded.url, mini_app_url=excluded.mini_app_url, color=excluded.color, logo=excluded.logo, company=excluded.company, verified=excluded.verified, public_key=COALESCE(excluded.public_key, apps.public_key), permissions_json=excluded.permissions_json, financial_permissions_json=excluded.financial_permissions_json, data_permissions_json=excluded.data_permissions_json, fulfillment_tool=excluded.fulfillment_tool, auth_json=excluded.auth_json, in_catalog=excluded.in_catalog, category=excluded.category, rating=excluded.rating, reviews_json=excluded.reviews_json, tags_json=excluded.tags_json, manifest_json=COALESCE(excluded.manifest_json, apps.manifest_json), tools_json=CASE WHEN excluded.tools_json='[]' THEN apps.tools_json ELSE excluded.tools_json END`,
     row.id, row.kind, row.name, row.description, row.long_description, row.url, row.mini_app_url, row.color, row.logo, row.company, row.verified, row.public_key, row.permissions_json, row.financial_permissions_json, row.data_permissions_json, row.fulfillment_tool, row.auth_json, row.in_catalog, row.category, row.rating, row.reviews_json, row.tags_json, row.health, row.health_checked_at, row.last_error, row.manifest_json, row.tools_json, row.added_by, row.created_at);
@@ -92,11 +92,11 @@ export const allApps = () => q.all<AppRow>('SELECT * FROM apps');
 export const catalog = () => q.all<AppRow>("SELECT * FROM apps WHERE in_catalog=1 ORDER BY (kind='vista') DESC, rating DESC");
 export function findByUrl(url: string) { return q.get<AppRow>('SELECT * FROM apps WHERE url=?', url); }
 
-export function publicApp(a: AppRow, install?: any) {
+export async function publicApp(a: AppRow, install?: any) {
   const tools = json.parse<any[]>(a.tools_json, []);
   return {
     id: a.id, kind: a.kind, name: a.name, description: a.description, long_description: a.long_description, url: a.url, mini_app_url: a.mini_app_url,
-    color: a.color, logo: a.logo, company: a.company, verified: !!a.verified, has_key: !!a.public_key || !!q.get('SELECT 1 FROM app_keys WHERE app_id=?', a.id),
+    color: a.color, logo: a.logo, company: a.company, verified: !!a.verified, has_key: !!a.public_key || !!(await q.get('SELECT 1 FROM app_keys WHERE app_id=?', a.id)),
     permissions: json.parse(a.permissions_json, []), financial_permissions: json.parse(a.financial_permissions_json, []), data_permissions: json.parse(a.data_permissions_json, []),
     auth: json.parse(a.auth_json, null), in_catalog: !!a.in_catalog, category: a.category, rating: a.rating, reviews: json.parse(a.reviews_json, []), tags: json.parse(a.tags_json, []),
     health: a.health, health_checked_at: a.health_checked_at, last_error: a.last_error,
@@ -106,5 +106,5 @@ export function publicApp(a: AppRow, install?: any) {
     system: a.kind === 'system',
   };
 }
-export const isSystem = (appId: string) => getApp(appId)?.kind === 'system';
+export const isSystem = async (appId: string) => (await getApp(appId))?.kind === 'system';
 export { id, config };

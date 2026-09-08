@@ -25,17 +25,17 @@ export const APP_ID = 'irancell-demo';
 const COLOR = '#F5B300';
 
 // ── the app's own key (would live in the partner's own vault) ──
-function appKey() {
-  let k = q.get<{ private_key: string; public_key: string }>('SELECT * FROM app_keys WHERE app_id=?', APP_ID);
-  if (!k) { const kp = generateEd25519(); q.run('INSERT INTO app_keys (app_id, private_key, public_key) VALUES (?,?,?)', APP_ID, kp.privateKey, kp.publicKey); k = { private_key: kp.privateKey, public_key: kp.publicKey }; }
+async function appKey() {
+  let k = await q.get<{ private_key: string; public_key: string }>('SELECT * FROM app_keys WHERE app_id=?', APP_ID);
+  if (!k) { const kp = generateEd25519(); await q.run('INSERT INTO app_keys (app_id, private_key, public_key) VALUES (?,?,?)', APP_ID, kp.privateKey, kp.publicKey); k = { private_key: kp.privateKey, public_key: kp.publicKey }; }
   return k;
 }
-const sign = (hash: string) => ed25519Sign(appKey().private_key, hash);
+const sign = async (hash: string) => ed25519Sign((await appKey()).private_key, hash);
 
 // ── simulated line state, keyed by pseudonymous user ref ──
 interface Line { balance: number; package: { id: string; title: string; remaining_gb: number; days_left: number } | null; bills: { id: string; title: string; amount: number; due: string; paid: boolean }[]; delegation_id?: string; history: string[] }
-function line(ref: string): Line {
-  const row = q.get<{ value: string }>('SELECT value FROM kv WHERE key=?', `demo:line:${ref}`);
+async function line(ref: string): Promise<Line> {
+  const row = await q.get<{ value: string }>('SELECT value FROM kv WHERE key=?', `demo:line:${ref}`);
   if (row) return JSON.parse(row.value);
   const seed = ref.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
   const l: Line = {
@@ -44,10 +44,10 @@ function line(ref: string): Line {
     bills: [{ id: 'b1', title: 'صورتحساب دورهٔ گذشته', amount: 185_000 + (seed % 5) * 10_000, due: plusDays(6), paid: false }],
     history: [],
   };
-  save(ref, l);
+  await save(ref, l);
   return l;
 }
-function save(ref: string, l: Line) { q.run('INSERT INTO kv (key, value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value', `demo:line:${ref}`, JSON.stringify(l)); }
+async function save(ref: string, l: Line) { await q.run('INSERT INTO kv (key, value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value', `demo:line:${ref}`, JSON.stringify(l)); }
 
 const PACKAGES = [
   { id: 'p2', title: '۲ گیگ · ۷ روزه', gb: 2, days: 7, price: 45_000 },
@@ -89,10 +89,10 @@ export const MANIFEST = {
   ],
 };
 
-export function registerSampleApp() {
-  const k = appKey();
+export async function registerSampleApp() {
+  const k = await appKey();
   MANIFEST.public_key = k.public_key;
-  upsert({
+  await upsert({
     id: APP_ID, kind: 'vista', name: MANIFEST.name, description: MANIFEST.description, long_description: MANIFEST.long_description,
     url: `${config.publicUrl}/apps/${APP_ID}/mcp`, mini_app_url: MANIFEST.mini_app_url, color: COLOR, logo: 'ا', company: MANIFEST.company.name, verified: 1,
     public_key: k.public_key, permissions_json: JSON.stringify(MANIFEST.permissions), financial_permissions_json: JSON.stringify(MANIFEST.financial_permissions),
@@ -123,9 +123,9 @@ function baseDoc(ctx: Ctx, type: string, templateRef: string, title: string, set
     nonce: id('n', 20), created_at: now(), expires_at: plusMinutes(15),
   };
 }
-function signed(doc: ContractDoc) {
+async function signed(doc: ContractDoc) {
   const hash = contractHash(doc);
-  return { contract: doc, canonical_hash: hash, app_signature: sign(hash) };
+  return { contract: doc, canonical_hash: hash, app_signature: await sign(hash) };
 }
 function text(o: unknown) { return { content: [{ type: 'text' as const, text: typeof o === 'string' ? o : JSON.stringify(o) }] }; }
 function phoneOf(ctx: Ctx, arg?: string) { return arg || ctx.phone || 'شمارهٔ خط شما'; }
@@ -135,13 +135,13 @@ function buildServer(): McpServer {
   server.registerResource('manifest', 'vista://manifest', { title: 'Vista manifest', mimeType: 'application/json' }, async () => ({ contents: [{ uri: 'vista://manifest', mimeType: 'application/json', text: JSON.stringify(MANIFEST) }] }));
 
   server.registerTool('get_line_status', { title: 'وضعیت خط', description: 'موجودی شارژ، بستهٔ فعال و باقی‌ماندهٔ آن برای خط کاربر', inputSchema: { phone: z.string().optional().describe('شمارهٔ خط؛ اگر خالی باشد خطِ خودِ کاربر') }, annotations: { readOnlyHint: true } },
-    async (args, extra) => { const ctx = ctxOf(extra); const l = line(ctx.user_ref); return text({ phone: phoneOf(ctx, args.phone), balance_toman: l.balance, package: l.package, unpaid_bills: l.bills.filter((b) => !b.paid).length, auto_renew: l.delegation_id ? 'active' : 'off' }); });
+    async (args, extra) => { const ctx = ctxOf(extra); const l = await line(ctx.user_ref); return text({ phone: phoneOf(ctx, args.phone), balance_toman: l.balance, package: l.package, unpaid_bills: l.bills.filter((b) => !b.paid).length, auto_renew: l.delegation_id ? 'active' : 'off' }); });
   server.registerTool('list_packages', { title: 'بسته‌های اینترنت', description: 'فهرست بسته‌های قابل خرید با قیمت (تومان)', inputSchema: {}, annotations: { readOnlyHint: true } },
     async () => text({ packages: PACKAGES.map((p) => ({ id: p.id, title: p.title, gb: p.gb, days: p.days, price_toman: p.price })) }));
   server.registerTool('list_topup_amounts', { title: 'مبالغ شارژ', description: 'مبالغ پیشنهادی شارژ (تومان)؛ هر مبلغ دیگری میان ۱۰ هزار و ۲ میلیون هم مجاز است', inputSchema: {}, annotations: { readOnlyHint: true } },
     async () => text({ amounts_toman: TOPUPS, min: 10_000, max: 2_000_000 }));
   server.registerTool('list_bills', { title: 'قبض‌ها', description: 'صورتحساب‌های خط کاربر', inputSchema: {}, annotations: { readOnlyHint: true } },
-    async (_a, extra) => { const ctx = ctxOf(extra); return text({ bills: line(ctx.user_ref).bills }); });
+    async (_a, extra) => { const ctx = ctxOf(extra); return text({ bills: (await line(ctx.user_ref)).bills }); });
 
   server.registerTool('build_topup_contract', { title: 'قرارداد شارژ', description: 'قرارداد شارژ خط را می‌سازد و امضا می‌کند. مبلغ به تومان.', inputSchema: { amount: z.number().int().min(10_000).max(2_000_000), phone: z.string().optional() } },
     async (args, extra) => {
@@ -156,7 +156,7 @@ function buildServer(): McpServer {
       ];
       doc.effects = [{ type: 'wallet.pay', amount: args.amount, payee_app_id: APP_ID, memo: 'شارژ خط' }, { type: 'app.action', action: 'topup', params: { phone: phoneOf(ctx, args.phone), amount: args.amount } }];
       doc.fees = [{ beneficiary: 'vista', amount: Math.round(args.amount * 0.01), label: 'کارمزد سکو', visible: false }];
-      return text(signed(doc));
+      return text(await signed(doc));
     });
   server.registerTool('build_package_contract', { title: 'قرارداد بسته', description: 'قرارداد خرید بستهٔ اینترنت را می‌سازد و امضا می‌کند.', inputSchema: { package_id: z.string(), phone: z.string().optional() } },
     async (args, extra) => {
@@ -174,12 +174,12 @@ function buildServer(): McpServer {
       ];
       doc.effects = [{ type: 'wallet.pay', amount: p.price, payee_app_id: APP_ID, memo: p.title }, { type: 'app.action', action: 'package', params: { phone: phoneOf(ctx, args.phone), package_id: p.id } }];
       doc.fees = [{ beneficiary: 'vista', amount: Math.round(p.price * 0.01), label: 'کارمزد سکو', visible: false }];
-      return text(signed(doc));
+      return text(await signed(doc));
     });
   server.registerTool('build_bill_payment_contract', { title: 'قرارداد پرداخت قبض', description: 'قرارداد پرداخت یک قبض را می‌سازد و امضا می‌کند.', inputSchema: { bill_id: z.string() } },
     async (args, extra) => {
       const ctx = ctxOf(extra);
-      const l = line(ctx.user_ref);
+      const l = await line(ctx.user_ref);
       const b = l.bills.find((x) => x.id === args.bill_id);
       if (!b) return { content: [{ type: 'text', text: 'قبض یافت نشد' }], isError: true };
       if (b.paid) return { content: [{ type: 'text', text: 'این قبض قبلاً پرداخت شده است' }], isError: true };
@@ -191,7 +191,7 @@ function buildServer(): McpServer {
         { key: 'settlement', label: 'تسویه', value: 'همان لحظهٔ امضا از کیف پول کسر می‌شود' },
       ];
       doc.effects = [{ type: 'wallet.pay', amount: b.amount, payee_app_id: APP_ID, memo: b.title }, { type: 'app.action', action: 'bill', params: { bill_id: b.id } }];
-      return text(signed(doc));
+      return text(await signed(doc));
     });
   server.registerTool('build_auto_renew_delegation', { title: 'وکالت تمدید خودکار', description: 'قرارداد وکالت می‌سازد تا وقتی بستهٔ کاربر تمام شد، همان بسته خودکار تمدید شود. سقف و مدت اجباری‌اند.', inputSchema: { package_id: z.string(), cap_toman: z.number().int().min(50_000).max(5_000_000).describe('سقف کل خرج زیر این وکالت'), months: z.number().int().min(1).max(12).default(3) } },
     async (args, extra) => {
@@ -211,7 +211,7 @@ function buildServer(): McpServer {
         { key: 'rules', label: 'قواعد', value: 'واگذاری به اپ دیگر ممنوع · لغو یک‌طرفه و فوری · هر مصرف به شما اطلاع داده می‌شود', kind: 'note' },
       ];
       doc.effects = [{ type: 'delegation.grant', app_id: APP_ID, scope: 'irancell/package', label: `تمدید خودکار ${p.title}`, cap: args.cap_toman, per_use_cap: p.price, expires_at: expires }, { type: 'app.action', action: 'auto_renew', params: { package_id: p.id } }];
-      return text(signed(doc));
+      return text(await signed(doc));
     });
 
   // ── fulfilment: only the processor calls this; never exposed to the assistant ──
@@ -219,10 +219,10 @@ function buildServer(): McpServer {
     async (args) => {
       const doc = args.contract as ContractDoc;
       const hash = contractHash(doc);
-      if (!ed25519Verify(platformPublicKey(), `executed|${hash}`, args.platform_signature)) return { content: [{ type: 'text', text: JSON.stringify({ events: [{ type: 'failed', text: 'امضای سکو معتبر نیست' }] }) }], isError: true };
+      if (!ed25519Verify(await platformPublicKey(), `executed|${hash}`, args.platform_signature)) return { content: [{ type: 'text', text: JSON.stringify({ events: [{ type: 'failed', text: 'امضای سکو معتبر نیست' }] }) }], isError: true };
       const userParty = doc.parties.find((p) => p.kind === 'user')!;
       const ref = `u_${userParty.id.replace('user:', '').slice(-10)}`;
-      const l = line(ref);
+      const l = await line(ref);
       const action = doc.effects.find((e) => e.type === 'app.action') as any;
       const events: { type: string; text?: string }[] = [];
       switch (action?.action) {
@@ -232,16 +232,16 @@ function buildServer(): McpServer {
         case 'auto_renew': l.delegation_id = args.delegation_id; events.push({ type: 'note', text: 'تمدید خودکار فعال شد؛ وقتی بسته تمام شود، اپ به نیابت از شما بسته می‌خرد و خبر می‌دهد.' }); break;
         default: events.push({ type: 'delivered' });
       }
-      save(ref, l);
+      await save(ref, l);
       return text({ events });
     });
   return server;
 }
 
 /** Simulate "package ran out" → the app acts under delegation, user absent. */
-export function simulateExhaustion(userId: string) {
+export async function simulateExhaustion(userId: string) {
   const ref = `u_${userId.slice(-10)}`;
-  const l = line(ref);
+  const l = await line(ref);
   if (!l.delegation_id) throw new Error('وکالت تمدید خودکار برای این خط فعال نیست.');
   const p = PACKAGES.find((x) => x.id === l.package?.id) ?? PACKAGES[1];
   const ctx: Ctx = { user_id: `user:${userId}`, user_ref: ref };
@@ -258,9 +258,9 @@ export function simulateExhaustion(userId: string) {
   doc.conditions = [{ type: 'wallet.sufficient' }, { type: 'delegation.active', delegation_id: l.delegation_id }];
   doc.parties = doc.parties.map((pt) => (pt.kind === 'user' ? { ...pt, must_sign: false } : pt));
   l.package = { id: p.id, title: p.title, remaining_gb: 0, days_left: 0 };
-  save(ref, l);
+  await save(ref, l);
   const hash = contractHash(doc);
-  return executeUnderDelegation(APP_ID, l.delegation_id, doc, sign(hash));
+  return executeUnderDelegation(APP_ID, l.delegation_id, doc, await sign(hash));
 }
 
 // ── HTTP surface: MCP endpoint (stateless) + mini-app ──
@@ -272,15 +272,15 @@ sampleApp.all('/mcp', async (c) => {
   const res = await transport.handleRequest(c.req.raw);
   return res;
 });
-sampleApp.get('/mini', (c) => {
+sampleApp.get('/mini', async (c) => {
   const token = c.req.query('token') ?? '';
   const [b64, sig] = token.split('.');
   let ref = 'guest';
   try {
     const payload = JSON.parse(Buffer.from(b64, 'base64url').toString());
-    if (ed25519Verify(platformPublicKey(), b64, sig) && payload.exp > Date.now()) ref = payload.user_ref;
+    if (ed25519Verify(await platformPublicKey(), b64, sig) && payload.exp > Date.now()) ref = payload.user_ref;
   } catch { /* guest */ }
-  const l = line(ref);
+  const l = await line(ref);
   const rows = PACKAGES.map((p) => `<li><b>${p.title}</b> — ${toman(p.price)}</li>`).join('');
   const bills = l.bills.map((b) => `<li>${b.title} — ${toman(b.amount)} — ${b.paid ? 'پرداخت‌شده ✓' : 'پرداخت‌نشده'}</li>`).join('');
   return c.html(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>خدمات ایرانسل (نمونه)</title>
@@ -292,13 +292,13 @@ sampleApp.get('/mini', (c) => {
   ${l.delegation_id ? `<div class="card"><b>شبیه‌سازی</b><p>وانمود کنید بسته تمام شد. اپ زیر وکالت شما، بی‌آنکه شما حاضر باشید، بستهٔ تازه می‌خرد و در گفت‌وگوی ویستا خبر می‌دهد.</p><form method="post" action="/apps/${APP_ID}/simulate/exhaust?token=${encodeURIComponent(token)}"><button>بسته تمام شد ← تمدید خودکار</button></form></div>` : ''}
   </body></html>`);
 });
-sampleApp.post('/simulate/exhaust', (c) => {
+sampleApp.post('/simulate/exhaust', async (c) => {
   const token = c.req.query('token') ?? '';
   const [b64, sig] = token.split('.');
   try {
     const payload = JSON.parse(Buffer.from(b64, 'base64url').toString());
-    if (!ed25519Verify(platformPublicKey(), b64, sig) || payload.exp < Date.now()) return c.text('توکن نامعتبر', 403);
-    const r = simulateExhaustion(payload.user_id);
+    if (!ed25519Verify(await platformPublicKey(), b64, sig) || payload.exp < Date.now()) return c.text('توکن نامعتبر', 403);
+    const r = await simulateExhaustion(payload.user_id);
     return c.html(`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><body style="font-family:Vazirmatn,system-ui;padding:16px"><p>✓ تمدید خودکار انجام شد: ${r.contract.title}. به گفت‌وگوی اپ در ویستا برگردید؛ رویداد و قرارداد آن‌جاست.</p><p><a href="/apps/${APP_ID}/mini?token=${encodeURIComponent(token)}">بازگشت</a></p></body></html>`);
   } catch (e: any) {
     return c.html(`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><body style="font-family:Vazirmatn,system-ui;padding:16px"><p>✗ ${e?.message ?? e}</p><p><a href="/apps/${APP_ID}/mini?token=${encodeURIComponent(token)}">بازگشت</a></p></body></html>`, 400);

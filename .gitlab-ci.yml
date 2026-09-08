@@ -1,0 +1,16 @@
+.vista-app-rules: &vista_app_rules
+  rules:
+    - changes:
+        - app/**/*
+        - .gitlab-ci.yml
+
+include:
+  - component: git.kubit.dev/eitala/common/ci-cd/stages@main
+  - component: git.kubit.dev/eitala/common/ci-cd/rules@main
+  - component: git.kubit.dev/eitala/common/ci-cd/tag-build-deploy@main
+    inputs:
+      environment: vista-app-prod
+      build_context: app
+      condition: .only_main
+      when: always
+    <<: *vista_app_rules

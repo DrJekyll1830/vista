@@ -1,0 +1,74 @@
+apiVersion: k8s.kubit.ir/v1alpha1
+kind: Pack
+metadata:
+  name: vista-app-prod
+  namespace: konkooria
+spec:
+  chart:
+    repository:
+      kind: ClusterPackRepository
+      name: kubit-packs
+    name: genpack
+    version: ~=0.1.111
+  vars:
+    IMAGE_REGISTRY: eitala.r1.kubit.dev
+    IMAGE_REPOSITORY: eitala/omid/vista-app-prod
+    DOCKER_TAG: REPLACE_WITH_CI_TAG
+  values:
+    global:
+      commonImagePullSecrets:
+        - name: docker-kubit-dev-registry-pullsecret
+      sharedConfigs:
+        NODE_ENV: production
+        PORT: "8787"
+        PUBLIC_URL: https://vista.eitala.sabz.cloud
+        SMS_PROVIDER: console
+        DEV_SHOW_OTP: "true"
+        OTP_ACCEPT_ANY: "false"
+        SAMPLE_APP_ENABLED: "true"
+        PAYMENT_GATEWAY: fake
+        SHAHKAR_PROVIDER: mock
+        NAME_LOOKUP_PROVIDER: down
+      sharedSecrets:
+        DATABASE_URL: REPLACE_WITH_POSTGRES_URL
+        PLATFORM_SECRET: REPLACE_WITH_RANDOM_SECRET
+    gonbad:
+      workloads:
+        app:
+          kind: deployment
+          replicaCount: 1
+          podLabels:
+            logging/parse-json-logs: "true"
+          containers:
+            app:
+              image:
+                registry: "{{ vars.IMAGE_REGISTRY }}"
+                repository: "{{ vars.IMAGE_REPOSITORY }}"
+                tag: "{{ vars.DOCKER_TAG }}"
+              ports:
+                '8787':
+                  name: http
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+                limits:
+                  cpu: 500m
+                  memory: 512Mi
+              readinessProbe:
+                enabled: true
+                path: /health/ready
+                port: 8787
+                timeoutSeconds: 3
+                failureThreshold: 12
+                periodSeconds: 10
+                initialDelaySeconds: 15
+      ingresses:
+        web:
+          enabled: true
+          hosts:
+            - host: vista.eitala.sabz.cloud
+          servicePort: http
+          tls:
+            - secretName: k8s-cluster-star-eitala.sabz.cloud-tls
+          workloadName: app

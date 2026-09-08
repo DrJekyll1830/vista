@@ -35,7 +35,7 @@ const bool = (k: string, d = false) => {
 export const config = {
   port: Number(env('PORT', '8787')),
   publicUrl: env('PUBLIC_URL', 'http://localhost:8787').replace(/\/$/, ''),
-  databasePath: env('DATABASE_PATH', './data/vista.db'),
+  databaseUrl: env('DATABASE_URL', ''),
   platformSecret: env('PLATFORM_SECRET', 'change-me-in-production'),
   sms: {
     provider: env('SMS_PROVIDER', 'console') as 'console' | 'kavenegar' | 'smsir' | 'http',

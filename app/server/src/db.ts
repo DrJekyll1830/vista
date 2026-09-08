@@ -1,14 +1,93 @@
-import { DatabaseSync } from 'node:sqlite';
-import fs from 'node:fs';
-import path from 'node:path';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import pg from 'pg';
 import { config } from './config.js';
 
-const file = path.resolve(config.databasePath);
-fs.mkdirSync(path.dirname(file), { recursive: true });
-export const db = new DatabaseSync(file);
-db.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON;');
+const { Pool } = pg;
+type PoolClient = pg.PoolClient;
+type QueryResultRow = Record<string, any>;
 
-db.exec(`
+const pool = new Pool({
+  connectionString: config.databaseUrl,
+  max: Number(process.env.PGPOOL_MAX ?? 10),
+  idleTimeoutMillis: 30_000,
+  connectionTimeoutMillis: 10_000,
+});
+const transactionStore = new AsyncLocalStorage<PoolClient>();
+
+// Vista's original SQL used SQLite's '?' placeholders. Keep the query sites
+// readable while translating placeholders for node-postgres. Question marks
+// inside quoted SQL strings are left untouched.
+function postgresSql(sql: string): string {
+  let n = 0;
+  let quote: "'" | '"' | null = null;
+  let out = '';
+  for (let i = 0; i < sql.length; i++) {
+    const ch = sql[i];
+    if (quote) {
+      out += ch;
+      if (ch === quote && sql[i + 1] === quote) out += sql[++i];
+      else if (ch === quote) quote = null;
+      continue;
+    }
+    if (ch === "'" || ch === '"') {
+      quote = ch;
+      out += ch;
+    } else if (ch === '?') {
+      out += `$${++n}`;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+async function withClient<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const current = transactionStore.getStore();
+  if (current) return fn(current);
+  const client = await pool.connect();
+  try {
+    return await fn(client);
+  } finally {
+    client.release();
+  }
+}
+
+export const q = {
+  async get<T = QueryResultRow>(sql: string, ...params: any[]): Promise<T | undefined> {
+    return withClient(async (client) => {
+      const result = await client.query(postgresSql(sql), params);
+      return result.rows[0] as T | undefined;
+    });
+  },
+  async all<T = QueryResultRow>(sql: string, ...params: any[]): Promise<T[]> {
+    return withClient(async (client) => {
+      const result = await client.query(postgresSql(sql), params);
+      return result.rows as T[];
+    });
+  },
+  async run(sql: string, ...params: any[]): Promise<pg.QueryResult> {
+    return withClient((client) => client.query(postgresSql(sql), params));
+  },
+  async tx<T>(fn: () => Promise<T>): Promise<T> {
+    const current = transactionStore.getStore();
+    if (current) return fn();
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      const result = await transactionStore.run(client, fn);
+      await client.query('COMMIT');
+      return result;
+    } catch (error) {
+      await client.query('ROLLBACK');
+      throw error;
+    } finally {
+      client.release();
+    }
+  },
+};
+
+export async function initDb() {
+  await pool.query(`
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,
   phone TEXT UNIQUE NOT NULL,
@@ -37,8 +116,8 @@ CREATE TABLE IF NOT EXISTS otps (
   id TEXT PRIMARY KEY,
   phone TEXT NOT NULL,
   code_hash TEXT NOT NULL,
-  purpose TEXT NOT NULL,          -- login | sign
-  ref TEXT,                       -- contract hash for purpose=sign
+  purpose TEXT NOT NULL,
+  ref TEXT,
   attempts INTEGER DEFAULT 0,
   expires_at TEXT NOT NULL,
   consumed_at TEXT,
@@ -46,11 +125,11 @@ CREATE TABLE IF NOT EXISTS otps (
 );
 CREATE TABLE IF NOT EXISTS apps (
   id TEXT PRIMARY KEY,
-  kind TEXT NOT NULL,             -- system | vista | mcp
+  kind TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT DEFAULT '',
   long_description TEXT DEFAULT '',
-  url TEXT,                       -- MCP endpoint
+  url TEXT,
   mini_app_url TEXT,
   color TEXT DEFAULT '#2C5FA8',
   logo TEXT DEFAULT '?',
@@ -61,7 +140,7 @@ CREATE TABLE IF NOT EXISTS apps (
   financial_permissions_json TEXT DEFAULT '[]',
   data_permissions_json TEXT DEFAULT '[]',
   fulfillment_tool TEXT,
-  auth_json TEXT,                 -- {type:'bearer', label:'...', header?:'authorization'}
+  auth_json TEXT,
   in_catalog INTEGER DEFAULT 0,
   category TEXT,
   rating REAL,
@@ -98,7 +177,7 @@ CREATE TABLE IF NOT EXISTS conversations (
 CREATE TABLE IF NOT EXISTS messages (
   id TEXT PRIMARY KEY,
   conversation_id TEXT NOT NULL REFERENCES conversations(id),
-  kind TEXT NOT NULL,             -- user | app | assistant | system | contract | event | forward
+  kind TEXT NOT NULL,
   text TEXT DEFAULT '',
   contract_id TEXT,
   reply_to_contract_id TEXT,
@@ -116,7 +195,7 @@ CREATE TABLE IF NOT EXISTS contracts (
   template_ref TEXT,
   title TEXT NOT NULL,
   amount INTEGER DEFAULT 0,
-  status TEXT NOT NULL,           -- draft | awaiting | signed | executing | settled | rejected | expired | cancelled | disputed | refunded | failed
+  status TEXT NOT NULL,
   doc_json TEXT NOT NULL,
   canonical_hash TEXT NOT NULL,
   nonce TEXT UNIQUE NOT NULL,
@@ -135,21 +214,21 @@ CREATE TABLE IF NOT EXISTS signatures (
   contract_id TEXT NOT NULL REFERENCES contracts(id),
   version INTEGER NOT NULL,
   party_id TEXT NOT NULL,
-  party_kind TEXT NOT NULL,       -- app | user | platform
+  party_kind TEXT NOT NULL,
   rung INTEGER NOT NULL,
   hash TEXT NOT NULL,
   signature TEXT NOT NULL,
   otp_id TEXT,
   session_hint TEXT,
   device TEXT,
-  viewed_json TEXT,               -- exactly what the signer saw
+  viewed_json TEXT,
   created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS events (
   id TEXT PRIMARY KEY,
   contract_id TEXT NOT NULL REFERENCES contracts(id),
-  type TEXT NOT NULL,             -- held | deducted | delivered | cancelled | refunded | disputed | released | note | delegated_use | failed
-  actor_kind TEXT NOT NULL,       -- app | user | platform
+  type TEXT NOT NULL,
+  actor_kind TEXT NOT NULL,
   actor_id TEXT NOT NULL,
   text TEXT DEFAULT '',
   payload_json TEXT,
@@ -157,7 +236,7 @@ CREATE TABLE IF NOT EXISTS events (
   created_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS ledger (
-  seq INTEGER PRIMARY KEY AUTOINCREMENT,
+  seq INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
   kind TEXT NOT NULL,
   ref_type TEXT, ref_id TEXT,
   user_id TEXT, app_id TEXT,
@@ -175,7 +254,7 @@ CREATE TABLE IF NOT EXISTS wallets (
 CREATE TABLE IF NOT EXISTS wallet_txns (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
-  kind TEXT NOT NULL,             -- topup | hold | capture | release | refund | fee
+  kind TEXT NOT NULL,
   amount INTEGER NOT NULL,
   balance_after INTEGER NOT NULL,
   held_after INTEGER NOT NULL,
@@ -188,7 +267,7 @@ CREATE TABLE IF NOT EXISTS payments (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
   amount INTEGER NOT NULL,
-  status TEXT NOT NULL,           -- pending | success | failed
+  status TEXT NOT NULL,
   contract_id TEXT,
   gateway TEXT NOT NULL,
   ref_no TEXT,
@@ -206,7 +285,7 @@ CREATE TABLE IF NOT EXISTS delegations (
   per_use_cap INTEGER,
   spent INTEGER NOT NULL DEFAULT 0,
   expires_at TEXT NOT NULL,
-  status TEXT NOT NULL,           -- active | revoked | expired | exhausted
+  status TEXT NOT NULL,
   created_at TEXT NOT NULL,
   revoked_at TEXT
 );
@@ -227,30 +306,12 @@ CREATE TABLE IF NOT EXISTS kv (
   value TEXT NOT NULL
 );
 `);
+}
 
-type Row = Record<string, any>;
-export const q = {
-  get<T = Row>(sql: string, ...params: any[]): T | undefined {
-    return db.prepare(sql).get(...params) as T | undefined;
-  },
-  all<T = Row>(sql: string, ...params: any[]): T[] {
-    return db.prepare(sql).all(...params) as T[];
-  },
-  run(sql: string, ...params: any[]) {
-    return db.prepare(sql).run(...params);
-  },
-  tx<T>(fn: () => T): T {
-    db.exec('BEGIN');
-    try {
-      const r = fn();
-      db.exec('COMMIT');
-      return r;
-    } catch (e) {
-      db.exec('ROLLBACK');
-      throw e;
-    }
-  },
-};
+export async function closeDb() {
+  await pool.end();
+}
+
 export const json = {
   parse<T = any>(s: string | null | undefined, d: T): T {
     if (!s) return d;

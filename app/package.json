@@ -7,7 +7,7 @@
     "dev": "pnpm -r --parallel run dev",
     "build": "pnpm -r run build",
     "start": "node server/dist/index.js",
-    "seed:reset": "rm -f data/vista.db",
+    "seed:reset": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'",
     "conformance": "node ../skills/vista-app/scripts/conformance.mjs"
   },
   "engines": { "node": ">=22.13" }

@@ -31,12 +31,13 @@ pnpm build                  # سرور + وب‌کلاینت
 pnpm start                  # http://localhost:8787
 ```
 
-برای توسعه: `pnpm dev` (سرور روی ۸۷۸۷ و Vite روی ۵۱۷۳ با پراکسی). نیازمندی: Node ≥ 22.13 (SQLite داخلی Node؛ هیچ وابستگی بومی ندارد).
+برای توسعه: `pnpm dev` (سرور روی ۸۷۸۷ و Vite روی ۵۱۷۳ با پراکسی). نیازمندی: Node ≥ 22.13 و یک پایگاه‌دادهٔ PostgreSQL.
 
 ## پیکربندی (فایل `.env`)
 
 - **پیامک**: `SMS_PROVIDER=kavenegar` با `KAVENEGAR_API_KEY` (و اختیاری `KAVENEGAR_TEMPLATE` برای الگوی تأیید)، یا `smsir` با `SMSIR_API_KEY` و `SMSIR_TEMPLATE_ID`، یا `http` با `SMS_HTTP_URL`/`SMS_HTTP_BODY` که در آن `{phone}` و `{message}` جایگزین می‌شوند. تا پنل وصل نشده: `SMS_PROVIDER=console` و اگر لازم شد `OTP_ACCEPT_ANY=true`.
 - **مدل زبانی**: `AI_BASE_URL` (آدرس پایهٔ سازگار با OpenAI، مثل `https://.../v1`)، `AI_API_KEY`، `AI_MODEL`. هر کاربر می‌تواند در تنظیمات کلید خودش را بگذارد.
+- **پایگاه‌داده**: `DATABASE_URL` — اتصال PostgreSQL؛ جدول‌ها در اولین اجرای سرور ساخته می‌شوند.
 - **آدرس عمومی**: `PUBLIC_URL` — برای لینک‌های اشتراک‌گذاری، مینی‌اپ و آدرس MCP اپ نمونه.
 - **درگاه**: `PAYMENT_GATEWAY=fake` — بعداً درگاه واقعی جایگزین می‌شود (`contracts/system.ts › completeTopup` نقطهٔ اتصال است).
 - **احراز هویت**: `SHAHKAR_PROVIDER=mock` و `NAME_LOOKUP_PROVIDER=down` — سرویس واقعی در `auth/service.ts` وصل می‌شود.
