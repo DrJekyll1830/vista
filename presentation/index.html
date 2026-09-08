@@ -102,7 +102,7 @@ ul.list li.x::before{background:var(--accent-2)}
 
 /* signature line motif */
 .sigline{position:relative; height:2px; background:var(--line); border-radius:2px; overflow:hidden}
-.sigline i{position:absolute; inset:0 100% 0 0; background:var(--accent-2); transition:inset .5s cubic-bezier(.4,0,.2,1)}
+.sigline i{position:absolute; inset:0 100% 0 0; background:var(--green); transition:inset .5s cubic-bezier(.4,0,.2,1)}
 .sigline.signed i{inset:0}
 
 /* ---------- contract card ---------- */
@@ -110,7 +110,7 @@ ul.list li.x::before{background:var(--accent-2)}
   background:var(--surface); border:1px solid var(--line); border-radius:1cqw; box-shadow:var(--shadow);
   padding:1.5cqw 1.7cqw; display:flex; flex-direction:column; gap:1cqw; position:relative; overflow:hidden;
 }
-.contract::before{content:""; position:absolute; inset-block:0; inset-inline-start:0; width:3px; background:var(--accent-2)}
+.contract::before{content:""; position:absolute; inset-block:0; inset-inline-start:0; width:3px; background:var(--accent)}
 .contract .ch{display:flex; align-items:baseline; justify-content:space-between; gap:1cqw}
 .contract .ct{font-family:var(--f-display); font-size:1.7cqw; font-weight:600}
 .contract .cid{font-family:var(--f-mono); font-size:1.1cqw; color:var(--fg-3); direction:ltr}
@@ -126,8 +126,8 @@ ul.list li.x::before{background:var(--accent-2)}
   background:var(--surface-2); border:1px solid var(--line); font-size:1.22cqw; transition:all .3s;
 }
 .party .dot{width:.62cqw; height:.62cqw; border-radius:99px; background:var(--fg-3); transition:background .3s}
-.party.signed{border-color:var(--accent-2); background:var(--seal-soft); color:var(--accent-2)}
-.party.signed .dot{background:var(--accent-2)}
+.party.signed{border-color:var(--green); background:rgba(47,125,91,.12); color:var(--green)}
+.party.signed .dot{background:var(--green)}
 .party.clickable{cursor:pointer}
 .party.clickable:hover{border-color:var(--accent)}
 
@@ -507,7 +507,7 @@ input[type=range]::-moz-range-thumb{
     <div class="cols-3" style="--i:2; margin-top:1cqw">
       <div class="card"><div class="k">یک هویت</div><div class="v">کاربر یک بار وارد می‌شود؛ از آن به بعد دسترسی‌اش به هر قابلیت کنترل‌شده است.</div></div>
       <div class="card"><div class="k">یک دستیار</div><div class="v">کاربر می‌گوید چه می‌خواهد؛ نه با منوی این برنامه سر و کله می‌زند و نه با API آن یکی.</div></div>
-      <div class="card"><div class="k">یک قرارداد</div><div class="v">هر کاری که وضعیتی را عوض کند سندی امضاشده دارد، نه فقط یک دکمهٔ «تأیید».</div></div>
+      <div class="card"><div class="k">یک قرارداد</div><div class="v">هر کاری که وضعیتی را عوض کند قراردادی امضاشده دارد، نه فقط یک دکمهٔ «تأیید».</div></div>
     </div>
   </section>
 
@@ -517,7 +517,7 @@ input[type=range]::-moz-range-thumb{
     <div class="cols-2" style="--i:1; gap:3cqw; align-items:center">
       <div style="display:flex; flex-direction:column; gap:1.2cqw">
         <h2>کارپرداز آماده می‌کند، مدیرعامل امضا می‌زند.</h2>
-        <p>کارپرداز فروشنده را پیدا می‌کند، استعلام می‌گیرد، شرایط را وارسی می‌کند و تمام بندهای قرارداد را پر می‌کند. بعد سند آماده را می‌گذارد روی میز مدیرعامل.</p>
+        <p>کارپرداز فروشنده را پیدا می‌کند، استعلام می‌گیرد، شرایط را وارسی می‌کند و تمام بندهای قرارداد را پر می‌کند. بعد قرارداد آماده را می‌گذارد روی میز مدیرعامل.</p>
         <p><strong>اما کارپرداز حق امضا ندارد.</strong> مهارت او تعیین می‌کند معامله چقدر خوب است؛ امضای مدیرعامل تعیین می‌کند اصلاً انجام می‌شود یا نه.</p>
         <p class="tiny">هوش مصنوعی در ویستا دقیقاً همین جایگاه را دارد.</p>
       </div>
@@ -550,9 +550,9 @@ input[type=range]::-moz-range-thumb{
         <div class="v">جستجوی معنایی، فهم خواستهٔ کاربر، حافظه و پیشنهاد. سرویس برای داشتن این‌ها لازم نیست تیم هوش مصنوعی بسازد، توکن بخرد یا کد بنویسد.</div>
       </div>
       <div class="card" style="gap:1cqw">
-        <div class="chip on">دو</div>
+        <div class="chip ok">دو</div>
         <div class="k" style="font-size:2.2cqw">اعتماد</div>
-        <div class="v">هر تعهدی سند دارد، امضا دارد، مجوزش روشن است و بعداً قابل اثبات است. سرویس برای داشتن این‌ها لازم نیست زیرساخت مالی و حقوقی بسازد.</div>
+        <div class="v">هر تعهدی قرارداد دارد، امضا دارد، مجوزش روشن است و بعداً قابل اثبات است. سرویس برای داشتن این‌ها لازم نیست زیرساخت مالی و حقوقی بسازد.</div>
       </div>
     </div>
     <p style="--i:3">اولی می‌فهمد کاربر چه می‌خواهد. دومی کاری می‌کند که آن خواسته قابل اتکا، قابل اثبات و قابل تسویه باشد. سرویس‌ها هیچ‌کدام از این دو را ندارند و ساختنشان هم برایشان صرف نمی‌کند؛ ما هر دو را به آن‌ها <strong>پمپ می‌کنیم</strong>.</p>
@@ -572,7 +572,7 @@ input[type=range]::-moz-range-thumb{
           <div class="term"><span>کارمزد سرویس</span><span class="num">۰٫۵٪</span></div>
         </div>
         <div class="parties">
-          <span class="party signed"><i class="dot"></i>اپ (تنظیم و امضا کرد)</span>
+          <span class="party signed"><i class="dot"></i>اپ — تنظیم و امضا کرد</span>
           <span class="party signed"><i class="dot"></i>موجر</span>
           <span class="party"><i class="dot"></i>مستأجر</span>
           <span class="party"><i class="dot"></i>شاهد</span>
@@ -580,13 +580,12 @@ input[type=range]::-moz-range-thumb{
         <div class="sigline"><i></i></div>
       </div>
       <ul class="list">
-        <li><strong>قرارداد را اپ تنظیم می‌کند، نه دستیار.</strong> دستیار از اپ می‌خواهد سندی بسازد؛ اپ آن را می‌سازد و امضا می‌کند و همان‌طور امضاشده به دست کاربر می‌رسد.</li>
+        <li><strong>قرارداد را اپ تنظیم می‌کند، نه دستیار.</strong> دستیار از اپ می‌خواهد قرارداد را بسازد؛ اپ آن را می‌سازد و امضا می‌کند و همان‌طور امضاشده به دست کاربر می‌رسد.</li>
         <li>امضا به <strong>هشِ شرایط</strong> گره می‌خورد. یک بند که عوض شود، همهٔ امضاهای قبلی باطل است.</li>
         <li>هر طرف فقط چیزی را امضا می‌کند که می‌بیند. موجر لازم نیست موجودی حساب مستأجر را ببیند.</li>
         <li>قرارداد مثل <strong>پیوست</strong> رد و بدل می‌شود، درست مثل عکس؛ بین بات و کاربر، بین دو کاربر، بین کاربر و دستیار.</li>
-        <li>روی هر نسخه، اول اپ امضا می‌کند و آخر کاربر. تغییر یعنی نسخهٔ تازه؛ هیچ نسخه‌ای دو بار امضا نمی‌شود.</li>
-        <li class="x">سکو و ارائه‌دهندهٔ پرداخت طرف <em>همهٔ</em> قراردادها هستند، پس در هیچ قراردادی نام برده نمی‌شوند.</li>
-        <li class="x">دستیار سند را می‌آورد و <strong>هیچ‌وقت امضا نمی‌کند.</strong></li>
+        <li>تا وقتی همهٔ بندها پر نشده، قراردادی در کار نیست؛ یک پیش‌نویس است که هیچ‌کس را متعهد نمی‌کند.</li>
+        <li class="x">دستیار قرارداد را می‌آورد و <strong>هیچ‌وقت امضا نمی‌کند.</strong></li>
       </ul>
     </div>
   </section>
@@ -605,15 +604,15 @@ input[type=range]::-moz-range-thumb{
         <div class="foot"><div class="inp" id="p1inp">پیام…</div><button class="snd">↑</button></div>
       </div>
       <div class="side">
-        <h2 style="font-size:2.8cqw">کاربر می‌گوید چه می‌خواهد. سند می‌آید.</h2>
-        <p id="p1note">دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد سندی تنظیم کند. سندی که برمی‌گردد، از پیش امضای اپ را دارد.</p>
+        <h2 style="font-size:2.8cqw">کاربر می‌گوید چه می‌خواهد. قرارداد می‌آید.</h2>
+        <p id="p1note">دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد قرارداد را بسازد. قراردادی که برمی‌گردد، از پیش امضای اپ را دارد.</p>
         <div class="row" style="gap:.8cqw">
           <button class="btn primary" id="p1go">اجرا کن</button>
           <button class="btn" id="p1rst">از نو</button>
         </div>
         <div class="card" style="background:var(--surface-2)">
           <div class="k">آنچه در این صحنه اتفاق نمی‌افتد</div>
-          <div class="v">دستیار سند را ننوشته و امضا نکرده. فقط از اپ خواسته آن را بسازد و برای کاربر آورده است.</div>
+          <div class="v">دستیار قرارداد را ننوشته و امضا نکرده. فقط از اپ خواسته آن را بسازد و برای کاربر آورده است.</div>
         </div>
       </div>
     </div>
@@ -627,7 +626,7 @@ input[type=range]::-moz-range-thumb{
       <div class="card"><div class="k">دستیار</div><div class="v">گفت‌وگوی پیش‌فرض. برنامه که باز می‌شود، اینجاست.</div></div>
       <div class="card"><div class="k">ویترین</div><div class="v">هر اپ دیگری از اینجا پیدا و نصب می‌شود؛ با نظر کاربران، تصویر، و فهرست مجوزهایی که می‌خواهد.</div></div>
       <div class="card"><div class="k">مالی</div><div class="v">کیف پول، تراکنش‌ها، و سابقهٔ پرداخت.</div></div>
-      <div class="card"><div class="k">قراردادهای من</div><div class="v">هر سندی که تا امروز امضا کرده‌اید، در یک جا. مجوزها هم همین‌جا هستند، چون مجوز خودش یک قرارداد است.</div></div>
+      <div class="card"><div class="k">قراردادهای من</div><div class="v">هر قراردادی که تا امروز امضا کرده‌اید، در یک جا. مجوزها هم همین‌جا هستند، چون مجوز خودش یک قرارداد است.</div></div>
       <div class="card"><div class="k">پشتیبانی</div><div class="v">شکایت، اختلاف، و مشکل حساب. هر اختلاف، رویدادی امضاشده روی همان قرارداد است.</div></div>
       <div class="card"><div class="k">تنظیمات</div><div class="v">احراز هویت، کلیدهای امضا، ظاهر، و صفحهٔ پیش‌فرض.</div></div>
     </div>
@@ -635,7 +634,7 @@ input[type=range]::-moz-range-thumb{
       <p>در نخستین اجرا، کاربر می‌بیند چه چیزهایی از پیش نصب است و هر کدام چه می‌کنند — و همان را یک بار امضا می‌کند. <strong>قرارداد آغاز</strong> همین است.</p>
       <div class="card" style="border-color:var(--accent-2)">
         <div class="k seal-text">قاعده</div>
-        <div class="v">ماژول سیستمی از <strong>اجازه گرفتن</strong> معاف است، نه از <strong>سند دادن</strong>. مالی هیچ‌وقت مجوز نمی‌خواهد، اما هیچ‌وقت هم بدون سند امضاشده پولی جابه‌جا نمی‌کند.</div>
+        <div class="v">ماژول سیستمی از <strong>اجازه گرفتن</strong> معاف است، نه از <strong>قرارداد دادن</strong>. مالی هیچ‌وقت مجوز نمی‌خواهد، اما هیچ‌وقت هم بدون قرارداد امضاشده پولی جابه‌جا نمی‌کند.</div>
       </div>
     </div>
   </section>
@@ -649,7 +648,7 @@ input[type=range]::-moz-range-thumb{
         <div class="flow">
           <span class="node">«شام امشب رو از رستوران همیشگی سفارش بده»</span>
         </div>
-        <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node">حافظه: رستوران و سفارش قبلی</span></div>
+        <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node">قراردادهای من: سفارش‌های قبلی</span></div>
         <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node">MCP اسنپ‌فود: منو، قیمت، موجودی</span></div>
         <div class="flow"><span class="node sig">قرارداد پیش‌امضاشده توسط اسنپ‌فود</span></div>
         <div class="flow"><span class="node sig">کاربر امضا می‌کند — پلهٔ ۱</span></div>
@@ -669,7 +668,7 @@ input[type=range]::-moz-range-thumb{
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
         <div class="contract" id="ride-c">
-          <div class="ch"><span class="ct">درخواست سفر</span><span class="cid">#T4410</span></div>
+          <div class="ch"><span class="ct">پیش‌نویس سفر</span><span class="cid">#T4410</span></div>
           <div class="terms">
             <div class="term"><span>مقصد</span><span id="ride-dst">خانهٔ من</span></div>
             <div class="term"><span>مبدأ</span><span id="ride-src" style="color:var(--fg-3)">— تعیین‌نشده —</span></div>
@@ -691,37 +690,8 @@ input[type=range]::-moz-range-thumb{
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
         <h3 id="ride-step-t">میزبان می‌خواهد برای مهمانش ماشین بگیرد</h3>
         <p id="ride-step-d">میزبان مقصد را می‌داند اما مبدأ مهمان را نمی‌داند. در برنامه‌های امروزی کار همین‌جا گیر می‌کند و باید تلفنی آدرس را بپرسد.</p>
-        <div class="split-note" id="ride-count">گام ۰ از ۴</div>
+        <div class="split-note" id="ride-count">گام ۰ از ۵</div>
       </div>
-    </div>
-  </section>
-
-  <!-- 11 : split bill - interactive -->
-  <section class="slide" data-sec="کاربردها">
-    <div class="eyebrow" style="--i:0">۱۰ — کاربرد ۳</div>
-    <h2 style="--i:1">تقسیم صورتحساب</h2>
-    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
-      <div class="contract">
-        <div class="ch"><span class="ct">پرداخت گروهی</span><span class="cid">#S8802</span></div>
-        <div class="terms">
-          <div class="term"><span>مجموع</span><span class="num">۱٬۲۰۰٬۰۰۰ تومان</span></div>
-          <div class="term"><span>سهم هر نفر</span><span class="num">۳۰۰٬۰۰۰ تومان</span></div>
-          <div class="term"><span>حد نصاب</span><span>امضای هر چهار نفر</span></div>
-        </div>
-        <div class="parties" id="split-parties">
-          <button class="party clickable" data-p="0"><i class="dot"></i>امید</button>
-          <button class="party clickable" data-p="1"><i class="dot"></i>سارا</button>
-          <button class="party clickable" data-p="2"><i class="dot"></i>رضا</button>
-          <button class="party clickable" data-p="3"><i class="dot"></i>مینا</button>
-        </div>
-        <div class="meter" id="split-meter"><i style="width:0%"></i></div>
-        <div class="split-note" id="split-note">برای امضا روی هر نام کلیک کنید.</div>
-      </div>
-      <ul class="list">
-        <li>یک قرارداد و چند امضاکننده. تسویه همان لحظهٔ آخرین امضا انجام می‌شود.</li>
-        <li>تا حد نصاب کامل نشود از حساب کسی چیزی کم نمی‌شود. اگر یک نفر امضا نکند، قرارداد منقضی می‌شود.</li>
-        <li>همین ساز و کار برای تصمیم‌های حاکمیتی هم کار می‌کند؛ مثلاً تغییر سیاست شبکه با امضای چند نفر از مدیران.</li>
-      </ul>
     </div>
   </section>
 
@@ -757,43 +727,6 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
-  <!-- 13 : delegation - interactive -->
-  <section class="slide" data-sec="کاربردها">
-    <div class="eyebrow" style="--i:0">۱۲ — کاربرد ۵ · وکالت</div>
-    <h2 style="--i:1">پرداخت خودکار قبض</h2>
-    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
-      <div class="contract">
-        <div class="ch"><span class="ct">وکالت پرداخت قبوض</span><span class="cid">#D1177</span></div>
-        <div class="terms">
-          <div class="term"><span>وکیل</span><span>سرویس قبوض</span></div>
-          <div class="term"><span>سقف ماهانه</span><span class="num">۱٬۰۰۰٬۰۰۰ تومان</span></div>
-          <div class="term"><span>دامنه</span><span>فقط قبوض به نام کاربر</span></div>
-          <div class="term"><span>انقضا</span><span>۹۰ روز</span></div>
-        </div>
-        <div class="meter" id="del-meter"><i style="width:0%"></i></div>
-        <div class="row" style="justify-content:space-between; align-items:center">
-          <span class="split-note" id="del-note">مصرف‌شده: ۰ از ۱٬۰۰۰٬۰۰۰</span>
-          <span class="chip ok" id="del-state">فعال</span>
-        </div>
-        <div class="row" style="gap:.8cqw">
-          <button class="btn primary" id="del-pay">قبض جدید رسید — پرداخت کن</button>
-          <button class="btn" id="del-reset">لغو وکالت</button>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:1cqw">
-        <p>وکالت تنها جایی است که کاربر در لحظهٔ اجرا حاضر نیست. پس امنیت نمی‌تواند از «تأیید کاربر» بیاید؛ باید از خودِ قرارداد بیاید.</p>
-        <ul class="list">
-          <li class="x">وکالت نامحدود ممنوع است؛ سقف و انقضا اجباری‌اند.</li>
-          <li class="x">دادنِ وکالت یک پله امضای <strong>بالاتر</strong> می‌خواهد از استفاده کردن از آن.</li>
-          <li class="x">وکیل حق ندارد وکالت را به کس دیگری واگذار کند.</li>
-          <li>لغو، یک‌طرفه و فوری است.</li>
-          <li>هر بار که خرج شود اطلاع می‌دهیم؛ خرجِ خاموش نداریم.</li>
-        </ul>
-        <p class="tiny">تجربهٔ اتریوم: مجوزهای نامحدود بزرگ‌ترین عامل زیان کاربران بوده‌اند. اگر دانش آن اکوسیستم را برمی‌داریم، زخم‌هایش را هم باید برداریم.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- 14 -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">۱۳ — کاربرد ۶</div>
@@ -804,8 +737,8 @@ input[type=range]::-moz-range-thumb{
       <div class="card"><div class="chip">طرف سوم</div><div class="k">مستأجر</div><div class="v">امضا می‌کند. از این پس هر ماه، سررسید اجاره یک قرارداد نیمه‌آمادهٔ پرداخت تولید می‌کند.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.6cqw">
-      <p>از این پس پرداخت اجاره «کارت به کارت» نیست؛ پر کردن یک قرارداد اجاره است. همان‌قدر پول کم می‌شود، اما این بار سند دارد، کارمزدش خودش تقسیم می‌شود و قابل حسابرسی است.</p>
-      <p><strong>وجه امانی:</strong> ودیعه داخل قرارداد قفل می‌شود و شرط آزاد شدنش در همان سند نوشته شده است. اینکه تسویه امانی باشد یا خوش‌بینانه، ویژگی خودِ قرارداد است نه سیاست سکو.</p>
+      <p>از این پس پرداخت اجاره «کارت به کارت» نیست؛ پر کردن یک قرارداد اجاره است. همان‌قدر پول کم می‌شود، اما این بار قرارداد دارد، کارمزدش خودش تقسیم می‌شود و قابل حسابرسی است.</p>
+      <p><strong>وجه امانی:</strong> ودیعه داخل قرارداد قفل می‌شود و شرط آزاد شدنش در همان قرارداد نوشته شده است. اینکه تسویه امانی باشد یا خوش‌بینانه، ویژگی خودِ قرارداد است نه سیاست سکو.</p>
     </div>
   </section>
 
@@ -911,62 +844,72 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
-  <!-- 16 : AI down - interactive -->
+  <!-- AI down : phone prototype -->
   <section class="slide" data-sec="کاربردها">
-    <div class="eyebrow" style="--i:0">۱۵ — کاربرد ۸</div>
-    <h2 style="--i:1">وقتی هوش مصنوعی نیست</h2>
-    <div class="row" style="--i:2; gap:1.2cqw; align-items:center">
-      <div class="toggle" id="tg-ai">
-        <button class="on" data-v="on">هوش مصنوعی در دسترس</button>
-        <button data-v="off">هوش مصنوعی قطع است</button>
+    <div class="eyebrow" style="--i:0">نمونهٔ کار — وقتی دستیار در دسترس نیست</div>
+    <div class="proto" style="--i:1">
+      <div class="phone">
+        <div class="bar"><span>۹:۴۱</span><span>▮▮▮</span></div>
+        <div class="top"><div class="av">☰</div><div><div class="nm">ویستا</div><div class="st" id="aist">۹ اپ</div></div></div>
+        <div class="body" id="aibody"></div>
       </div>
-      <span class="hint">وضعیت را عوض کنید</span>
-    </div>
-    <div class="cols-2" style="--i:3; gap:2.4cqw; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:1cqw" id="ai-flow">
-        <div class="flow"><span class="node">کاربر</span><span class="arr">←</span><span class="node ai" id="ai-node">دستیار</span><span class="arr">←</span><span class="node">بات‌ها</span></div>
-        <div class="cols-2" style="gap:1cqw" id="bot-tiles">
-          <div class="tile"><span class="tn">بات اسنپ</span><span class="td">دکمه‌ها و مینی‌اپ</span></div>
-          <div class="tile"><span class="tn">بات بانک سینا</span><span class="td">دکمه‌ها و مینی‌اپ</span></div>
-          <div class="tile"><span class="tn">بات اسنپ‌فود</span><span class="td">دکمه‌ها و مینی‌اپ</span></div>
-          <div class="tile"><span class="tn">بات ایرانسل</span><span class="td">دکمه‌ها و مینی‌اپ</span></div>
+      <div class="side">
+        <div class="toggle" id="tg-ai">
+          <button class="on" data-v="on">دستیار در دسترس</button>
+          <button data-v="off">دستیار قطع است</button>
         </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:1.1cqw">
-        <h3 id="ai-t">حالت کامل</h3>
-        <p id="ai-d">کاربر با دستیار حرف می‌زند و دستیار تصمیم می‌گیرد کدام دکمهٔ کدام بات را بزند. ظاهر برنامه تا جای ممکن شبیه چت‌جی‌پی‌تی است.</p>
+        <h2 style="font-size:2.6cqw" id="ai-t">حالت عادی</h2>
+        <p id="ai-d">کاربر با دستیار حرف می‌زند و دستیار سراغ اپ درست می‌رود. اپ‌ها هم مثل همیشه سر جایشان هستند.</p>
         <div class="card" style="background:var(--surface-2)">
-          <div class="k">چرا شبیه چیزهایی که می‌شناسند</div>
-          <div class="v">جیکوب نیلسن قاعده را این‌طور می‌گوید: کاربر بیشتر وقتش را جای دیگری می‌گذراند، پس مدل ذهنی‌اش را آنجا ساخته و انتظار دارد اینجا هم همان‌طور کار کند. فهرست را از تلگرام می‌گیریم و گفت‌وگو را از چت‌جی‌پی‌تی؛ <strong>قرارداد تنها چیز تازه است، و همین که داخل قابی آشنا می‌نشیند، تازه‌بودنش قابل تحمل می‌شود.</strong> حدود ۵۰۰ میلیون کاربر تلگرام با مینی‌اپ‌ها کار می‌کنند و گردش مالی‌شان در ۲۰۲۵ از یک میلیارد دلار گذشت؛ ما همان الگو را برمی‌داریم.</div>
+          <div class="k">دستیار هم یک اپ است</div>
+          <div class="v">پس وقتی در دسترس نباشد، مثل هر اپ دیگری خاکستری می‌شود. بقیهٔ اپ‌ها کار می‌کنند و کاربر مستقیم سراغشان می‌رود — با چت یا با مینی‌اپ.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 17 : BYO agent - interactive -->
+  <!-- platform reach -->
   <section class="slide" data-sec="کاربردها">
-    <div class="eyebrow" style="--i:0">۱۶ — کاربرد ۹</div>
-    <h2 style="--i:1">عامل خودت را بیاور</h2>
+    <div class="eyebrow" style="--i:0">کجا اجرا می‌شویم</div>
+    <h2 style="--i:1">وب و اندروید — و یک کار که فقط از دست ما برمی‌آید</h2>
+    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:.6cqw">
+        <div class="term" style="font-size:1.4cqw"><span>&nbsp;</span><span>وب &nbsp;·&nbsp; اندروید</span></div>
+        <div class="term" style="font-size:1.4cqw"><span>درخواست احرازشده</span><span>✓ &nbsp;·&nbsp; ✓</span></div>
+        <div class="term" style="font-size:1.4cqw"><span>رمز یک‌بارمصرف</span><span>✓ &nbsp;·&nbsp; ✓</span></div>
+        <div class="term" style="font-size:1.4cqw"><span>کلید درون گوشی</span><span>✓ &nbsp;·&nbsp; ✓</span></div>
+        <div class="term" style="font-size:1.4cqw"><span class="seal-text">کلید درون سیم‌کارت</span><span>✗ &nbsp;·&nbsp; <strong style="color:var(--green)">✓</strong></span></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.1cqw">
+        <p>هر چیزی که کاربر لازم دارد در وب هم کار می‌کند؛ نصب اجباری نیست. اما بالاترین پلهٔ امضا فقط در اپ اندروید ممکن است، چون کلید باید داخل سیم‌کارت باشد.</p>
+        <div class="card" style="border-color:var(--green)">
+          <div class="k" style="color:var(--green)">و اینجا چیزی هست که کپی نمی‌شود</div>
+          <div class="v">اپ اندروید فقط وقتی می‌تواند از کلید داخل سیم‌کارت استفاده کند که <strong>خودِ سیم‌کارت به او اجازه داده باشد</strong> — و آن اجازه را فقط صادرکنندهٔ سیم‌کارت می‌نویسد. یعنی اپراتور. نه اسنپ، نه بله، نه هیچ بانکی.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BYO key -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">کلید خودت را بیاور</div>
+    <h2 style="--i:1">اگر مدل قوی‌تری می‌خواهی، مال خودت را بیاور</h2>
     <div class="row" style="--i:2; gap:1.2cqw; align-items:center">
       <div class="toggle" id="tg-byo">
-        <button class="on" data-v="vista">دستیار ویستا</button>
-        <button data-v="own">دستیار شخصی کاربر</button>
+        <button class="on" data-v="vista">مدل ویستا</button>
+        <button data-v="own">مدل خودِ کاربر</button>
       </div>
-      <span class="hint">مدل را عوض کنید</span>
+      <span class="hint">عوضش کنید</span>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
-        <div class="flow" id="byo-flow"><span class="node ai" id="byo-agent">دستیار ویستا</span><span class="arr">←</span><span class="node" style="border-style:dashed">سرور MCP ویستا</span></div>
-        <div class="card">
-          <div class="k">هزینهٔ توکن</div>
-          <div class="v" id="byo-cost">مدل میزبانی‌شدهٔ ویستا و هزینه‌اش با سکو. برای بیشتر کاربرها رایگان است و کفایت می‌کند.</div>
-        </div>
-        <div class="wall" id="byo-wall">دستیار بیرونی هم حق امضا ندارد؛ فقط می‌خواند و آماده می‌کند.</div>
+        <div class="flow"><span class="node">دستیار ویستا</span><span class="arr">←</span><span class="node ai" id="byo-agent">مدل ویستا</span></div>
+        <div class="card"><div class="k">هزینه</div><div class="v" id="byo-cost">مدلی که ما تأمین می‌کنیم. مصرفش رایگان نیست و کاربر بابتش پول می‌دهد.</div></div>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
-        <p>ویستا یک سرور <span class="mono">MCP</span> منتشر می‌کند. هر دستیاری می‌تواند به آن وصل شود؛ چت‌جی‌پی‌تی، کلاد، یا دستیار شخصی خودِ کاربر.</p>
-        <p><strong>چرا خطر ندارد؟</strong> چون هیچ دستیاری نمی‌تواند امضا کند. بدترین کاری که یک دستیار ناشناس می‌تواند بکند این است که قراردادی آماده کند و کاربر آن را رد کند.</p>
-        <p><strong>و چرا به نفع ماست؟</strong> کاربری که مدل قوی‌تر می‌خواهد کلید خودش را می‌آورد و پول توکنش را خودش می‌دهد. بزرگ‌ترین ریسک هزینهٔ عملیاتی تبدیل می‌شود به یک انتخاب کاربر.</p>
+        <p>کاربر می‌تواند در تنظیمات، آدرس ارائه‌دهنده و کلید خودش را بگذارد. از آن به بعد <strong>همان دستیار ویستا با مدل او کار می‌کند</strong>.</p>
+        <p>همه‌چیز دیگر سر جای خودش می‌ماند: اپ‌ها، قراردادها، امضاها و پرداخت. فقط مغز عوض می‌شود.</p>
+        <div class="card" style="border-color:var(--green)"><div class="k" style="color:var(--green)">و بزرگ‌ترین ریسک هزینه، انتخابی می‌شود</div><div class="v">کاربری که مدل گران‌تر می‌خواهد، خودش هزینه‌اش را می‌دهد.</div></div>
       </div>
     </div>
   </section>
@@ -991,8 +934,8 @@ input[type=range]::-moz-range-thumb{
   <!-- 20 : the invariant -->
   <section class="slide" data-sec="امنیت">
     <div class="eyebrow" style="--i:0">۱۹ — اصل بنیادی</div>
-    <div class="quote" style="--i:1; font-size:2.9cqw; max-width:44ch">خواندن آزاد است. نوشتن قرارداد است. دستیار آماده می‌کند و هیچ‌وقت امضا نمی‌کند. اجرا هم جایی انجام می‌شود که دستیار اصلاً به آن دسترسی ندارد.</div>
-    <p style="--i:2">هر تعاملی که وضعیتی را تغییر می‌دهد، سندی دارد که کاربر آن را دیده و امضا کرده است. هر چه بی‌اثر است — دیدن، پرسیدن، جستجو کردن — آزاد و بی‌اصطکاک انجام می‌شود.</p>
+    <div class="quote" style="--i:1; font-size:2.9cqw; max-width:44ch">خواندن آزاد است. نوشتن قرارداد است. دستیار قرارداد را می‌آورد و هیچ‌وقت امضا نمی‌کند. اجرا هم جایی انجام می‌شود که دستیار اصلاً به آن دسترسی ندارد.</div>
+    <p style="--i:2">هر کاری که وضعیتی را عوض کند، قراردادی دارد که کاربر آن را دیده و امضا کرده. هر چه بی‌اثر است — دیدن، پرسیدن، جستجو — آزاد و بدون اصطکاک انجام می‌شود.</p>
   </section>
 
   <!-- 21 : write path - interactive -->
@@ -1003,7 +946,7 @@ input[type=range]::-moz-range-thumb{
       <div class="cols-2" style="gap:2.4cqw; align-items:center">
         <div style="display:flex; flex-direction:column; gap:1cqw">
           <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node">خواندن از MCP</span></div>
-          <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node sig">آماده کردن قرارداد امضانشده</span></div>
+          <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node sig">آوردن قرارداد امضانشده</span></div>
           <div class="flow"><span class="node">کلاینت</span><span class="arr">←</span><span class="node sig">امضای کاربر</span></div>
           <div class="flow"><span class="node">پردازشگر</span><span class="arr">←</span><span class="node">بستر اجرا</span></div>
         </div>
@@ -1040,32 +983,15 @@ input[type=range]::-moz-range-thumb{
         <div class="foot"><div class="inp">پیام…</div><button class="snd">↑</button></div>
       </div>
       <div class="side">
-        <p><strong>ظاهر مالِ اپ است، ساختار مالِ سکو.</strong> اپ فقط رنگ تم، نشان و نام نمایشی را می‌دهد. چیدمان، ترتیب بندها، جای مبلغ و بلوک امضا همیشه یکسان است و در اختیار ماست.</p>
-        <p>به همین دلیل کاربر یک شکلِ سند را یاد می‌گیرد و سندِ نادرست را می‌شناسد. هیچ اپی نمی‌تواند مبلغ را کم‌رنگ کند یا امضا را شبیه یک دکمهٔ معمولی نشان دهد.</p>
+        <p><strong>ظاهر مالِ اپ است، ساختار مالِ سکو.</strong> اپ فقط رنگ تم، نشان و نام نمایشی را می‌دهد. چیدمان، ترتیب بندها، جای مبلغ و بلوک امضا همیشه یکسان است و دست ماست.</p>
+        <p>به همین دلیل کاربر یک شکلِ قرارداد را یاد می‌گیرد و قراردادِ نادرست را می‌شناسد. هیچ اپی نمی‌تواند مبلغ را کم‌رنگ کند یا امضا را شبیه یک دکمهٔ معمولی نشان دهد.</p>
         <div class="card">
           <div class="k">محتوا جدا، ظاهر جدا</div>
-          <div class="v">قرارداد یک سند داده‌ای است و رنگ‌ها یک لایهٔ نمایشی روی آن. همان تفکیکی که میان محتوا و شیوه‌نامه وجود دارد.</div>
+          <div class="v">قرارداد یک ساختار داده‌ای است و رنگ‌ها لایه‌ای نمایشی روی آن.</div>
         </div>
       </div>
     </div>
   </section>
-  <!-- 22 -->
-  <section class="slide" data-sec="امنیت">
-    <div class="eyebrow" style="--i:0">۲۱ — پذیرش</div>
-    <h2 style="--i:1">هر سرویس بررسی می‌شود؛ هر نسخه دوباره.</h2>
-    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:1cqw">
-        <div class="card"><div class="k">قرارداد را کامل می‌توان تثبیت کرد</div><div class="v">کد قرارداد روی بستر خودمان اجرا می‌شود؛ هش می‌شود، نسخه می‌خورد و بررسی می‌شود. نسخهٔ تغییریافته یعنی هش جدید و بررسی جدید. همان کاری که کافه‌بازار با هر نسخهٔ برنامه می‌کند.</div></div>
-        <div class="card"><div class="k">MCP را فقط اعلامش را می‌توان تثبیت کرد</div><div class="v">سرویس زنده است و می‌تواند پشت آن رابط عوض شود. ما شکل پاسخ را در زمان اجرا الزام می‌کنیم و انحراف رفتاری را زیر نظر می‌گیریم.</div></div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:1.2cqw">
-        <div class="quote" style="font-size:2cqw">پول و تعهد هیچ‌وقت از MCP رد نمی‌شود؛ از کد قرارداد روی بستر خودمان رد می‌شود.</div>
-        <p>به این ترتیب آن چیزی که واقعاً می‌توانیم قفل کنیم، همان چیزی است که اهمیت دارد. و بدترین حالتِ آن بخشی که فقط راستی‌آزمایی می‌شود، دادهٔ بد است نه پولِ رفته.</p>
-        <p class="tiny">سقف تراکنش را شعاع اثر تعیین می‌کند، نه عضویت در فهرست قالب‌ها؛ از آزمایشی تا استاندارد و ارتقایافته و ممتاز.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- 23 : standards - interactive -->
   <section class="slide" data-sec="معماری">
     <div class="eyebrow" style="--i:0">۲۲ — استانداردها</div>
@@ -1084,77 +1010,41 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
-  <!-- 25 -->
+  <!-- model -->
   <section class="slide" data-sec="معماری">
-    <div class="eyebrow" style="--i:0">۲۴ — داده</div>
-    <h2 style="--i:1">چه چیزی کجا می‌نشیند</h2>
-    <div class="cols-2" style="--i:2; gap:2.4cqw">
-      <div class="card" style="border-color:var(--accent-2)">
-        <div class="k seal-text">روی دفتر</div>
-        <div class="v">پول، تعهد، امضا، کارمزد، هشِ اسناد و ردّ حسابرسی؛ یعنی چیزهایی که باید تغییرناپذیر و قابل اثبات باشند.</div>
-      </div>
-      <div class="card">
-        <div class="k">بیرون از دفتر</div>
-        <div class="v">اطلاعات هویتی مشتری، آدرس‌ها، اسناد و تصاویر و دادهٔ عملیاتی؛ هر چیزی که ماندگاری توزیع‌شده برایش ارزشی ندارد و فقط ریسک می‌آورد.</div>
-      </div>
-    </div>
-    <div class="cols-2" style="--i:3; gap:2.4cqw">
-      <p>دفترِ ما فقط چیزهایی را نگه می‌دارد که باید بعداً اثبات‌پذیر باشند. هر چه اثباتش ارزشی ندارد، در پایگاه دادهٔ معمولی می‌ماند و از دفتر بیرون است.</p>
-      <p><strong>و همه‌چیز تراکنش نیست.</strong> خواندن، گفت‌وگو، آماده‌سازی و پیدا کردن قابلیت‌ها بیرون از دفتر می‌مانند. فقط جابه‌جایی ارزش و تعهد الزام‌آور تراکنش می‌شود.</p>
-    </div>
-  </section>
-
-  <!-- 26 -->
-  <section class="slide" data-sec="معماری">
-    <div class="eyebrow" style="--i:0">۲۵ — مدل</div>
-    <h2 style="--i:1">راهبرد مدل و هزینه</h2>
-    <div class="cols-3" style="--i:2">
-      <div class="card"><div class="k">وزن باز، شرط قطعی</div><div class="v">شریک باید وزن‌های باز بدهد، وگرنه حرفِ مهاجرت به میزبانی داخلی فقط حرف است. نامزدها: کیوِن، جی‌ال‌ام، دیپ‌سیک، کیمی و مینی‌مکس.</div></div>
-      <div class="card"><div class="k">دو منبعی</div><div class="v">قرارداد با دو شریک می‌بندیم. هزینه‌اش کم است، جلوی قفل شدن را می‌گیرد و در مذاکرهٔ دوم دستمان را باز می‌کند.</div></div>
-      <div class="card"><div class="k">اول API، بعد میزبانی</div><div class="v">اول مدل را به‌صورت سرویس می‌گیریم، بعد سخت‌افزار وارد می‌کنیم و خودمان میزبانش می‌شویم. تأمین شتاب‌دهنده طولانی‌ترین زمان تدارک را دارد.</div></div>
+    <div class="eyebrow" style="--i:0">مدل</div>
+    <h2 style="--i:1">هوش مصنوعی را از کجا می‌آوریم</h2>
+    <div class="cols-4" style="--i:2">
+      <div class="card"><div class="chip">۱</div><div class="k">شریک چینی</div><div class="v">با یکی از شرکت‌های چینی قرارداد می‌بندیم که مدل ما را با قیمت مناسب تأمین کند.</div></div>
+      <div class="card"><div class="chip">۲</div><div class="k">دو شریک، نه یکی</div><div class="v">با دو شرکت قرارداد می‌بندیم. هزینه‌اش کم است، جلوی قفل شدن را می‌گیرد و در مذاکره دستمان را باز نگه می‌دارد.</div></div>
+      <div class="card"><div class="chip">۳</div><div class="k">وزن باز</div><div class="v">هر دو باید مدل وزن‌باز بدهند، وگرنه هیچ‌وقت نمی‌توانیم خودمان میزبانش شویم.</div></div>
+      <div class="card"><div class="chip">۴</div><div class="k">اول API، بعد میزبانی</div><div class="v">در آغاز مدل را به‌صورت سرویس می‌گیریم و به‌مرور می‌بریمش روی سخت‌افزار خودمان.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
-      <p><strong>چرا مدل متوسط کافی است:</strong> چون دستیار فقط می‌خواند، استدلال می‌کند و سند را آماده می‌کند. هیچ‌وقت اجرا نمی‌کند. پس معیار ما این است که «قرارداد درست را آماده می‌کند یا نه»، نه اینکه «می‌شود به او اختیار داد یا نه».</p>
-      <p><strong>همین معماری امنیتی است که اجازه می‌دهد سراغ مدل ارزان برویم.</strong> مدل ضعیف‌تر کیفیت تجربه را پایین می‌آورد، نه امنیت را. کاربری هم که کیفیت بیشتری بخواهد، کلید خودش را می‌آورد. ضمن اینکه روند به سود ماست: هزینهٔ هوش مصنوعی برای یک سطح توانایی ثابت، سالانه حدود ده برابر ارزان‌تر می‌شود.</p>
+      <p><strong>از مدل متوسط استفاده می‌کنیم</strong>، چون کافی است. دستیار می‌خواند، می‌فهمد و قرارداد را می‌آورد؛ هیچ‌وقت اجرا نمی‌کند. مدل ضعیف‌تر کیفیت گفت‌وگو را پایین می‌آورد، نه امنیت را.</p>
+      <p>و روند به سود ماست: هزینهٔ هوش مصنوعی برای یک سطح توانایی ثابت، سالانه حدود ده برابر ارزان‌تر می‌شود. کاربری هم که مدل قوی‌تر بخواهد، کلید خودش را می‌آورد.</p>
     </div>
   </section>
 
-  <!-- 27 -->
+  <!-- integration -->
   <section class="slide" data-sec="اکوسیستم">
-    <div class="eyebrow" style="--i:0">۲۶ — یکپارچه‌سازی</div>
-    <h2 style="--i:1">‏SDK که خودِ هوش مصنوعیِ شریک آن را می‌خواند</h2>
+    <div class="eyebrow" style="--i:0">یکپارچه‌سازی</div>
+    <h2 style="--i:1">پیوستن باید ارزان باشد، وگرنه کسی نمی‌پیوندد</h2>
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
-      <div style="display:flex; flex-direction:column; gap:.7cqw">
-        <div class="term"><span class="mono">SPEC.md</span><span>کل مدل به زبان ساده؛ هم برای آدم، هم برای ماشین</span></div>
-        <div class="term"><span class="mono">capabilities.yaml</span><span>اعلام قابلیت‌ها؛ خواندنی یا نوشتنی، و کلاس‌های داده</span></div>
-        <div class="term"><span class="mono">contracts/</span><span>شِمای شرایط، طرف‌ها، حد نصاب، پلهٔ امضا، کارمزد</span></div>
-        <div class="term"><span class="mono">bot.yaml</span><span>فرمان‌ها، دکمه‌ها، ورودی مینی‌اپ</span></div>
-        <div class="term"><span class="mono">AGENTS.md</span><span>دستورالعمل مستقیم برای دستیارِ کدنویسِ شریک</span></div>
-        <div class="term"><span class="mono">conformance/</span><span>مجموعه آزمون؛ شریک خودش می‌فهمد کارش تمام شده یا نه</span></div>
+      <div style="display:flex; flex-direction:column; gap:1.2cqw">
+        <div class="quote" style="font-size:2cqw">آنچه سکوها را زمین می‌زند هزینهٔ یکپارچه‌سازی است، نه بی‌انگیزگی شرکا.</div>
+        <p>مدیر محصولِ یک سرویس، سه ماه کار مهندسی را می‌گذارد کنار بازدهی نامعلوم و تصمیم را عقب می‌اندازد. باید این محاسبه را عوض کرد.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
-        <div class="quote" style="font-size:2cqw">آنچه سکوها را زمین می‌زند هزینهٔ یکپارچه‌سازی است، نه بی‌انگیزگی شرکا.</div>
-        <p>تا اینجا هر استدلالی آورده‌ایم دربارهٔ این بوده که <em>چرا</em> یک سرویس باید بپیوندد. هیچ‌کدام نگفته <em>چقدر خرج دارد</em>. مدیر محصولِ آن سرویس سه ماه کار مهندسی را می‌گذارد کنار بازدهی نامعلوم، و تصمیم را عقب می‌اندازد.</p>
-        <p><strong>اما اگر شریک بتواند دستیار کدنویسش را به مشخصات ما وصل کند و ظرف چند روز کار را تمام کند، تصمیم از «سرمایه‌گذاری» تبدیل می‌شود به «یک بار امتحان کردن».</strong> این بزرگ‌ترین اهرم پذیرش در کل طرح است.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 28 -->
-  <section class="slide" data-sec="اکوسیستم">
-    <div class="eyebrow" style="--i:0">۲۷ — پیشنهاد به شریک</div>
-    <h2 style="--i:1">یک بار بساز، در سه جا اجرا کن</h2>
-    <div class="cols-3" style="--i:2">
-      <div class="card"><div class="k">چت‌جی‌پی‌تی</div><div class="v">اپ‌های دیگران از طریق <span class="mono">MCP Apps</span> رابط تعاملی‌شان را داخل گفت‌وگو رسم می‌کنند.</div></div>
-      <div class="card"><div class="k">کلاد</div><div class="v">همان استاندارد باز؛ همان سرور.</div></div>
-      <div class="card" style="border-color:var(--accent)"><div class="k az">ویستا</div><div class="v">و اینجا علاوه بر همهٔ آن‌ها: هویت، پرداخت، اطلاع‌رسانی، قرارداد و تسویه.</div></div>
-    </div>
-    <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
-      <p>سرویسی که برای دستیارهای جهانی یک <span class="mono">MCP App</span> ساخته باشد، بخش عمدهٔ کار یکپارچه‌سازی با ویستا را هم انجام داده؛ و برعکس. هیچ سکوی ایرانی دیگری نمی‌تواند چنین حرفی بزند.</p>
-        <div class="card" style="background:var(--seal-soft); border-color:var(--accent-2)">
-          <div class="k seal-text">و پاسخ به تهدید بلندمدت</div>
-          <div class="v">اگر روزی دستیارهای جهانی لایهٔ گفت‌وگو را تصاحب کردند، قرارداد باز هم اینجا امضا و تسویه می‌شود. <strong>لایهٔ تسویه بودن جای بهتری است تا پنجرهٔ گفت‌وگو بودن.</strong></div>
+        <div class="card" style="border-color:var(--accent)">
+          <div class="k az">یک مشخصات، و تمام</div>
+          <div class="v">ما یک سند مشخصات منتشر می‌کنیم. شریک همان را به دستیار کدنویسِ خودش می‌دهد و یکپارچه‌سازی را می‌سازد. تصمیم از «سرمایه‌گذاری» تبدیل می‌شود به «یک بار امتحان کردن».</div>
         </div>
+        <div class="card" style="border-color:var(--green)">
+          <div class="k" style="color:var(--green)">و اگر از قبل بات دارید</div>
+          <div class="v">همین حالا بات تلگرام یا بله دارید؟ با تغییری اندک، همان بات در ویستا کار می‌کند. کاری که کرده‌اید دور ریخته نمی‌شود.</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1164,12 +1054,12 @@ input[type=range]::-moz-range-thumb{
     <h2 style="--i:1">سه جریان، به ترتیب سرعت تحقق</h2>
     <div class="cols-3" style="--i:2">
       <div class="card"><div class="chip">ماه‌های نخست</div><div class="k">ارزش مخابراتی</div><div class="v">کاهش هزینهٔ مرکز تماس و شعب، بالا رفتن درآمد هر مشترک و کم شدن ریزش؛ عددی که مدیر مالی خودش می‌تواند راستی‌آزمایی کند.</div></div>
-      <div class="card"><div class="chip">میان‌مدت</div><div class="k">پمپاژ هوش</div><div class="v">فروش هوشمندی به سرویس‌ها به‌صورت اشتراک و مصرف، مستقل از حجم تراکنش.</div></div>
+      <div class="card"><div class="chip">میان‌مدت</div><div class="k">پمپاژ هوش</div><div class="v">فروش هوشمندی به سرویس‌ها به‌صورت اشتراک و مصرف، مستقل از حجم تراکنش. و اشتراکی برای کاربر، برای برداشتن پیشنهادهای اسپانسری.</div></div>
       <div class="card"><div class="chip">مقیاس</div><div class="k">کارمزد تراکنش</div><div class="v">در بازارگاه‌ها سهم از کارمزدِ خودِ سرویس، در کالای دیجیتال درصدی از مبلغ، و در تراکنش مالی کارمزد ثابت.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
       <p class="tiny"><strong>هیچ‌وقت درصدی از گردش بازارگاه برنمی‌داریم:</strong> اگر کارمزد خود اسنپ از یک سفر ۲۰٪ باشد، ۳۰٪ روی مبلغ سفر از کل درآمد او بیشتر می‌شود. سهم ما از کارمزد اوست، نه از مبلغ تراکنش.</p>
-      <p class="tiny"><strong>یک مزیت ساختاری هم دارد:</strong> چون پول از داخل قرارداد ما رد می‌شود، تقسیم کارمزد همان لحظهٔ اجرا و یکجا انجام می‌شود. هیچ‌وقت لازم نیست گزارش درآمد شریک را حسابرسی کنیم؛ و ضعف اصلی مدل کافه‌بازار دقیقاً همین‌جاست.</p>
+      <p class="tiny"><strong>و اجباری در کار نیست:</strong> پرداخت ما داخل خودِ گفت‌وگو انجام می‌شود؛ دستیار با یک قدم پرداخت را تمام می‌کند، بی‌آنکه کاربر به درگاه بیرونی برود. یعنی از چیزی که خودِ اپ می‌سازد آسان‌تر است. اپی هم که ترجیح بدهد درگاه خودش را بیاورد، با او نمی‌جنگیم؛ فقط این راحتی را از دست می‌دهد.</p>
     </div>
   </section>
 
@@ -1178,17 +1068,17 @@ input[type=range]::-moz-range-thumb{
     <div class="eyebrow" style="--i:0">۲۹ — رقبا</div>
     <h2 style="--i:1">میدان رقابت</h2>
     <div class="cols-4" style="--i:2">
-      <div class="card"><div class="k">بله</div><div class="v">پیام‌رسان بانک ملی با تسویه از طریق سداد؛ حدود ۳۱ میلیون نصب فقط در کافه‌بازار. جدی‌ترین رقیب ما.</div></div>
-      <div class="card"><div class="k">روبیکا</div><div class="v">بیش از ۳۷ میلیون کاربر با کیف پول و خدمات متنوع، اما بدون هیچ سازوکاری برای پذیرش یک دستهٔ خدمات تازه.</div></div>
+      <div class="card"><div class="k">بله</div><div class="v">پیام‌رسان بانک ملی با تسویه از طریق سداد؛ حدود ۳۱ میلیون نصب فقط در کافه‌بازار. هم بازار خدمات دارد و هم هوش مصنوعی. جدی‌ترین رقیب ما.</div></div>
+      <div class="card"><div class="k">روبیکا</div><div class="v">بیش از ۳۷ میلیون کاربر با کیف پول و خدمات متنوع، اما بدون سازوکاری برای پذیرش دستهٔ خدمات تازه.</div></div>
       <div class="card"><div class="k">آپ</div><div class="v">بازوی پرداخت قوی دارد، اما رابط کاربری‌اش خدمات‌محور است نه گفت‌وگومحور.</div></div>
-      <div class="card"><div class="k">ایتا</div><div class="v">پرداخت درون‌برنامه‌ای دارد، اما فقط در بستر خودش؛ ریل پرداخت برای اپ‌های میزبانی‌شده نیست.</div></div>
+      <div class="card"><div class="k">ایتا</div><div class="v">پرداخت درون‌برنامه‌ای و بازار خدمات دارد، اما گفت‌وگو و خدمات در آن به هم وصل نیستند.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
       <div class="card" style="border-color:var(--accent-2)">
         <div class="k seal-text">و اسنپ، که هم شریک است و هم رقیب</div>
         <div class="v">بیش از ۷۰ میلیون کاربر ثبت‌نامی، و همین حالا دستیار خرید هوشمند در اسنپ‌اکسپرس، سوپرسنج در اسنپ‌مارکت و هوش مصنوعی در اسنپ‌دکتر. یعنی فرصت از آنچه فکر می‌کردیم تنگ‌تر است.</div>
       </div>
-      <p><strong>اما همهٔ این‌ها دستیار را داخل یک سرویس می‌سازند</strong>، یعنی باز همان الگوی موزاییک. هیچ‌کدام هویت مشترک و پرداخت مشترک و بازارچهٔ قابلیت میان‌سرویسی ندارند. اسنپ دارد ثابت می‌کند که تقاضا برای دسترسی گفت‌وگویی هست؛ اما فقط ویستا می‌تواند آن را میان سرویس‌ها برقرار کند.</p>
+      <p><strong>بله هم هوش مصنوعی دارد و هم بازار خدمات — اما این دو به هم وصل نیستند.</strong> کاربر یا با هوش مصنوعی حرف می‌زند، یا می‌رود سراغ مینی‌اپ. نمی‌تواند از دلِ گفت‌وگو خدمتی را فراخوانی کند.<br><br>در ویستا دستیار خودش سراغ اپ می‌رود، قرارداد را می‌آورد و کاربر فقط امضا می‌کند. این وصل‌کردن، یک قابلیت نیست که بشود بعداً اضافه کرد؛ زیرش اعلام قابلیت، لایهٔ قرارداد و مدل مجوز لازم است.</p>
     </div>
   </section>
 
@@ -1220,7 +1110,7 @@ input[type=range]::-moz-range-thumb{
       <div class="phase">
         <span class="pn">STAGE 01</span>
         <span class="pt">اثبات</span>
-        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">کنکوریا با حدود ۲۳٬۰۰۰ کاربر، و خدمات خود ایرانسل.<br><br>شش اپ سیستمی · موتور قرارداد · <strong>امضای پلهٔ ۱ و ۲</strong> · بات و مینی‌اپ · پرداخت روی ریل بانک سینا · اشتراک‌گذاری سند با لینک و پیامک · نسخهٔ اول SDK · رسیدگی به اختلاف.</div>
+        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">کنکوریا با حدود ۲۳٬۰۰۰ کاربر، و خدمات خود ایرانسل.<br><br>شش اپ سیستمی · موتور قرارداد · <strong>امضای پلهٔ ۱ و ۲</strong> · بات و مینی‌اپ · پرداخت روی ریل بانک سینا · اشتراک‌گذاری قرارداد با لینک و پیامک · نسخهٔ اول SDK · رسیدگی به اختلاف.</div>
       </div>
       <div class="phase p2">
         <span class="pn">STAGE 02</span>
@@ -1242,29 +1132,47 @@ input[type=range]::-moz-range-thumb{
     <h2 style="--i:1">کارهایی که از امروز باید شروع شوند</h2>
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:.8cqw">
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">سنجهٔ فارسیِ عامل‌محور</div><div class="v">کم‌هزینه است، تعیین‌کننده است، و هیچ‌کس دیگری در کشور ندارد. انتخاب مدل و برآورد هزینه هر دو به آن گره خورده‌اند.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">زیرساخت کلید عمومی</div><div class="v">هویت و کلید اپ‌ها، چرخش و ابطال. بعد از سخت‌افزار طولانی‌ترین زمان تدارک را دارد، و با داستان امضای سیم‌کارت مشترک است.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">نمونهٔ اولیهٔ لایهٔ قرارداد</div><div class="v">تنظیم، امضا، اجرا و دفترِ حسابرسی — از ابتدا تا انتها روی یک نمونهٔ واقعی، پیش از آنکه چیزی به سرویس‌ها وعده داده شود.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">شریک مدل</div><div class="v">پیدا کردن دو شرکت چینی که مدل ما را تأمین کنند، و بستن قرارداد با هر دو.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">زیرساخت کلید</div><div class="v">کلید و هویت برای اپ‌ها و برای امضای کاربر. طولانی‌ترین کار است و امضای درون سیم‌کارت به آن وابسته است، پس باید زودتر از همه شروع شود.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">نمونهٔ کارِ لایهٔ قرارداد</div><div class="v">ساختن، امضا کردن و اجرای یک قرارداد واقعی از ابتدا تا انتها — پیش از آنکه چیزی به کسی وعده بدهیم.</div></div>
       </div>
       <div style="display:flex; flex-direction:column; gap:.8cqw">
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">قرارداد شریک مدل</div><div class="v">وزن باز، حق تنظیم دقیق روی دادهٔ فارسی، کمک در تأمین سخت‌افزار، و بند خروج.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">تأمین شتاب‌دهنده</div><div class="v">سخت‌ترین بخش کار است و ربطی هم به انتخاب مدل ندارد. مسیر جایگزین باید ارزیابی شود.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw; border-color:var(--accent-2)"><div class="k seal-text" style="font-size:1.45cqw">مسیر حقوقی — تعهد ایرانسل</div><div class="v">پرداخت‌یاری، کیف پول زیر مجوز بانک، اتصال شاپرک، تکالیف مبارزه با پول‌شویی، و یک موضع مکتوب از بانک مرکزی دربارهٔ تراکنش‌هایی که دستیار آغاز می‌کند.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">شرایط قرارداد مدل</div><div class="v">وزن باز، اجازهٔ آموزش روی دادهٔ فارسی، و بند خروج.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">سخت‌افزار</div><div class="v">کارت‌های گرافیکی که بعداً باید میزبان مدل باشند. تهیه‌شان از همه دیرتر طول می‌کشد.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw; border-color:var(--accent-2)"><div class="k seal-text" style="font-size:1.45cqw">مسیر حقوقی — کارِ ایرانسل</div><div class="v">مجوز پرداخت‌یاری، کیف پول زیر مجوز بانک، اتصال به شاپرک، و یک پاسخ روشن از بانک مرکزی دربارهٔ تراکنش‌هایی که دستیار شروع می‌کند.</div></div>
       </div>
     </div>
   </section>
 
-  <!-- 34 -->
+  <!-- risks -->
   <section class="slide" data-sec="برنامه">
-    <div class="eyebrow" style="--i:0">۳۳ — ریسک</div>
+    <div class="eyebrow" style="--i:0">ریسک</div>
     <h2 style="--i:1">آنچه می‌تواند شکست بخورد</h2>
     <div class="cols-3" style="--i:2">
-      <div class="card"><div class="k">سمت عرضه</div><div class="v">اگر یکپارچه‌سازی گران باشد سرویس‌ها نمی‌آیند. پاسخ ما: SDK، و فاز اولی که به هیچ شریکی نیاز ندارد.</div></div>
-      <div class="card"><div class="k">کیفیت فارسی مدل</div><div class="v">مدل‌های وزن‌باز در فارسی از مدل‌های بسته عقب‌ترند. پاسخ ما: سنجهٔ فارسی به‌عنوان تحویل‌دادنی فاز صفر، و بعد تنظیم دقیق.</div></div>
-      <div class="card"><div class="k">اعتماد کاربر</div><div class="v">هنوز معلوم نیست کاربر ایرانی چقدر حاضر است پولش را به نرم‌افزار بسپارد. پاسخ ما: نردبان اعتماد؛ اول کارهای اطلاعاتی، بعد پرداخت‌های خرد، بعد انتقال وجه.</div></div>
-      <div class="card"><div class="k">وابستگی به مدل</div><div class="v">دسترسی می‌تواند قطع شود. پاسخ ما: دو منبعی بودن، وزن باز، و میزبانی داخلی که الزام امنیتی است نه فقط صرفه‌جویی.</div></div>
-      <div class="card"><div class="k">مسئولیت حقوقی</div><div class="v">وقتی دستیار اشتباه کند، زیان با کیست؟ پاسخ ما: شرایط استفاده به‌عنوان کف کار، سند امضاشده به‌عنوان دفاع واقعی، و یک صندوق جبران در فاز نخست.</div></div>
-      <div class="card"><div class="k">اجرای چندتیمی</div><div class="v">گارتنر می‌گوید بیش از ۴۰٪ پروژه‌های عامل‌محور تا ۲۰۲۷ به‌دلیل حکمرانی ضعیف لغو می‌شوند. پاسخ ما: همین معماری، خودش حکمرانی است.</div></div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر پیوستن گران باشد</div><div class="v">سرویس‌ها نمی‌آیند و سکو خالی می‌ماند.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — یک سند مشخصات که دستیار کدنویسِ شریک بخواند، و فاز اولی که به هیچ شریکی نیاز ندارد.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر فارسیِ مدل ضعیف باشد</div><div class="v">دستیار درست نمی‌فهمد و کاربر بار دوم سراغش نمی‌آید.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — دو شریک به‌جای یکی، و آموزش مدل روی دادهٔ فارسی.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر کاربر اعتماد نکند</div><div class="v">هنوز معلوم نیست مردم چقدر حاضرند پولشان را دست نرم‌افزار بدهند.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — پله‌پله؛ اول کارهای اطلاعاتی، بعد پرداخت‌های کوچک، بعد انتقال وجه.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر دسترسی به مدل قطع شود</div><div class="v">هر تأمین‌کننده‌ای ممکن است یک روز نباشد.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — دو شریک، وزن باز، و میزبانی روی سخت‌افزار خودمان.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر دستیار اشتباه کند</div><div class="v">زیان با کیست؟</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — قرارداد امضاشده به‌عنوان مدرک، شرایط استفاده به‌عنوان کف کار، و صندوق جبران در سال اول.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر کار میان تیم‌ها بماند</div><div class="v">گارتنر می‌گوید بیش از ۴۰٪ پروژه‌های این‌چنینی تا ۲۰۲۷ لغو می‌شوند؛ بیشترشان به‌خاطر حکمرانی ضعیف.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — همین معماری، خودش حکمرانی است. و اختیارِ روشن، که در اسلاید آخر می‌آید.</div></div>
+      </div>
     </div>
   </section>
 
@@ -1319,9 +1227,9 @@ input[type=range]::-moz-range-thumb{
       <h1 style="font-size:5.4cqw">ویستا</h1>
     </div>
     <div class="cols-3" style="--i:1; margin-top:1cqw">
-      <div class="card"><div class="k">کارپرداز آماده می‌کند</div><div class="v">دستیار می‌خواند، استدلال می‌کند و سند را کامل می‌کند.</div></div>
-      <div class="card"><div class="k">مدیر امضا می‌کند</div><div class="v">اختیار همیشه دست آدم می‌ماند، در پله‌ای متناسب با آنچه در میان است.</div></div>
-      <div class="card"><div class="k">دفتر تسویه می‌کند</div><div class="v">قرارداد اجرا می‌شود، کارمزد تقسیم می‌شود و ردّ حسابرسی باقی می‌ماند.</div></div>
+      <div class="card"><div class="k">کارپرداز آماده می‌کند</div><div class="v">دستیار می‌خواند، استدلال می‌کند و قرارداد را کامل می‌کند.</div></div>
+      <div class="card"><div class="k">مدیر امضا می‌کند</div><div class="v">اختیار همیشه دست آدم می‌ماند؛ هرچه در میان بیشتر باشد، امضا سنگین‌تر.</div></div>
+      <div class="card"><div class="k">ویستا تسویه می‌کند</div><div class="v">قرارداد اجرا می‌شود، کارمزد تقسیم می‌شود و همه‌چیز ثبت می‌ماند.</div></div>
     </div>
     <p style="--i:2" class="tiny">سند مفهوم و معماری · شهریور ۱۴۰۵</p>
   </section>
@@ -1443,7 +1351,7 @@ input[type=range]::-moz-range-thumb{
         '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک هویت</span><span class="td">یک بار ورود، همه‌جا</span></div>' +
         '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک پرداخت</span><span class="td">کیف پول مشترک</span></div>' +
         '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک اطلاع‌رسانی</span><span class="td">جریان واحد رویدادها</span></div>' +
-        '<div class="tile" style="border-color:var(--accent-2)"><span class="tn">یک قرارداد</span><span class="td">هر تغییر وضعیت، سند دارد</span></div>';
+        '<div class="tile" style="border-color:var(--accent-2)"><span class="tn">یک قرارداد</span><span class="td">هر تغییر وضعیت، قرارداد دارد</span></div>';
       superNote.innerHTML = 'سوپر اپلیکیشن واقعی یک <strong>مدل تعامل</strong> واحد دارد، نه فقط یک پوستهٔ واحد. کاربر همیشه با یک دستیار، یک هویت، یک روش پرداخت و یک جریان اطلاع‌رسانی سر و کار دارد؛ و هر سطح ساختاریافته‌ای که می‌بیند، از یک اعلامِ قابلیتِ مشترک ساخته شده است.';
     }
   });
@@ -1456,62 +1364,50 @@ input[type=range]::-moz-range-thumb{
   var rideC = document.getElementById('ride-count');
   var rideSteps = [
     { t:'میزبان می‌خواهد برای مهمانش ماشین بگیرد',
-      d:'میزبان مقصد را می‌داند اما مبدأ مهمان را نمی‌داند. در برنامه‌های امروزی کار همین‌جا گیر می‌کند و باید تلفنی آدرس را بپرسد.',
-      btn:'دستیار قرارداد را آماده می‌کند' },
-    { t:'دستیار قرارداد ناقص را می‌سازد',
-      d:'قرارداد با مقصدِ پرشده و مبدأِ خالی ساخته می‌شود. مبدأ یک «بند باز» است که صاحبش مهمان است. اسنپ هم از پیش امضایش کرده.',
-      btn:'میزبان امضا و ارسال می‌کند' },
-    { t:'میزبان امضا می‌کند و قرارداد را می‌فرستد',
-      d:'قرارداد مثل یک پیوست فرستاده می‌شود؛ با پیامک، لینک، یا هر پیام‌رسانی. برای این کار لازم نیست ما خودمان صاحب پیام‌رسان باشیم.',
-      btn:'مهمان مبدأ را کامل می‌کند' },
-    { t:'مهمان مبدأ خود را وارد می‌کند',
-      d:'با پر شدن مبدأ، کرایه مشخص می‌شود و <strong>هشِ قرارداد عوض می‌شود</strong>. پس امضای قبلی میزبان باطل است و باید دوباره تأیید کند. این ایمنی را مجانی از همان قاعدهٔ گره خوردن امضا به شرایط گرفته‌ایم.',
-      btn:'میزبان تأیید نهایی می‌کند' },
-    { t:'قرارداد کامل شد',
-      d:'هر سه طرف امضا کرده‌اند، کرایه از کیف پول میزبان کم می‌شود و ماشین برای مهمان می‌رود. نه تماس تلفنی لازم بود، نه کارت‌به‌کارت.',
+      d:'میزبان مقصد را می‌داند، اما مبدأ مهمان را نمی‌داند. در برنامه‌های امروزی کار همین‌جا گیر می‌کند و باید تلفنی آدرس را بپرسد.',
+      btn:'پیش‌نویس را بساز' },
+    { t:'یک پیش‌نویس ساخته می‌شود — نه قرارداد',
+      d:'مقصد پر است و مبدأ خالی. چون مبلغ هنوز معلوم نیست، اسنپ هم چیزی امضا نکرده. <strong>تا وقتی همهٔ بندها پر نشوند، قراردادی وجود ندارد.</strong> این فقط یک پیش‌نویس است و هیچ‌کس را متعهد نمی‌کند.',
+      btn:'برای مهمان بفرست' },
+    { t:'پیش‌نویس برای مهمان فرستاده می‌شود',
+      d:'مثل یک پیوست فرستاده می‌شود؛ با پیامک، لینک، یا هر پیام‌رسانی. برای این کار لازم نیست ما خودمان صاحب پیام‌رسان باشیم.',
+      btn:'مهمان آدرسش را می‌گذارد' },
+    { t:'مهمان مبدأ خودش را پر می‌کند',
+      d:'مهمان چیزی امضا نمی‌کند، چون تعهدی برایش ایجاد نمی‌شود؛ فقط آدرس خانه‌اش را می‌گذارد — یا به دستیار خودش می‌گوید این کار را بکند.',
+      btn:'حالا اسنپ امضا می‌کند' },
+    { t:'پیش‌نویس تبدیل به قرارداد می‌شود',
+      d:'حالا که مبدأ و مقصد معلوم است، کرایه هم معلوم می‌شود. <strong>اینجاست که اسنپ امضا می‌کند</strong> — اولین امضا همیشه مال اپ است.',
+      btn:'برای میزبان برگردان' },
+    { t:'هر که پرداخت می‌کند، همان امضا می‌کند',
+      d:'قرارداد برمی‌گردد پیش میزبان. او امضا می‌زند، کرایه از کیف پولش کم می‌شود و ماشین برای مهمان می‌رود. نه تماس تلفنی لازم بود، نه کارت‌به‌کارت.',
       btn:'پایان' }
   ];
   function rideRender(){
-    var s = rideSteps[rideStep];
-    rideT.textContent = s.t;
-    rideD.innerHTML = s.d;
-    rideBtn.textContent = s.btn;
-    rideBtn.disabled = (rideStep === 4);
-    rideC.textContent = 'گام ' + fa(rideStep) + ' از ' + fa(4);
+    var st = rideSteps[rideStep];
+    rideT.textContent = st.t;
+    rideD.innerHTML = st.d;
+    rideBtn.textContent = st.btn;
+    rideBtn.disabled = (rideStep === 5);
+    rideC.textContent = 'گام ' + fa(rideStep) + ' از ' + fa(5);
     var app = document.getElementById('ride-p-app');
     var host = document.getElementById('ride-p-host');
     var guest = document.getElementById('ride-p-guest');
-    app.className = 'party' + (rideStep >= 1 ? ' signed' : '');
-    host.className = 'party' + (rideStep === 2 || rideStep === 3 || rideStep === 4 ? ' signed' : '');
-    guest.className = 'party' + (rideStep >= 4 ? ' signed' : '');
+    app.className   = 'party' + (rideStep >= 4 ? ' signed' : '');
+    host.className  = 'party' + (rideStep >= 5 ? ' signed' : '');
+    guest.className = 'party';
+    app.innerHTML   = '<i class="dot"></i>اسنپ' + (rideStep >= 4 ? ' — امضا کرد' : ' — هنوز امضا نکرده');
+    host.innerHTML  = '<i class="dot"></i>میزبان' + (rideStep >= 5 ? ' — امضا و پرداخت' : '');
+    guest.innerHTML = '<i class="dot"></i>مهمان' + (rideStep >= 3 ? ' — مبدأ را پر کرد' : '');
     document.getElementById('ride-src').textContent = rideStep >= 3 ? 'تهران، ونک' : '— تعیین‌نشده —';
     document.getElementById('ride-src').style.color = rideStep >= 3 ? 'var(--fg)' : 'var(--fg-3)';
-    document.getElementById('ride-fee').textContent = rideStep >= 3 ? '۱۸۵٬۰۰۰ تومان' : '—';
-    document.getElementById('ride-sig').classList.toggle('signed', rideStep >= 4);
+    document.getElementById('ride-fee').textContent = rideStep >= 4 ? '۱۸۵٬۰۰۰ تومان' : '—';
+    var t = document.querySelector('#ride-c .ct');
+    if(t) t.textContent = rideStep >= 4 ? 'قرارداد سفر' : 'پیش‌نویس سفر';
+    document.getElementById('ride-sig').classList.toggle('signed', rideStep >= 5);
   }
-  rideBtn.addEventListener('click', function(){ if(rideStep < 4){ rideStep++; rideRender(); } });
+  rideBtn.addEventListener('click', function(){ if(rideStep < 5){ rideStep++; rideRender(); } });
   document.getElementById('ride-reset').addEventListener('click', function(){ rideStep = 0; rideRender(); });
   rideRender();
-
-  /* ===== interaction: split bill ===== */
-  var splitSigned = [false,false,false,false];
-  var splitParties = document.getElementById('split-parties');
-  var splitMeter = document.getElementById('split-meter');
-  var splitNote = document.getElementById('split-note');
-  splitParties.addEventListener('click', function(e){
-    var b = e.target.closest('.party'); if(!b) return;
-    var i = +b.dataset.p;
-    splitSigned[i] = !splitSigned[i];
-    b.classList.toggle('signed', splitSigned[i]);
-    var n = splitSigned.filter(Boolean).length;
-    splitMeter.querySelector('i').style.width = (n/4*100) + '%';
-    splitMeter.classList.toggle('full', n === 4);
-    if(n === 4){
-      splitNote.innerHTML = '<strong>حد نصاب کامل شد و تسویه انجام گرفت.</strong> سهم هر نفر مستقیم از کیف پول خودش کم می‌شود.';
-    } else {
-      splitNote.textContent = fa(n) + ' از ۴ امضا. تا حد نصاب کامل نشود هیچ پولی جابه‌جا نمی‌شود.';
-    }
-  });
 
   /* ===== interaction: signature ladder ===== */
   var amt = document.getElementById('amt');
@@ -1544,82 +1440,48 @@ input[type=range]::-moz-range-thumb{
   amt.addEventListener('input', amtRender);
   amtRender();
 
-  /* ===== interaction: delegation ===== */
-  var used = 0, cap = 1000000;
-  var delMeter = document.getElementById('del-meter');
-  var delNote = document.getElementById('del-note');
-  var delState = document.getElementById('del-state');
-  var delPay = document.getElementById('del-pay');
-  var bills = [180000, 240000, 310000, 420000];
-  var bi = 0;
-  function delRender(msg){
-    var pct = Math.min(100, used / cap * 100);
-    delMeter.querySelector('i').style.width = pct + '%';
-    delMeter.classList.toggle('full', pct >= 100);
-    delNote.innerHTML = msg || ('مصرف‌شده: ' + fa(group(used)) + ' از ' + fa(group(cap)));
-  }
-  delPay.addEventListener('click', function(){
-    var b = bills[bi % bills.length]; bi++;
-    if(used + b > cap){
-      delState.textContent = 'مسدود شد';
-      delState.className = 'chip on';
-      delRender('<strong>قبض ' + fa(group(b)) + ' تومانی رد شد.</strong> سقف ماهانه اجازه نمی‌دهد. جلوی آن را حسابِ خود کاربر گرفت، نه برنامهٔ سرویس.');
-      delPay.disabled = true;
-      return;
-    }
-    used += b;
-    delRender('قبض ' + fa(group(b)) + ' تومانی پرداخت شد · مصرف‌شده: ' + fa(group(used)) + ' از ' + fa(group(cap)));
-  });
-  document.getElementById('del-reset').addEventListener('click', function(){
-    used = 0; bi = 0; delPay.disabled = false;
-    delState.textContent = 'لغو شد'; delState.className = 'chip';
-    delRender('<strong>وکالت لغو شد.</strong> لغو یک‌طرفه و فوری است و به موافقت وکیل هیچ نیازی ندارد.');
-    setTimeout(function(){
-      delState.textContent = 'فعال'; delState.className = 'chip ok'; delRender();
-    }, 1800);
-  });
-  delRender();
-
-  /* ===== interaction: AI on/off ===== */
-  var tgAi = document.getElementById('tg-ai');
-  var aiNode = document.getElementById('ai-node');
-  var aiT = document.getElementById('ai-t');
-  var aiD = document.getElementById('ai-d');
-  var botTiles = document.getElementById('bot-tiles');
-  tgAi.addEventListener('click', function(e){
-    var b = e.target.closest('button'); if(!b) return;
-    Array.prototype.forEach.call(tgAi.children, function(x){ x.classList.remove('on'); });
-    b.classList.add('on');
-    var off = b.dataset.v === 'off';
-    aiNode.classList.toggle('dim', off);
-    aiNode.textContent = off ? 'دستیار در دسترس نیست' : 'دستیار';
-    Array.prototype.forEach.call(botTiles.children, function(t){
-      t.style.borderColor = off ? 'var(--accent)' : 'var(--line)';
+  /* ===== AI availability : phone list ===== */
+  var aibody=document.getElementById('aibody'), aist=document.getElementById('aist');
+  function aiList(down){
+    var wrap=el('div',null,''); wrap.style.cssText='flex:1 1 auto; overflow-y:auto';
+    APPS.forEach(function(a){
+      var isAssistant = a.id==='assistant';
+      var dead = (isAssistant && down) || a.up===false;
+      var r=el('div','arow'+(a.sys?' sys':'')+(dead?' down':''));
+      var tail = dead ? '<span class="dead">در دسترس نیست</span>' :
+                 (a.wait ? '<span class="badge">'+fa(a.wait)+' امضا</span>' :
+                 (a.sys ? '<span class="sysmark">سیستمی</span>' : ''));
+      r.innerHTML='<span class="ic" style="background:'+a.c+'">'+a.g+'</span>'+
+        '<span class="tx"><span class="t1">'+a.n+(a.v&&!a.sys?' <i class="tick">✓</i>':'')+'</span>'+
+        '<span class="t2">'+(dead&&isAssistant?'دستیار موقتاً در دسترس نیست':a.last)+'</span></span>'+tail;
+      wrap.appendChild(r);
     });
-    if(off){
-      aiT.textContent = 'حالت تنزل‌یافته';
-      aiD.innerHTML = 'کاربر مستقیم سراغ بات‌ها می‌رود؛ همان کاری که امروز در تلگرام و بله می‌کند. <strong>قرارداد و پرداخت و هویت و اطلاع‌رسانی همه سر جایشان هستند.</strong> فقط راحتیِ گفت‌وگو از دست رفته، نه هیچ قابلیتی.';
-    } else {
-      aiT.textContent = 'حالت کامل';
-      aiD.innerHTML = 'کاربر با دستیار حرف می‌زند و دستیار تصمیم می‌گیرد کدام دکمهٔ کدام بات را بزند. ظاهر برنامه تا جای ممکن شبیه چت‌جی‌پی‌تی است.';
-    }
+    aibody.innerHTML=''; aibody.appendChild(wrap);
+    aist.textContent = down ? '۸ اپ فعال · دستیار قطع' : '۹ اپ';
+  }
+  aiList(false);
+  document.getElementById('tg-ai').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    Array.prototype.forEach.call(this.children,function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    var down = b.dataset.v==='off';
+    aiList(down);
+    document.getElementById('ai-t').textContent = down ? 'دستیار خاکستری می‌شود' : 'حالت عادی';
+    document.getElementById('ai-d').innerHTML = down
+      ? 'دستیار مثل هر اپ دیگری خاکستری شده. اما <strong>هشت اپ دیگر سر جایشان هستند</strong> و کاربر مستقیم سراغشان می‌رود؛ با چت یا با مینی‌اپ. قرارداد و پرداخت و هویت هم کار می‌کنند.'
+      : 'کاربر با دستیار حرف می‌زند و دستیار سراغ اپ درست می‌رود. اپ‌ها هم مثل همیشه سر جایشان هستند.';
   });
 
-  /* ===== interaction: BYO agent ===== */
-  var tgByo = document.getElementById('tg-byo');
-  var byoAgent = document.getElementById('byo-agent');
-  var byoCost = document.getElementById('byo-cost');
-  tgByo.addEventListener('click', function(e){
-    var b = e.target.closest('button'); if(!b) return;
-    Array.prototype.forEach.call(tgByo.children, function(x){ x.classList.remove('on'); });
+  /* ===== bring your own key ===== */
+  document.getElementById('tg-byo').addEventListener('click', function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    Array.prototype.forEach.call(this.children,function(x){x.classList.remove('on');});
     b.classList.add('on');
-    if(b.dataset.v === 'own'){
-      byoAgent.textContent = 'چت‌جی‌پی‌تی · کلاد · دستیار شخصی';
-      byoCost.innerHTML = '<strong>کاربر کلید و هزینهٔ خودش را می‌آورد.</strong> بزرگ‌ترین ریسک هزینهٔ عملیاتی سکو تبدیل می‌شود به یک انتخاب کاربر؛ همان الگویی که ابزارهای کدنویسی امروز دارند.';
-    } else {
-      byoAgent.textContent = 'دستیار ویستا';
-      byoCost.innerHTML = 'مدل میزبانی‌شدهٔ ویستا و هزینه‌اش با سکو. برای بیشتر کاربرها رایگان است و کفایت می‌کند.';
-    }
+    var own = b.dataset.v==='own';
+    document.getElementById('byo-agent').textContent = own ? 'مدل خودِ کاربر' : 'مدل ویستا';
+    document.getElementById('byo-cost').innerHTML = own
+      ? '<strong>کاربر آدرس ارائه‌دهنده و کلید خودش را می‌گذارد</strong> و هزینهٔ مصرفش را مستقیم به همان ارائه‌دهنده می‌دهد.'
+      : 'مدلی که ما تأمین می‌کنیم. مصرفش رایگان نیست و کاربر بابتش پول می‌دهد.';
   });
 
   /* ===== interaction: injection wall ===== */
@@ -1708,7 +1570,7 @@ input[type=range]::-moz-range-thumb{
     if(p1stop) p1stop();
     p1chat.innerHTML = '';
     p1inp.textContent = 'پیام…';
-    p1note.textContent = 'دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد سندی تنظیم کند. سندی که برمی‌گردد، از پیش امضای اپ را دارد.';
+    p1note.textContent = 'دستیار درخواست را می‌فهمد، سراغ اپ درست می‌رود و از او می‌خواهد قرارداد را بسازد. قراردادی که برمی‌گردد، از پیش امضای اپ را دارد.';
   }
   function p1run(){
     p1reset();
@@ -1718,7 +1580,7 @@ input[type=range]::-moz-range-thumb{
       { wait: 500, do: function(){ p1chat.appendChild(typing(p1chat)); } },
       { wait: 1100, do: function(){
           var t = p1chat.querySelector('.typing'); if(t) t.remove();
-          say(p1chat,'them','رستوران «شکوفه»، همان سفارش دفعهٔ قبل. از اسنپ‌فود خواستم سند را آماده کند.');
+          say(p1chat,'them','رستوران «شکوفه»، همان سفارش دفعهٔ قبل. از اسنپ‌فود خواستم قرارداد را بسازد.');
         } },
       { wait: 800, do: function(){
           var a = attach({
@@ -1740,21 +1602,21 @@ input[type=range]::-moz-range-thumb{
             a.actionBtn.textContent = 'امضا شد · سفارش ثبت شد';
             a.actionBtn.disabled = true;
             say(p1chat,'sys','سفارش ثبت شد · ۴۵۰٬۰۰۰ تومان از کیف پول کم شد');
-            p1note.innerHTML = '<strong>همین بود.</strong> کاربر یک جمله گفت و یک سند امضا کرد. تنها امضایی که از او خواسته شد، امضای خودش بود؛ امضای اپ از قبل روی سند بود.';
+            p1note.innerHTML = '<strong>همین بود.</strong> کاربر یک جمله گفت و یک قرارداد امضا کرد. تنها امضایی که از او خواستند، امضای خودش بود؛ امضای اپ از قبل روی قرارداد بود.';
           });
-          p1note.innerHTML = 'سند آمد و <strong>امضای اسنپ‌فود از قبل روی آن است</strong>. مبلغی که می‌بینید حرفِ دستیار نیست؛ خودِ اپ آن را امضا کرده. حالا نوبت کاربر است.';
+          p1note.innerHTML = 'قرارداد آمد و <strong>امضای اسنپ‌فود از قبل روی آن است</strong>. مبلغی که می‌بینید حرفِ دستیار نیست؛ خودِ اپ آن را امضا کرده. حالا نوبت کاربر است.';
         } }
     ]);
   }
   var p1ask = null;
   function p1forward(){
-    say(p1chat,'sys','↱ سند به دستیار فوروارد شد');
+    say(p1chat,'sys','↱ قرارداد به دستیار فوروارد شد');
     say(p1chat,'me','این قرارداد یعنی چی؟ چیزی هست که باید حواسم باشه؟');
     p1chat.appendChild(typing(p1chat));
     setTimeout(function(){
       var t=p1chat.querySelector('.typing'); if(t) t.remove();
-      say(p1chat,'them','با امضای این سند، ۴۵۰٬۰۰۰ تومان از کیف پول شما کم می‌شود و سفارش برای رستوران شکوفه ثبت می‌شود. تخفیف یا بازگشت وجه ندارد و تا ۱۵ دقیقه معتبر است. اسنپ‌فود این شرایط را امضا کرده، پس مبلغ قابل تغییر نیست.');
-      p1note.innerHTML = '<strong>سند را می‌شود به دستیار فوروارد کرد و پرسید یعنی چه.</strong> دستیاری که سند را برایت توضیح می‌دهد، ولی نمی‌تواند امضایش کند.';
+      say(p1chat,'them','با امضای این قرارداد، ۴۵۰٬۰۰۰ تومان از کیف پول شما کم می‌شود و سفارش برای رستوران شکوفه ثبت می‌شود. تخفیف یا بازگشت وجه ندارد و تا ۱۵ دقیقه معتبر است. اسنپ‌فود این شرایط را امضا کرده، پس مبلغ قابل تغییر نیست.');
+      p1note.innerHTML = '<strong>قرارداد را می‌شود به دستیار فوروارد کرد و پرسید یعنی چه.</strong> دستیاری که قرارداد را برایت توضیح می‌دهد، ولی نمی‌تواند امضایش کند.';
     }, 1100);
   }
   document.getElementById('p1go').addEventListener('click', p1run);
@@ -1779,7 +1641,7 @@ input[type=range]::-moz-range-thumb{
       { wait:600, do:function(){
           var a = attach({
             tone:'#2C7A5B', logo:'ک', name:'کنکوریا', code:'#S0001',
-            rows:[['نوع سند','قرارداد استارت'],['آدرس','konkooria.ir/mcp'],['وضعیت','احرازشده ✓']],
+            rows:[['موضوع','قرارداد استارت'],['آدرس','konkooria.ir/mcp'],['وضعیت','احرازشده ✓']],
             parties:[['کنکوریا',true],['شما',false]],
             action:'استارت و اعطای مجوزها'
           });
@@ -1821,7 +1683,7 @@ input[type=range]::-moz-range-thumb{
       perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
       cons:[['قرارداد آغاز','روز نصب']] },
     { id:'mycons', n:'قراردادهای من', c:'#C13B2F', g:'ق', sys:true, v:true, up:true,
-      last:'۱۴ سند امضاشده',
+      last:'۱۴ قرارداد امضاشده',
       perms:[['ماژول سیستمی — مجوز نمی‌گیرد', false, true]],
       cons:[['قرارداد آغاز','روز نصب']] },
     { id:'snappfood', n:'اسنپ‌فود', c:'#E4405F', g:'ف', v:true, up:true,
@@ -1829,7 +1691,7 @@ input[type=range]::-moz-range-thumb{
       perms:[['ارسال اعلان',false],['خواندن پروفایل',false]],
       cons:[['سفارش غذا · ۴۵۰٬۰۰۰','اجرا شد · ۲ روز پیش'],['سفارش غذا · ۳۱۰٬۰۰۰','منقضی شد · هفتهٔ گذشته']] },
     { id:'snapp', n:'اسنپ', c:'#2E9E5B', g:'س', v:true, up:true,
-      last:'سند سفر آمادهٔ امضاست', wait:1,
+      last:'قرارداد سفر آمادهٔ امضاست', wait:1,
       perms:[['ارسال اعلان',false],['خواندن موقعیت',false]],
       cons:[['درخواست سفر · ۱۸۵٬۰۰۰','در انتظار امضای شما'],['درخواست سفر · ۹۲٬۰۰۰','اجرا شد · دیروز']] },
     { id:'bills', n:'سرویس قبوض', c:'#8A6D3B', g:'ق', v:true, up:true,
@@ -1907,7 +1769,7 @@ input[type=range]::-moz-range-thumb{
       pane.appendChild(row);
     });
     if(a.up === false){
-      pane.appendChild(el('div','split-note','این اپ در دسترس نیست. تا وقتی برنگردد، سندی از او امضا نمی‌شود.'));
+      pane.appendChild(el('div','split-note','این اپ در دسترس نیست. تا وقتی برنگردد، قراردادی از او امضا نمی‌شود.'));
     }
     p3body.innerHTML=''; p3body.appendChild(pane);
   }
@@ -1940,7 +1802,7 @@ input[type=range]::-moz-range-thumb{
     var av = document.getElementById('p4av');
     av.textContent = d.av; av.style.background = d.tone;
     p4chat.innerHTML = '';
-    say(p4chat,'them','سند آماده است. لطفاً بررسی و امضا کنید.');
+    say(p4chat,'them','قرارداد آماده است. لطفاً بررسی و امضا کنید.');
     var a = attach({
       tone:d.tone, logo:d.logo, name:d.name, code:d.code,
       rows:d.rows, parties:[[d.name,true],['شما',false]], action:'امضا'
@@ -1971,7 +1833,7 @@ input[type=range]::-moz-range-thumb{
       { wait:700, do:function(){
           var a = attach({
             tone:'#7A4FA3', logo:'ز', name:'زبان‌یار', code:'#S1140',
-            rows:[['نوع سند','قرارداد استارت'],['امتیاز','۴٫۷ از ۵ · ۲٬۳۰۰ نظر'],['مجوزها','اعلان · پروفایل'],['وضعیت','احرازشده ✓']],
+            rows:[['موضوع','قرارداد استارت'],['امتیاز','۴٫۷ از ۵ · ۲٬۳۰۰ نظر'],['مجوزها','اعلان · پروفایل'],['وضعیت','احرازشده ✓']],
             parties:[['زبان‌یار',true],['شما',false]],
             action:'نصب و استارت'
           });
