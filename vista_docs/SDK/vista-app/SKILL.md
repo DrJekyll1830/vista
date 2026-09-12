@@ -11,8 +11,9 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 
 ## قاعده‌های خدشه‌ناپذیر
 
-- **خواندن آزاد است؛ نوشتن قرارداد است.** ابزار خواندنی هیچ وضعیتی را عوض نمی‌کند. هر اثر (پول، ثبت‌نام، مجوز) فقط با قرارداد امضاشده.
-- **دستیار هرگز امضا نمی‌کند** و به اجرا راه ندارد. اپ هم از طرف کاربر امضا نمی‌کند.
+- **خواندن آزاد است؛ پول قرارداد می‌خواهد.** ابزار خواندنی هیچ وضعیتی را عوض نمی‌کند. هر اثر مالی یا تعهدآور فقط با قرارداد امضاشده. میان این دو، **نوشتن سبک** هست: کاری بی‌بارِ مالی و برگشت‌پذیر که خودتان در `tools.write` اعلامش می‌کنید — پیش از آن `reference/mcp-write-guidance.md` را بخوانید.
+- **دستیار کلید امضا ندارد** و به اجرا راه ندارد. اپ هم از طرف کاربر امضا نمی‌کند.
+- **هویت را گواهی می‌گوید، نه ادعا.** هر فراخوانی `_meta.vista.assertion` دارد؛ آن را با کلید سکو وارسی کنید و `user_id` لخت را مبنا نگیرید.
 - **اپ می‌سازد و اول امضا می‌کند؛ کاربر آخر امضا می‌کند.** خروجی ابزار ساختن، سندی است که از پیش امضای اپ را دارد.
 - **عدد از اپ می‌آید، نه از مدل.** قیمت و شرایط را از بک‌اند خودتان بخوانید؛ آرگومان دستیار حداکثر «کدام» را می‌گوید، نه «چند».
 - **امضا به هش شرایط گره می‌خورد.** هر تغییر = نسخهٔ تازه (شناسه و nonce تازه، امضای تازه)؛ امضاهای قبلی باطل.
@@ -22,7 +23,8 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 - **مجوز با اختیار مالی فرق دارد.** `permissions` (اعلان، پروفایل) معمولی‌اند؛ `financial_permissions` جدا نمایش داده می‌شوند، فقط برای اپ احرازشده، با پلهٔ ۲.
 - **وکالت شش قاعده دارد**: سقف و انقضای اجباری · اعطا با پلهٔ بالاتر · واگذاری ممنوع · لغو یک‌طرفه و فوری · همه در یک صفحه · اطلاع بر هر مصرف.
 - **ابزار تحویل پنهان است** و فقط با امضای سکو (`executed|<hash>`) کار می‌کند؛ بدون آن هرگز تحویل ندهید.
-- **هیچ ابزار اثرداری منتشر نکنید.** `create_*`/`update_*`/`send_*` در ویستا جایی ندارند.
+- **هیچ ابزار برگشت‌ناپذیری منتشر نکنید.** `delete_*`/`cancel_*`/`send_*` حتی وقتی پول ندارند، جایشان قرارداد است. اگر ابزاری وقتی کسی جز کاربر صدایش بزند خطرناک است، جایش MCP نیست.
+- **استیج و پروداکشن به هم وصل نمی‌شوند.** `environment` را در مانیفست اعلام کنید و برای هر محیط نقطهٔ خودش را بدهید.
 
 ## مسیر هشت‌گامی
 
@@ -30,7 +32,9 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 
 ۲. **سرور MCP.** یک نقطهٔ Streamable HTTP (بی‌نشست کافی است) که از سرور ویستا در دسترس باشد، با منبع `vista://manifest` (JSON) و قابلیت `resources`. بازبینی سلامت هر ۵ دقیقه: `initialize` + `tools/list` + خواندن مانیفست باید همیشه سریع جواب دهند. الگو: `lib/example-server.mjs`. ← `reference/tools.md`
 
-۳. **ابزارهای خواندنی** (`tools.read`): `readOnlyHint: true`، ورودی دقیق، خروجی JSON فشرده، بدون اثر جانبی. هویت کاربر از `_meta.vista` (`user_id`، `user_ref`، و `phone`/`name` فقط با مجوز).
+۳. **ابزارهای خواندنی** (`tools.read`): `readOnlyHint: true`، ورودی دقیق، خروجی JSON فشرده، بدون اثر جانبی. هویت کاربر را با `verifyAssertion(platformPublicKey, meta.assertion, { appId })` از `_meta.vista` بگیرید؛ `user_ref` و `phone`/`name` فقط با مجوز. ← `reference/tools.md`
+
+۳ب. **ابزارهای نوشتن سبک** (`tools.write`، اختیاری): کار بی‌بارِ مالی و برگشت‌پذیر، idempotent، با همان وارسی گواهی. ← `reference/mcp-write-guidance.md`
 
 ۴. **ابزارهای ساختن قرارداد** (`tools.build`): سند `ContractDoc` را بسازید (کاربر = `_meta.vista.user_id`؛ `wallet.pay` + `app.action`؛ بندهای خوانا با بند `amount`)، با `signContract(privateKeyPem, doc)` امضا کنید و `{contract, canonical_hash, app_signature}` را به‌صورت متن JSON برگردانید. ← `reference/contract.md`
 
@@ -55,6 +59,7 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 | `reference/tools.md` | ترابری، سلامت، `_meta.vista`، قرارداد دقیق ابزارهای خواندنی/ساختن/تحویل، آنچه نباید منتشر شود |
 | `reference/events-and-delegation.md` | رویدادها و پاکت امضاشدهٔ `/api/app-events`؛ وکالت از اعلام تا اجرا و لغو |
 | `reference/mini-app.md` | توکن مینی‌اپ، راستی‌آزمایی، مجاز و غیرمجاز، سبک |
+| `reference/mcp-write-guidance.md` | نوشتن سبک: چهار پرسش، معاملهٔ نرخ تبدیل در برابر قابلیت اثبات، سه فهرست، چک‌لیست |
 | `reference/konkooria-example.md` | نگاشت کامل کنکوریا: مانیفست، ابزارها، قرارداد نمونه، تحویل، تمدید زیر وکالت |
 | `lib/vista-sign.mjs` | JSON متعارف، هش، کلید، امضا، رویداد، توکن — بدون وابستگی؛ با سکو بایت‌به‌بایت آزموده شده |
 | `lib/example-server.mjs` | اپ کمینهٔ کامل با `@modelcontextprotocol/sdk` (Node) |
@@ -65,7 +70,10 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 - [ ] `lib/vista-sign.mjs` بدون تغییر در پروژه کپی شده و برای هش/امضا فقط از آن استفاده می‌شود
 - [ ] کلید خصوصی در متغیر محیط/خزانه؛ `public_key` مانیفست از `publicKeyOf()`
 - [ ] `manifest.id` = شناسهٔ توافق‌شده با ویستا = `app_id` و `payee_app_id` و طرف `app:<id>`
-- [ ] هر ابزار دقیقاً در یکی از `tools.read` / `tools.build` / `tools.fulfil`؛ هیچ ابزار اثرداری بیرون از این‌ها
+- [ ] هر ابزار دقیقاً در یکی از `tools.read` / `tools.build` / `tools.write` / `tools.fulfil`
+- [ ] چک‌لیست `reference/mcp-write-guidance.md` برای هر ابزار `tools.write` سبز است
+- [ ] هر ابزار خواندنی و نوشتنی، `_meta.vista.assertion` را با `verifyAssertion` وارسی می‌کند (`aud` = شناسهٔ اپ شما)
+- [ ] `environment` مانیفست با محیط ثبت می‌خواند
 - [ ] ابزارهای خواندنی: `readOnlyHint: true`، بدون اثر جانبی، خروجی داده (نه دستور)
 - [ ] ابزارهای ساختن: قیمت از بک‌اند، سند تازه هر بار (`id`, `nonce`, `expires_at` +۱۵ دقیقه)، کاربر = `_meta.vista.user_id` با `must_sign:true`، بند `amount`، خروجی `{contract, canonical_hash, app_signature}`
 - [ ] ابزار تحویل: راستی‌آزمایی `executed|<hash>`، idempotent با `contract.id`، `delivered` برای هر قرارداد پولی، خطای گذرا بدون `isError`
@@ -82,4 +90,5 @@ description: Use when making a service/bot/backend an MCP-enabled Vista app (و�
 - عنوان‌ها، برچسب بندها و متن رویدادها **فارسی** و کوتاه؛ کلیدها و شناسه‌ها لاتین.
 - پاسخ ابزارها را با `JSON.stringify` در یک `text` بدهید؛ `structuredContent` هم پذیرفته می‌شود.
 - اگر زبان پروژه Node نیست، الگوریتم `canonicalJson` را دقیقاً از `lib/vista-sign.mjs` پیاده کنید و با نمونهٔ `contract.md` (هش `c4dbec5d…`) بسنجید.
-- برای آزمایش محلی، سکوی مرجع روی `http://localhost:8787` است و اپ مرجع در `http://localhost:8787/apps/irancell-demo/mcp`؛ `GET /api/platform` کلید عمومی و سقف‌ها را می‌دهد.
+- برای آزمایش محلی، سکوی مرجع روی `http://localhost:8787` است و اپ مرجع در `http://localhost:8787/apps/irancell-demo/mcp`؛ `GET /api/platform` کلید عمومی، محیط و سقف‌ها را می‌دهد.
+- محیط استیج: `https://vista.eitala.sabz.cloud`. همان قابلیت‌های پروداکشن با پول غیرواقعی — یکپارچه‌سازی با استیج، یکپارچه‌سازی با پروداکشن است.

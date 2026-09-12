@@ -11,7 +11,7 @@
  * خروجی: ✓ / ✗ / ⚠ با پیام فارسی؛ کد خروج ۱ اگر حتی یک ✗ باشد.
  */
 import { readFileSync } from 'node:fs';
-import { contractHash, verify, verifyPlatformExecuted, publicKeyOf, signMessage } from '../lib/vista-sign.mjs';
+import { contractHash, verify, verifyPlatformExecuted, publicKeyOf, signMessage, generateKeyPair } from '../lib/vista-sign.mjs';
 
 // ───────────────────────── args ─────────────────────────
 const argv = process.argv.slice(2);
@@ -196,6 +196,20 @@ function sampleFromSchema(schema, name = '') {
 
 // ───────────────────────── main ─────────────────────────
 const VISTA_CTX = { user_id: 'user:test', user_ref: 'u_test' };
+/**
+ * گواهی «به نیابت از» که سکو به هر فراخوانی می‌چسباند.
+ * اپِ منطبق آن را وارسی می‌کند، پس آزمون باید گواهی معتبر بفرستد وگرنه اپ درست، رد می‌شود.
+ * با --platform-private-key گواهی واقعی امضا می‌شود؛ بدون آن، گواهی نمی‌رود و اپ‌هایی که
+ * وارسی می‌کنند (درست) رد خواهند کرد — همان هشداری که پایین داده می‌شود.
+ */
+function mintAssertion(appId, privPem, { ttlSec = 300 } = {}) {
+  const iat = Math.floor(Date.now() / 1000);
+  const claims = { iss: 'vista', aud: appId, sub: VISTA_CTX.user_id, user_ref: VISTA_CTX.user_ref, scopes: [], env: 'stage', iat, exp: iat + ttlSec, jti: 'as_conformance' };
+  const b64 = Buffer.from(JSON.stringify(claims)).toString('base64url');
+  return `${b64}.${signMessage(privPem, b64)}`;
+}
+/** بافت هر فراخوانی — با گواهی معتبر اگر کلید خصوصی سکو را داریم. */
+let ctx = () => VISTA_CTX;
 
 async function main() {
   console.log(`آزمون انطباق اپ ویستا — ${MCP_URL}`);
@@ -239,7 +253,18 @@ async function main() {
     check(manifest.tools && typeof manifest.tools === 'object', 'manifest.tools موجود است', 'manifest.tools لازم است ({read, build, fulfil})');
     const T = manifest.tools ?? {};
     check(Array.isArray(T.read ?? []) && Array.isArray(T.build ?? []), 'tools.read و tools.build آرایه‌اند', 'tools.read و tools.build باید آرایهٔ نام ابزار باشند');
+    check(Array.isArray(T.write ?? []), 'tools.write آرایه یا غایب است', 'tools.write باید آرایهٔ نام ابزار باشد');
     check(T.fulfil === undefined || isStr(T.fulfil, 1), 'tools.fulfil رشته یا غایب است', 'tools.fulfil باید نام یک ابزار باشد');
+    // نوشتن سبک — تشخیصش با اپ است، اما چند الگو تقریباً همیشه اشتباه‌اند.
+    const WRITE_RED = /^(delete|remove|cancel|send|publish|share|invite|transfer|pay|charge|refund|revoke|grant)/i;
+    for (const w of T.write ?? []) {
+      if (WRITE_RED.test(w)) bad(`ابزار «${w}» در tools.write جا ندارد — برگشت‌ناپذیر یا اثرگذار بر شخص ثالث به نظر می‌رسد؛ جایش قرارداد است (reference/mcp-write-guidance.md)`);
+      else ok(`نوشتن سبک: ${w}`);
+      if ((T.read ?? []).includes(w) || (T.build ?? []).includes(w)) bad(`ابزار «${w}» هم‌زمان در write و read/build است`);
+    }
+    if ((T.write ?? []).length) warn('tools.write اعلام شده — چک‌لیست reference/mcp-write-guidance.md را برای هر ابزار سبز کنید؛ ویستا این فهرست را بازبینی نمی‌کند');
+    if (manifest.environment !== undefined) check(['stage', 'production'].includes(manifest.environment), `environment = ${manifest.environment}`, "environment باید 'stage' یا 'production' باشد");
+    else warn("environment اعلام نشده؛ توصیه می‌شود تا اپِ استیج در پروداکشن ثبت نشود");
     if (!(T.build ?? []).length) warn('هیچ ابزار ساختن قرارداد اعلام نشده؛ اپ فقط خواندنی خواهد بود');
     if ((T.build ?? []).length && !T.fulfil) warn('ابزار ساختن قرارداد هست اما tools.fulfil نیست؛ قراردادهای wallet.pay/app.action تحویل نمی‌گیرند');
     if (T.fulfil) check(!(T.read ?? []).includes(T.fulfil) && !(T.build ?? []).includes(T.fulfil), 'ابزار تحویل در read/build نیست', 'ابزار تحویل نباید در read یا build باشد (باید از دستیار پنهان بماند)');
@@ -268,15 +293,43 @@ async function main() {
   } catch (e) { bad(`tools/list ناموفق: ${e.message}`); }
   const names = new Set(tools.map((t) => t.name));
   const T = manifest?.tools ?? {};
-  const declared = new Set([...(T.read ?? []), ...(T.build ?? []), ...(T.fulfil ? [T.fulfil] : [])]);
+  const declared = new Set([...(T.read ?? []), ...(T.build ?? []), ...(T.write ?? []), ...(T.fulfil ? [T.fulfil] : [])]);
   for (const n of T.read ?? []) check(names.has(n), `ابزار خواندنی ${n} وجود دارد`, `ابزار خواندنی ${n} در مانیفست هست اما در tools/list نیست`);
   for (const n of T.build ?? []) check(names.has(n), `ابزار ساختن ${n} وجود دارد`, `ابزار ساختن ${n} در مانیفست هست اما در tools/list نیست`);
+  for (const n of T.write ?? []) check(names.has(n), `ابزار نوشتن سبک ${n} وجود دارد`, `ابزار نوشتن سبک ${n} در مانیفست هست اما در tools/list نیست`);
   if (T.fulfil) check(names.has(T.fulfil), `ابزار تحویل ${T.fulfil} وجود دارد`, `ابزار تحویل ${T.fulfil} در tools/list نیست`);
   for (const n of [...(T.read ?? [])].filter((x) => (T.build ?? []).includes(x))) bad(`ابزار ${n} هم در read و هم در build است`);
   for (const t of tools) {
     if (!declared.has(t.name)) warn(`ابزار ${t.name} در مانیفست اعلام نشده؛ ویستا آن را پنهان می‌کند`);
     if ((T.read ?? []).includes(t.name) && t.annotations?.readOnlyHint !== true) warn(`ابزار خواندنی ${t.name} annotation readOnlyHint:true ندارد`);
     if ((T.build ?? []).includes(t.name) && t.annotations?.readOnlyHint === true) warn(`ابزار ساختن ${t.name} نباید readOnlyHint:true داشته باشد`);
+  }
+
+  // 3ب. گواهی «به نیابت از» — اپ باید گواهی جعلی را رد کند و گواهی معتبر را بپذیرد
+  section('گواهی «به نیابت از»');
+  if (PLATFORM_PRIV && manifest?.id) {
+    ctx = () => ({ ...VISTA_CTX, assertion: mintAssertion(manifest.id, PLATFORM_PRIV) });
+    ok('گواهی معتبر با کلید خصوصی سکو امضا می‌شود و به هر فراخوانی می‌رود');
+  } else {
+    warn('بدون --platform-private-key گواهی معتبری فرستاده نمی‌شود؛ اپی که درست وارسی می‌کند فراخوانی‌ها را رد خواهد کرد. برای آزمون کامل: کلید آزمایشی بسازید، اپ را با PLATFORM_PUBLIC_KEY همان کلید اجرا کنید، و اینجا --platform-private-key بدهید.');
+  }
+  {
+    const probeTool = (T.read ?? []).find((n) => names.has(n)) ?? (T.write ?? []).find((n) => names.has(n));
+    if (!probeTool) warn('ابزار خواندنی‌ای برای آزمودن گواهی نبود');
+    else {
+      const tool = tools.find((t) => t.name === probeTool);
+      const args = sampleFromSchema(tool?.inputSchema ?? { type: 'object' });
+      // گواهی با کلید دیگری امضا شده — اپِ منطبق باید ردش کند.
+      const other = generateKeyPair();
+      const claims = { iss: 'vista', aud: manifest?.id ?? 'unknown', sub: VISTA_CTX.user_id, user_ref: VISTA_CTX.user_ref, scopes: [], env: 'stage', iat: Math.floor(Date.now() / 1000), exp: Math.floor(Date.now() / 1000) + 300, jti: 'as_probe' };
+      const b64 = Buffer.from(JSON.stringify(claims)).toString('base64url');
+      const forged = `${b64}.${signMessage(other.privateKey, b64)}`;
+      try {
+        const r = await request('tools/call', { name: probeTool, arguments: args, _meta: { vista: { ...ctx(), assertion: forged } } });
+        if (r?.isError) ok('گواهی جعلی رد شد');
+        else warn(`ابزار «${probeTool}» با گواهی جعلی هم جواب داد — اپ باید _meta.vista.assertion را با کلید سکو وارسی کند (reference/tools.md)`);
+      } catch { ok('گواهی جعلی رد شد'); }
+    }
   }
 
   // 4. build one contract
@@ -287,7 +340,7 @@ async function main() {
     const tool = tools.find((t) => t.name === name);
     const args = FORCE_ARGS ?? sampleFromSchema(tool?.inputSchema ?? { type: 'object' });
     try {
-      const r = await request('tools/call', { name, arguments: args, _meta: { vista: VISTA_CTX } });
+      const r = await request('tools/call', { name, arguments: args, _meta: { vista: ctx() } });
       const text = r.content?.filter((c) => c.type === 'text').map((c) => c.text).join('') ?? '';
       let parsed = r.structuredContent ?? null;
       if (!parsed) { try { parsed = JSON.parse(text); } catch { parsed = null; } }

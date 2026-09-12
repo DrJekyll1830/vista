@@ -62,6 +62,11 @@ export const config = {
   },
   payment: { gateway: env('PAYMENT_GATEWAY', 'fake') },
   sampleApp: { enabled: bool('SAMPLE_APP_ENABLED', true) },
+  // محیط — استیج دقیقاً قابلیت‌های پروداکشن را دارد و فقط پولش واقعی نیست.
+  // آنچه جلوتر از نقشهٔ راه است در dev می‌ماند، نه در استیج.
+  environment: env('VISTA_ENV', 'dev') as 'dev' | 'stage' | 'production',
+  // عمر گواهی «به نیابت از» که دروازه به هر فراخوانی می‌چسباند (ثانیه).
+  assertionTtlSec: Number(env('ASSERTION_TTL_SEC', '300')),
   // Signature ceilings (toman). Rung 1 up to this amount, above it rung 2 is required.
   ceilings: { rung1: 2_000_000, rung2: 20_000_000 },
   isDev: env('NODE_ENV', 'development') !== 'production',

@@ -21,7 +21,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 // StreamableHTTPServerTransport همان WebStandardStreamableHTTPServerTransport است با مبدل node:http.
 // روی Workers/Deno/Bun از webStandardStreamableHttp.js و transport.handleRequest(request) استفاده کنید.
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import { generateKeyPair, publicKeyOf, signContract, contractHash, verifyPlatformExecuted, verifyMiniAppToken, newId, newNonce, nowIso, plusMinutes, userRefOf } from './vista-sign.mjs';
+import { generateKeyPair, publicKeyOf, signContract, contractHash, verifyPlatformExecuted, verifyMiniAppToken, verifyAssertion, newId, newNonce, nowIso, plusMinutes, userRefOf } from './vista-sign.mjs';
 
 // ───────────────────────── پیکربندی ─────────────────────────
 const PORT = Number(process.env.PORT ?? 8790);
@@ -31,6 +31,7 @@ const APP_ID = process.env.VISTA_APP_ID ?? 'demo-shop'; // باید دقیقاً
 const COLOR = '#2E7D6B';
 const PRIVATE_KEY = process.env.VISTA_APP_PRIVATE_KEY ?? (() => { const k = generateKeyPair(); console.warn('⚠ کلید موقت ساخته شد؛ در تولید VISTA_APP_PRIVATE_KEY بدهید'); return k.privateKey; })();
 const PUBLIC_KEY = publicKeyOf(PRIVATE_KEY);
+const NICKNAMES = new Map();   // user_ref → nickname (نمونه؛ در تولید پایگاه‌داده)
 
 // کلید عمومی سکو — برای راستی‌آزمایی امضای «executed|<hash>» و توکن مینی‌اپ.
 let PLATFORM_KEY = process.env.PLATFORM_PUBLIC_KEY ?? '';
@@ -53,7 +54,8 @@ const MANIFEST = {
   company: { name: 'شرکت نمونه' }, public_key: PUBLIC_KEY, appearance: { color: COLOR, logo: 'ف' }, category: 'آموزش',
   permissions: [{ key: 'notify', label: 'ارسال اعلان به من', description: 'وضعیت سفارش' }],
   data_permissions: [],
-  tools: { read: ['list_products'], build: ['build_order_contract'], fulfil: 'vista_fulfil' },
+  tools: { read: ['list_products'], build: ['build_order_contract'], write: ['set_nickname'], fulfil: 'vista_fulfil' },
+  environment: process.env.VISTA_ENV ?? 'stage',
   mini_app_url: `${PUBLIC_URL}/mini`,
   templates: [{ ref: 'demo-shop/order', title: 'خرید کتاب', min_rung: 1, settlement: 'on_delivery' }],
 };
@@ -61,10 +63,20 @@ const MANIFEST = {
 // ───────────────────────── کمکی‌ها ─────────────────────────
 const text = (o) => ({ content: [{ type: 'text', text: typeof o === 'string' ? o : JSON.stringify(o) }] });
 const fail = (msg) => ({ content: [{ type: 'text', text: msg }], isError: true });
-/** بافت ویستا: user_id (user:<id>)، user_ref شبه‌نام، و phone/name فقط اگر مجوز داده شده باشد. */
+/**
+ * بافت ویستا. گواهی «به نیابت از» را وارسی می‌کنیم و **همان** را مبنا می‌گیریم، نه user_id لخت:
+ * ادعای هویت نباید از سمت مدل بیاید. `aud` تضمین می‌کند گواهی اپ دیگری اینجا بازپخش نشود.
+ */
 function ctxOf(extra) {
   const v = extra?._meta?.vista;
   if (!v?.user_id) throw new Error('vista context missing (_meta.vista.user_id)');
+  if (PLATFORM_KEY) {
+    const claims = verifyAssertion(PLATFORM_KEY, v.assertion, { appId: APP_ID });
+    if (!claims) throw new Error('گواهی «به نیابت از» معتبر نیست');
+    return { ...v, user_id: claims.sub, user_ref: claims.user_ref, scopes: claims.scopes ?? [], env: claims.env };
+  }
+  // کلید سکو هنوز خوانده نشده — در تولید نباید پیش بیاید؛ لاگ کنید و ادامه ندهید.
+  console.warn('⚠ کلید عمومی سکو در دسترس نیست؛ گواهی وارسی نشد');
   return v;
 }
 
@@ -78,7 +90,19 @@ function buildServer() {
 
   // ابزار خواندنی — رایگان، بی‌قرارداد، readOnlyHint:true
   server.registerTool('list_products', { title: 'فهرست کتاب‌ها', description: 'کتاب‌های قابل خرید با قیمت (تومان)', inputSchema: {}, annotations: { readOnlyHint: true } },
-    async () => text({ products: PRODUCTS.map((p) => ({ id: p.id, title: p.title, price_toman: p.price })) }));
+    async (_args, extra) => {
+      ctxOf(extra);   // حتی ابزار خواندنی هم گواهی را وارسی می‌کند — جوابِ «کدام کاربر» بخشی از خودِ پرسش است
+      return text({ products: PRODUCTS.map((p) => ({ id: p.id, title: p.title, price_toman: p.price })) });
+    });
+
+  // نوشتن سبک — بار مالی ندارد، برگشت‌پذیر است، idempotent است. بدون قرارداد اجرا می‌شود.
+  // پیش از افزودن هر ابزاری به tools.write، reference/mcp-write-guidance.md را بخوانید.
+  server.registerTool('set_nickname', { title: 'نام مستعار', description: 'نام مستعار کاربر را در این فروشگاه تغییر می‌دهد. بی‌بارِ مالی و قابل بازگشت.', inputSchema: { nickname: z.string().min(1).max(40).describe('نام مستعار تازه') } },
+    async (args, extra) => {
+      const v = ctxOf(extra);
+      NICKNAMES.set(v.user_ref, args.nickname);   // idempotent: همان ورودی، همان نتیجه
+      return text({ ok: true, nickname: args.nickname });
+    });
 
   // ابزار ساختن قرارداد — عدد از اپ می‌آید نه از مدل؛ اپ اول امضا می‌کند، کاربر آخر.
   server.registerTool('build_order_contract', { title: 'قرارداد خرید', description: 'قرارداد خرید یک کتاب را می‌سازد و امضا می‌کند؛ کاربر در ویستا امضا می‌کند.', inputSchema: { product_id: z.enum(PRODUCTS.map((p) => p.id)).describe('شناسهٔ کتاب از list_products') } },

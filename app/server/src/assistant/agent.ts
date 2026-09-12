@@ -154,7 +154,7 @@ async function runTool(u: User, name: string, args: any, map: ReturnType<typeof 
   const { app, tool } = hit;
   ev.onStatus?.(tool.kind === 'build' ? `درخواست قرارداد از ${app.name}…` : `خواندن از ${app.name}…`);
   const granted: string[] = json.parse(app.permissions_json, []);
-  const res = await callTool(app, tool.name, args, { credential: app.credential, meta: contextFor(app, u, granted) });
+  const res = await callTool(app, tool.name, args, { credential: app.credential, meta: await contextFor(app, u, granted) });
   const txt = toolText(res);
   if (tool.kind === 'build' && !res.isError) {
     let parsed: any = null;

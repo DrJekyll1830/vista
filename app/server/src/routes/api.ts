@@ -38,7 +38,7 @@ const body = async <T>(c: any, schema: z.ZodType<T>): Promise<T> => {
 const device = (c: any) => (c.req.header('user-agent') ?? '').slice(0, 120);
 
 // ───────────────────────── public ─────────────────────────
-api.get('/platform', async (c) => c.json({ name: 'ویستا', version: '0.1.0', public_key: await platformPublicKey(), assistant_configured: !!(config.ai.baseUrl && config.ai.apiKey && config.ai.model), sms_provider: config.sms.provider, otp_accept_any: config.sms.otpAcceptAny, gateway: config.payment.gateway, ceilings: config.ceilings }));
+api.get('/platform', async (c) => c.json({ name: 'ویستا', version: '0.1.0', public_key: await platformPublicKey(), assistant_configured: !!(config.ai.baseUrl && config.ai.apiKey && config.ai.model), sms_provider: config.sms.provider, otp_accept_any: config.sms.otpAcceptAny, gateway: config.payment.gateway, ceilings: config.ceilings, environment: config.environment, assertion: { alg: 'Ed25519', format: 'base64url(claims).base64(sig-over-base64url(claims))', ttl_sec: config.assertionTtlSec } }));
 
 api.post('/auth/otp', async (c) => {
   try {
@@ -164,7 +164,7 @@ api.post('/apps/:id/tools/:tool', async (c) => {
     const t = tools.find((x) => x.name === c.req.param('tool'));
     if (!t || !t.exposed) return c.json({ error: 'hidden', message: 'این قابلیت در ویستا منتشر نشده است.' }, 400);
     const granted: string[] = json.parse(inst.permissions_json, []);
-    const res = await mcp.callTool(a, t.name, args ?? {}, { credential: inst.credential, meta: mcp.contextFor(a, u, granted) });
+    const res = await mcp.callTool(a, t.name, args ?? {}, { credential: inst.credential, meta: await mcp.contextFor(a, u, granted) });
     const txt = mcp.toolText(res);
     if (t.kind === 'build' && !res.isError) {
       let parsed: any = null; try { parsed = res.structured ?? JSON.parse(txt); } catch { parsed = null; }

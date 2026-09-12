@@ -117,6 +117,38 @@ export function verifyMiniAppToken(platformPublicKeyB64, token, now = Date.now()
   }
 }
 
+/**
+ * گواهی «به نیابت از چه کسی» — دروازهٔ قابلیت آن را به `_meta.vista.assertion`
+ * هر فراخوانی می‌چسباند و با کلید سکو امضا می‌کند. دستیار خودش مدعی هویت نیست،
+ * پس اپ باید همین را وارسی کند و نه `user_id` لخت را.
+ *
+ * قالب: `<base64url(claims)>.<امضای سکو روی همان رشتهٔ base64url>`
+ * claims: { iss:'vista', aud:<app_id>, sub:'user:<id>', user_ref, scopes[], env, iat, exp, jti }
+ *
+ * بازگشت: claims، یا null اگر امضا/مخاطب/انقضا نخوانَد.
+ *
+ *   const c = verifyAssertion(platformPublicKey, meta.assertion, { appId: 'konkooria' });
+ *   if (!c) throw new Error('گواهی معتبر نیست');
+ *   const userId = c.sub;               // 'user:...'
+ */
+export function verifyAssertion(platformPublicKeyB64, token, { appId, now = Date.now(), skewSec = 60 } = {}) {
+  try {
+    const [b64, sig] = String(token ?? '').split('.');
+    if (!b64 || !sig) return null;
+    if (!verify(platformPublicKeyB64, b64, sig)) return null;
+    const c = JSON.parse(Buffer.from(b64, 'base64url').toString('utf8'));
+    if (c.iss !== 'vista') return null;
+    if (appId && c.aud !== appId) return null;            // اپ دیگری نمی‌تواند گواهی شما را بازپخش کند
+    if (typeof c.sub !== 'string' || !c.sub.startsWith('user:')) return null;
+    const t = Math.floor(now / 1000);
+    if (typeof c.exp !== 'number' || c.exp + skewSec < t) return null;
+    if (typeof c.iat === 'number' && c.iat - skewSec > t) return null;
+    return c;
+  } catch {
+    return null;
+  }
+}
+
 // ───────────────────────── کمکی‌ها ─────────────────────────
 const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz';
 /** شناسهٔ تصادفی به سبک سکو: `<prefix>_<len chars>` از [0-9a-z]. */

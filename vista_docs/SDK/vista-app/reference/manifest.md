@@ -40,8 +40,10 @@ server.registerResource('manifest', 'vista://manifest', { title: 'Vista manifest
   "tools": {
     "read": ["get_line_status", "list_packages", "list_bills", "list_topup_amounts"],
     "build": ["build_topup_contract", "build_package_contract", "build_bill_payment_contract", "build_auto_renew_delegation"],
+    "write": ["set_line_nickname"],
     "fulfil": "vista_fulfil"
   },
+  "environment": "stage",
   "mini_app_url": "https://app.example.ir/vista/mini",
   "templates": [
     { "ref": "irancell/topup", "title": "شارژ خط", "min_rung": 1, "settlement": "on_delivery" },
@@ -71,11 +73,13 @@ server.registerResource('manifest', 'vista://manifest', { title: 'Vista manifest
 | `data_permissions[]` | string[] | خیر | کلاس‌های داده‌ای که می‌خواهید در `_meta.vista` بیاید. در این نسخه فقط `profile.phone` و `profile.name` وجود دارند و **فقط وقتی کاربر مجوز `profile.read` را داده باشد** ارسال می‌شوند. |
 | `tools.read[]` | string[] | بله | ابزارهای خواندنی؛ به دستیار و صفحهٔ اپ منتشر می‌شوند. رایگان، بی‌قرارداد. |
 | `tools.build[]` | string[] | بله | ابزارهای ساختن قرارداد؛ خروجی‌شان `{contract, canonical_hash, app_signature}` است و ویستا آن را به قرارداد «در انتظار امضا» تبدیل می‌کند. |
+| `tools.write[]` | string[] | نه | **نوشتن سبک** — کاری که وضعیتی را عوض می‌کند اما بار مالی ندارد و شما آن را برگشت‌پذیر می‌دانید. به دستیار منتشر می‌شود و بدون قرارداد اجرا می‌شود. تشخیصش با خودِ شماست؛ پیش از پر کردن این فهرست `reference/mcp-write-guidance.md` را بخوانید. |
 | `tools.fulfil` | string | اگر قرارداد پولی یا `app.action` می‌سازید | ابزار تحویل. از دستیار پنهان می‌ماند؛ فقط پردازشگر با امضای سکو صدایش می‌زند. |
+| `environment` | string | نه | `stage` یا `production`. اگر بیاید، ویستا اپ را در محیط دیگر ثبت نمی‌کند. استیج و پروداکشن هیچ‌وقت به هم وصل نمی‌شوند. |
 | `mini_app_url` | URL | خیر | صفحهٔ گرافیکی اپ. ویستا آن را با `?token=` در iframe باز می‌کند. |
 | `templates[]` | `{ref, title, min_rung?, settlement?, description?}` | خیر | فهرست قالب‌های قرارداد؛ در صفحهٔ اپ نمایش داده می‌شود و `template_ref` قراردادها و `scope` وکالت‌ها به آن ارجاع می‌دهند. اطلاعاتی است؛ اجبار از خودِ سند قرارداد می‌آید. |
 
-هر ابزاری که در هیچ‌یک از سه فهرست `tools` نباشد، **پنهان** می‌شود و نه دستیار و نه کاربر به آن نمی‌رسند (دلیل نمایش‌داده‌شده: «در مانیفست اعلام نشده»). این عمدی است: ابزار اثردار در ویستا وجود ندارد؛ نوشتن یعنی قرارداد.
+هر ابزاری که در هیچ‌یک از فهرست‌های `tools` نباشد، **پنهان** می‌شود و نه دستیار و نه کاربر به آن نمی‌رسند (دلیل نمایش‌داده‌شده: «در مانیفست اعلام نشده»). پیش‌فرض، پنهان بودن است. آنچه هیچ‌وقت از این راه نمی‌گذرد **پول** است: مسیر پول از پردازشگر می‌گذرد و ابزار MCP اصلاً راهی به آن ندارد.
 
 ## آنچه مانیفست تعیین نمی‌کند
 
@@ -96,7 +100,8 @@ server.registerResource('manifest', 'vista://manifest', { title: 'Vista manifest
 
 - [ ] `vista: "1"` و `id` برابر شناسهٔ توافق‌شده با ویستا
 - [ ] `public_key` = base64 از ۳۲ بایت خام (`publicKeyOf(privateKeyPem)` در `lib/vista-sign.mjs`)
-- [ ] هر ابزار دقیقاً در یکی از `tools.read` / `tools.build` / `tools.fulfil`
+- [ ] هر ابزار دقیقاً در یکی از `tools.read` / `tools.build` / `tools.write` / `tools.fulfil`
+- [ ] `environment` با محیطی که در آن ثبت می‌شوید می‌خواند
 - [ ] ابزار تحویل در `read` یا `build` نیست
 - [ ] اگر `data_permissions` دارید، مجوز `profile.read` هم در `permissions` هست
 - [ ] `financial_permissions` فقط اگر احراز شده‌اید یا در حال احراز هستید
