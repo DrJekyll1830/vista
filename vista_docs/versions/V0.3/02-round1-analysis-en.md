@@ -2,7 +2,7 @@
 
 **Input:** [01-transcription.md](01-transcription.md) — four voice messages, 2026-09-12, 06:11–06:18; the first two form one continuous argument.
 **Against:** all 46 Markdown chapters in the current working copy of the Vista book, with supporting inspection of the current SDK, MCP gateway, registry, assistant, and presentation.
-**Status:** analysis and recommendations, not an approved specification or an implementation report. The book, presentation, SDK, and application are not changed by this document.
+**Status:** analysis and recommendations, not an approved specification or an implementation report. The book, presentation, SDK, and application are not changed by this document. **COMMENT**: partially reviewed by me. if I did not **COMMENT** on a thing, it means either I agree or I did not read it or I did not get it.
 **External research checked:** 2026-09-12. Documentation confirms the existence and advertised behavior of the services below; it does not establish that they are accessible to Vista, approved for its Iranian users, or operational in its deployment.
 
 “The book” here means the Vista book under `vista_docs/book`. Andrew Chen’s *The Cold Start Problem* and Teresa Torres’s *Continuous Discovery Habits* are discussed using the transcript and their authors’ public material, not on the claim that their complete books were supplied or read.
@@ -73,7 +73,7 @@ Similarly, owning Konkooria solves the initial supplier negotiation; it does not
 | «داشت» | Creation and development of new Vista-native suppliers | Immediate launch inventory or self-sustaining demand for each app | Maintained products with retained users, revenue quality, support burden, post-program survival |
 
 **Recommended narrative:** useful from existing services; commercially validated through controlled services; expanded through new suppliers.
-
+**COMMENT**: our 4th mechanism: inviting our friends apps. I have lots of friends and I can invite them: Eitala (a gold purchase app), Moneyro (remittance), Amoozim (LMS), Zambil (purchase goods)
 ### 2.3 Choose an initial recurring job, not a miscellaneous app collection
 
 A small catalog spanning email, movies, coding, banking, and education can be technically impressive and still be incomplete for every user.
@@ -88,7 +88,8 @@ A plausible first hypothesis is **learning and research planning for a deliberat
 This keeps the international-first implementation order without abandoning the book’s education entry point. It remains a hypothesis: confirm account usage, needs, and willingness to connect data through interviews. Do not assume that Konkooria’s entire population uses Google Calendar or that the bootcamp’s technically comfortable participants represent ordinary consumers.
 
 Maintain separate cohort evidence for productivity users, Konkooria users, and Irancell service users. A successful technical pilot is not yet the atomic network.
-
+**COMMENT**: ببین اینکه میگی که ما بهتره با یه حوزه خاصی شروع بکنیم حرف خوبیه و اینو خود بچه‌های ایرانسل هم به من گفته بودند اونا نظرشون این بود که به حوزه بانکی شروع بکنیم که به نظر من عملی نیست چون تا بخواهیم بانک را وصل بکنیم به همچین چیزی زمان زیادی میگیره و باید با یه حوزه دیگه شروع بکنیم به نظر من حوزه آموزش میتونه جذاب باشه اما توجه بکن که حوزه آموزش حوزه به دلیل اینکه هیچ وابستگی به جای خاصی نیاز نداره و همین الان کاربر توی مثلاً چت جی‌پی‌تی می‌تونه هر چیزی که خواست رو آموزش ببینه و در واقع ما مزیت خاصی نداریم نسبت به مثلا جی تی و اینکه کنکوریا هم اون چیزی نیست که تو فکر میک کنکوریا یک بستری هست برای مشاوره تحصیلی یعنی اون هم یک پلتفرم هستش که توش یه سری منتور وجود داره و یه سری هم در واقع دانش آموز که منتور به روند تحصیلی دانش آموز نظارت می‌کنه حالا اونجا هم برای اینکه ابزار نظارتی خاصی بدیم به منتور ما رفتیم و ابزارها دادیم به دانش آموز برای ثبت مطالعه خودش که میگه من چه زمانی مطالعه کردم و اینها همچنین رقابت بر اساس میزان مطالعه که کدش تو همین پوشه کناری این پروژه هست اگه دوست داشته باشید نگاه کنید پس در واقع اگه ما بخواهیم با بحث آموزش شروع بکنیم بعد دنبال یک مزیت درست بگردیم نسبت به جی پی تی و امثال شاید با ترکیب با آموزیم که در واقع یه دونه ال ام اس هست بشه تا یه حدی به مزیت رسید اما توجه بکنیم که اونجا خیلی به درس پرداخته نمیشه یعنی آموزش هر چیزی هست فقط آموزش درس نیست و تقریباً میشه گفت نسبت به تقویم گوگل بی ارتباط هستند هر دو تای اینها یعنی باز هم این سه تا یعنی کنکوریا و آموزیم و تقویم گوگل باز به قدر کافی چگال نیست تا بتونه تمام نیازهای آموزشی را برطرف بکنه شاید دنبال حوزه دیگری باید بگردیم برای شروع
+شاید ما اگه بخوایم یه دونه حوزه رو انتخاب بکنیم که از اونجا شروع بکنیم همین حوزه مالی بهتر باشه یعنی حوزه‌ای که درون اون حالا بانک هم به زودی باید اضافه بشود و غیر از بانک ما ایتلا رو داریم که در واقع برای خرید و فروش طلا هست و میتونه مزیت خوبی باشه چون کاربرا میتونن با کمک هوش مصنوعی برند و سابقه قیمت طلا رو بررسی بکنند و همچنین با اخبار که این هوش مصنوعی بهش باید دسترسی داشته باشه مثل اخبار مذاکرات و جنگ و امثال هم ترکیب بکنند و در نهایت هوش مصنوعی بتونه بهشون سیگنال بده مثلاً بخر یا بفروش یا هر چیزی و مثلاً طلا بخرند و بفروشند و توی طرح‌های تولید مصنوعات طلا هم سرمایه گذاری بکنند و امثالهم که کد ایتلا هم باز دوباره توی همین کامپیوتر من هست میتونه بره اون رو بخون و حالا ما تو همین حوزه مانی رو هم داریم که میتونیم اون رو هم احتمالا وصل بکنیم و خوبی اون اینه که خدمات متنوعی میده مثل حواله ارزی و همچنین خرید بین شاید با کمک این دوتا بتونیم حوزه مالی رو سریعتر در واقع توش ورود بکنیم مثلاً بتونیم یکی دو تا ابزار مدیریت ثروت را هم سریعاً باهاشون مذاکره کنیم و همچنین بحث گذاری روی طرح های مختلف که اونجا هم حالا ما دوستانی داریم که میتونیم باهاشون ارتباط بگیریم که در واقع سرمایه گذاری جمعی هستند که ما اونو بیاریم به نحوی تو که مردم بتونن پولشون رو سرمایه گذاری کنند روی طرح های حالا نظرت رو بهم بگو که آیا موافقی که اولین شروع ما در واقع همین بحث‌های مدیریت مالی و مدیریت ثروت و سرمایه گذاری باشه یا نه
 ### 2.4 “Fastest” must include everything required for the second use
 
 Compare:
@@ -157,7 +158,7 @@ For a plain connector, Vista can issue a **connection/permission agreement about
 
 Likewise, if a Vista-operated adapter later builds a contract around an upstream action, the adapter’s operator signs its own commitment. It must not impersonate the upstream service or display its brand as evidence that the upstream service accepted Vista’s terms.
 
-This is a real qualification to “the app always signs first” and to the rule about when Vista is a named party: distinguish a native app’s commercial contract from Vista’s agreement to operate a connection.
+This is a real qualification to “the app always signs first” and to the rule about when Vista is a named party: distinguish a native app’s commercial contract from Vista’s agreement to operate a connection. **COMMENT**: I dont insist on "the app always signs first"
 
 ### 3.5 Drafts stay on MCP; execution leaves it
 
@@ -186,7 +187,7 @@ Assistant -> contract-building MCP tools -> unsigned draft
 
 Creating or completing a draft must not execute the business action. An unsigned draft has no signature rung and no financial authority. Completing it produces an app-signed proposal; changing signed terms requires a new version and fresh signatures. Calls need explicit schemas and retry behavior, not guessed intent from tool names.
 
-The current SDK documents a hidden `vista_fulfil` MCP tool, and `app/server/src/index.ts` calls it with `allowHidden: true`. Hiding a tool from the model is not the same as putting execution outside MCP. **Recommend the separate execution API requested in the transcript**, with its own processor credential/audience, contract-hash binding, expiry, replay protection, and idempotency rules. If migration is deferred, label the old MCP fulfillment route as legacy rather than saying the new boundary already exists.
+The current SDK documents a hidden `vista_fulfil` MCP tool, and `app/server/src/index.ts` calls it with `allowHidden: true`. Hiding a tool from the model is not the same as putting execution outside MCP. **Recommend the separate execution API requested in the transcript**, with its own processor credential/audience, contract-hash binding, expiry, replay protection, and idempotency rules. If migration is deferred, label the old MCP fulfillment route as legacy rather than saying the new boundary already exists.  **COMMENT**: current code is just a demo. dont pay attention to it.
 
 Also, generic MCP writes do not disappear: the separate route applies to **Vista contract execution**, not to every operation performed by every external server.
 
@@ -196,7 +197,7 @@ The book currently says there is no suitable external standard for the settlemen
 
 Those overlap with Vista’s signed terms and deterministic authorization, but they do not automatically specify Vista’s general permission contracts, Iranian signature ladder, banking arrangements, or all multiparty workflows. Their delegation assumptions also need comparison with Vista’s prohibition on sub-delegation.
 
-**Recommendation:** make a field-by-field compatibility assessment part of the contract-profile design. Reuse applicable semantics and cryptographic formats; document genuine gaps. Do not make implementing an international payment network a prerequisite for a read-only Calendar pilot, and do not declare AP2 compatibility on conceptual resemblance alone.
+**Recommendation:** make a field-by-field compatibility assessment part of the contract-profile design. Reuse applicable semantics and cryptographic formats; document genuine gaps. Do not make implementing an international payment network a prerequisite for a read-only Calendar pilot, and do not declare AP2 compatibility on conceptual resemblance alone.  **COMMENT**: adapt AP2 and extend it on gaps.
 
 ## 4. Authentication: three different permissions, three practical service modes
 
@@ -208,11 +209,11 @@ Those overlap with Vista’s signed terms and deterministic authorization, but t
 | May Vista access this external account? | Provider OAuth grant, scoped token, or a service-specific linking arrangement | A signed purchase or authority to spend Vista funds |
 | May this particular Vista action execute? | Signed contract and the processor’s checks | Merely having a valid OAuth token |
 
-A long-lived provider grant may authorize background access technically. It must not silently enable Vista’s future autonomous-assistant feature or bring delegated signing forward from phase two.
+A long-lived provider grant may authorize background access technically. It must not silently enable Vista’s future autonomous-assistant feature or bring delegated signing forward from phase two. **COMMENT**: good. we need a better modeling
 
 ### 4.2 The three modes
 
-**Public service.** No account or token is necessary for the requested operation. Public Wikipedia reading is the obvious example; do not add a login just because some Wikipedia operations have accounts. Platform-paid search may still require a server-held API key and a usage budget, even though the end user sees no login.
+**Public service.** No account or token is necessary for the requested operation. Public Wikipedia reading is the obvious example; do not add a login just because some Wikipedia operations have accounts. Platform-paid search may still require a server-held API key and a usage budget, even though the end user sees no login.  **COMMENT**: correct
 
 **External account.** Open the provider’s authorization page in a trusted browser flow. Vista receives a grant and uses it for subsequent requests. Vista’s mobile OTP cannot substitute for Google’s account authorization.
 
@@ -226,23 +227,23 @@ Knowing a phone number is not sufficient to take over a pre-existing account wit
 
 For a new partner account, use just-in-time provisioning from a trusted assertion if the agreement permits it. For an existing account, require either a documented federation-based mapping that the partner accepts or a one-time proof through the partner’s approved account-linking flow. Financial KYC remains a separate requirement.
 
-Use stable internal subjects and, where appropriate, pairwise partner identifiers. The mobile number is a verified attribute, not the permanent database key. The current `user_ref` derived from the same user ID across apps should not be described as a pairwise identifier.
+Use stable internal subjects and, where appropriate, pairwise partner identifiers. The mobile number is a verified attribute, not the permanent database key. The current `user_ref` derived from the same user ID across apps should not be described as a pairwise identifier.  **COMMENT**: user may set a passkey or a 2nd factor authentication so that in case the phone number reassigned, their account cannot be used by the new owner.
 
 ### 4.4 How to reduce login friction without weakening consent
 
 - Reuse the provider’s browser session, rather than asking for its password inside Vista.
 - Persist the provider grant securely and refresh access tokens when permitted.
-- Use one correctly registered Google integration where appropriate, with incremental scopes for the features the user chooses. Do not ask for Gmail, Drive, Calendar, and Contacts together merely to avoid a possible later screen.
+- Use one correctly registered Google integration where appropriate, with incremental scopes for the features the user chooses. Do not ask for Gmail, Drive, Calendar, and Contacts together merely to avoid a possible later screen.  **COMMENT**: I did not like this idea. why not grant all?
 - Offer an explicit bundle when a user deliberately selects a workflow that needs several services. Reuse the grant only where the issuer, client, scopes, resource audience, and provider policy allow it.
-- Support multiple accounts with visible selection: work Calendar and personal Calendar must not be silently merged.
-- For cooperating local services, reuse the Vista session through federation. Additional consent or assurance may still be necessary.
+- Support multiple accounts with visible selection: work Calendar and personal Calendar must not be silently merged.  **COMMENT**: how?
+- For cooperating local services, reuse the Vista session through federation. Additional consent or assurance may still be necessary.  **COMMENT**: the stakeholders dont like additional consent screens. they want "just in contracts" consent.
 - Make “needs reconnect” actionable at the moment the affected capability is needed, without turning every app opening into a login prompt.
 
 **Shared browser login is not shared authorization.** Two MCP servers using Google upstream may have different operators, OAuth clients, and token audiences. They cannot be given each other’s tokens merely because both say “Google.”
 
 A more accurate book sentence would be:
 
-> **کاربر یک بار وارد ویستا می‌شود. سرویس‌هایی که هویت ویستا را می‌پذیرند از همان ورود استفاده می‌کنند؛ حساب‌های بیرونی یک بار با رضایت کاربر متصل می‌شوند و تا وقتی مجوزشان معتبر است، به ورود دوباره نیاز ندارند.**
+> **کاربر یک بار وارد ویستا می‌شود. سرویس‌هایی که هویت ویستا را می‌پذیرند از همان ورود استفاده می‌کنند؛ حساب‌های بیرونی یک بار با رضایت کاربر متصل می‌شوند و تا وقتی مجوزشان معتبر است، به ورود دوباره نیاز ندارند.**  **COMMENT**: good
 
 ## 5. Token custody and authorization lifecycle
 
@@ -360,7 +361,7 @@ Initial external discovery should be **remote-endpoint discovery**, not automati
 Validate outbound destinations, including metadata and OAuth URLs: restrict schemes, block private/link-local/metadata-service destinations by default, recheck redirects and resolved addresses, and isolate any explicitly permitted internal integration. Treat descriptions and tool results as untrusted data, not setup commands.
 
 New tools, changed scopes, a changed issuer, or a changed endpoint should trigger reassessment; they must not silently expand a previously approved connection.
-
+ **COMMENT**: ببین من کلاً هدفم از اینکه بخوام سرویس‌های بین‌المللی رو بیارم این بود که یه شروع سریع داشته باشم با توضیحاتی که به من دادی به نظر میرسه که سختی سرویس‌های بین‌المللی زیادتر از سرویس‌های داخلی هست و احتمالاً بهتر هستش که با همون سرویس‌های داخلی شروع کنم نه سرویس‌های بین‌المللی یعنی همون چیزهایی که حالا عموماً بار مالی دارن حالا ممکنه بار مالی هم نداشته باشن ولی خوب سرویس های که خودم بررسی ش کردم و یک گلچین شده از سرویس ها نه اینکه بخوام برم از چند تا لیست ام سی پی بردارم و کاربر بتونه به اون‌ها متصل بشه و اینها به نظرم میاد این کار در واقع بیش از حد پیچیده میکنه همون یه لیست مشخص یکی از سرویس‌ها داشته باشیم خوبه حالا مثلاً در این حد که چهار تا سرویس بین المللی مشخص رو اضافه کنیم هم میشه بهش فکر کرد مثل همین تقویم گوگل یا مثلاً imdb و ویکی پدیا اما به نظرم اون چیزی که گفته بودم که بشود تو بین سرویس‌ها گشت و اضافه کرد به نظرم میاد که زیادی داره پیچیده می‌کنه کار رو. قبول داری?
 ## 7. A concrete initial catalog
 
 “Default” should mean **available in the curated catalog**, not already connected to private data and not promoted into the six exempt system apps.
@@ -373,22 +374,22 @@ The seeded ratings/reviews are hard-coded examples. They must not be used as evi
 
 ### 7.2 Recommended shortlist and order
 
-| Candidate | Provenance and deployment | Login/cost model | Recommendation and limit |
-|---|---|---|---|
-| **Google Calendar** | Official Google-hosted MCP, Developer Preview [S13], [S14] | Google OAuth; project/API enablement and access eligibility | First private-account pilot: calendar/event reading and availability. Test Persian date interpretation, timezone, all-day and recurring events. No write promise in the initial acceptance criterion. |
-| **Google Drive / Docs** | Official Google-hosted MCPs, Developer Preview [S13] | Google OAuth; scopes depend on the selected feature | Next for user-selected study/research documents. Do not request whole-drive access where a narrower supported workflow suffices. Verify actual MCP tool support for those scopes. |
-| **Gmail** | Official Google-hosted MCP, Developer Preview [S13] | OAuth; reading and draft scopes are restricted [S9] | High utility, but gated behind policy and security-assessment feasibility. Start with reading; add draft creation only deliberately. Do not treat sending as equivalent to drafting. |
-| **Wikipedia / Wikidata** | Community `wiki-mcp` implementation with documented public search/read tools [S15] | No user login for public reads | Useful general-research candidate, subject to code/license review and operator deployment. This is deployable code, not a verified Wikimedia-hosted remote MCP. |
-| **Web search** | Brave’s official MCP implementation, or Tavily’s hosted MCP [S16], [S17] | Platform-paid API key/budget, or supported user authorization | Select one for the pilot rather than both. Brave’s HTTP deployment needs access protection; for Tavily use supported header/OAuth auth rather than secrets in URLs. |
-| **User-provided files** | Vista-managed uploads/storage, or connected Drive | Vista consent and file selection | Needed for research utility, but not an already validated universal file MCP. A server-side filesystem connector sees the server’s files, not arbitrary files on a user’s phone. |
-| **Notion** | Official Notion-hosted remote MCP [S18] | OAuth; workspace permissions apply | Good optional productivity pilot. Enable an explicitly supported read/edit set; Notion content availability alone does not make every write safe. |
-| **GitHub** | Official hosted MCP; already seeded [S19] | OAuth supported; current Vista seed asks for a PAT | Keep for developers/bootcamp. Prefer OAuth and provider-supported read-only configuration for the initial rollout. |
-| **DeepWiki** | Official hosted public-repository service; already seeded [S20] | No user authentication for public repository documentation | Low-friction interoperability smoke test, useful for bootcamp participants, not a general encyclopedia replacement. |
-| **Hugging Face Hub** | Official hosted MCP; already seeded [S21] | Public/authorized feature sets; documented OAuth/token options | Keep optional for technical research. Do not automatically enable community tools, inference, or resource-creation features with separate costs/risks. |
-| **Cloudflare Docs** | Official documentation MCP; already seeded [S22] | Validate the documentation endpoint’s current access behavior | Technical catalog entry. Do not confuse it with Cloudflare’s general API/code-execution MCP. |
-| **IMDb** | Official developer material documents licensed GraphQL/data products, not an official ready-to-use MCP found in this research [S23] | Commercial data access and deployment eligibility need checking | Defer from the launch dependency list. A community wrapper does not supply commercial data rights; “free IMDb MCP” is not a verified assumption. |
+| Candidate                | Provenance and deployment                                                                                                           | Login/cost model                                                                                                              | Recommendation and limit                                                                                                                                                                                                                    |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Google Calendar**      | Official Google-hosted MCP, Developer Preview [S13], [S14]                                                                          | Google OAuth; project/API enablement and access eligibility                                                                   | First private-account pilot: calendar/event reading and availability. Test Persian date interpretation, timezone, all-day and recurring events. No write promise in the initial acceptance criterion.                                       |
+| **Google Drive / Docs**  | Official Google-hosted MCPs, Developer Preview [S13]                                                                                | Google OAuth; scopes depend on the selected feature **COMMENT**: we may introduce a solution instead of google doc ourselves. | Next for user-selected study/research documents. Do not request whole-drive access where a narrower supported workflow suffices. Verify actual MCP tool support for those scopes.                                                           |
+| **Gmail**                | Official Google-hosted MCP, Developer Preview [S13]                                                                                 | OAuth; reading and draft scopes are restricted [S9]                                                                           | High utility, but gated behind policy and security-assessment feasibility. Start with reading; add draft creation only deliberately. Do not treat sending as equivalent to drafting.                                                        |
+| **Wikipedia / Wikidata** | Community `wiki-mcp` implementation with documented public search/read tools [S15]                                                  | No user login for public reads                                                                                                | Useful general-research candidate, subject to code/license review and operator deployment. This is deployable code, not a verified Wikimedia-hosted remote MCP.                                                                             |
+| **Web search**           | Brave’s official MCP implementation, or Tavily’s hosted MCP [S16], [S17]                                                            | Platform-paid API key/budget, or supported user authorization                                                                 | Select one for the pilot rather than both. Brave’s HTTP deployment needs access protection; for Tavily use supported header/OAuth auth rather than secrets in URLs.                                                                         |
+| **User-provided files**  | Vista-managed uploads/storage, or connected Drive                                                                                   | Vista consent and file selection                                                                                              | Needed for research utility, but not an already validated universal file MCP. A server-side filesystem connector sees the server’s files, not arbitrary files on a user’s phone.                                                            |
+| **Notion**               | Official Notion-hosted remote MCP [S18]                                                                                             | OAuth; workspace permissions apply                                                                                            | Good optional productivity pilot. Enable an explicitly supported read/edit set; Notion content availability alone does not make every write safe. **COMMENT**: it's not adopted in Iran. so it gains nothing                                |
+| **GitHub**               | Official hosted MCP; already seeded [S19]                                                                                           | OAuth supported; current Vista seed asks for a PAT                                                                            | Keep for developers/bootcamp. Prefer OAuth and provider-supported read-only configuration for the initial rollout. **COMMENT**: it's not good for vista ordinary users. so no                                                               |
+| **DeepWiki**             | Official hosted public-repository service; already seeded [S20]                                                                     | No user authentication for public repository documentation                                                                    | Low-friction interoperability smoke test, useful for bootcamp participants, not a general encyclopedia replacement.                                                                                                                         |
+| **Hugging Face Hub**     | Official hosted MCP; already seeded [S21]                                                                                           | Public/authorized feature sets; documented OAuth/token options                                                                | Keep optional for technical research. Do not automatically enable community tools, inference, or resource-creation features with separate costs/risks. **COMMENT**: no gain. tech users will use hermes and ordinary users will not use it. |
+| **Cloudflare Docs**      | Official documentation MCP; already seeded [S22]                                                                                    | Validate the documentation endpoint’s current access behavior                                                                 | Technical catalog entry. Do not confuse it with Cloudflare’s general API/code-execution MCP. like hugging face                                                                                                                              |
+| **IMDb**                 | Official developer material documents licensed GraphQL/data products, not an official ready-to-use MCP found in this research [S23] | Commercial data access and deployment eligibility need checking                                                               | Defer from the launch dependency list. A community wrapper does not supply commercial data rights; “free IMDb MCP” is not a verified assumption. **COMMENT**: use it. and use Spotify and a podcast solution                                |
 
-This is a shortlist, not a claim to enumerate all MCP servers. The actual initial user-facing bundle should be much smaller: **Calendar + selected documents + one public research/search source**, with technical connectors remaining optional.
+This is a shortlist, not a claim to enumerate all MCP servers. The actual initial user-facing bundle should be much smaller: **Calendar + selected documents + one public research/search source**, with technical connectors remaining optional.  **COMMENT**: propose some use cases where ordinary users (non technicals) actually use them now and we make that usage easier.
 
 ### 7.3 Calendar fallback and the limits of the Google assumption
 

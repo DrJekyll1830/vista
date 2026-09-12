@@ -190,6 +190,7 @@
   },
   "active": "94062f718cedd57b",
   "lastOpenFiles": [
+    "versions/V0.3/03-round2-analysis-en.md",
     "versions/V0.3/01-transcription.md",
     "versions/V0.3/02-round1-analysis-en.md",
     "SDK/vista-app/scripts/conformance.mjs",
@@ -224,7 +225,6 @@
     "versions/V0.2/05-code-plan.md",
     "versions/V0.2/03-round2-analysis-en.md",
     "versions/V0.2/02-round1-analysis-en.md",
-    "versions/V0.2/01-transcription.md",
-    "book/00-آغاز/00-01-خلاصه-مدیریتی.md"
+    "versions/V0.2/01-transcription.md"
   ]
 }
