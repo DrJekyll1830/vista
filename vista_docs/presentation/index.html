@@ -435,6 +435,11 @@ input[type=range]::-moz-range-thumb{
 .sysmark{font-size:.76cqw; color:var(--azure); border:1px solid var(--azure); border-radius:.28cqw;
   padding:.06cqw .3cqw; flex:0 0 auto}
 .dead{font-size:.78cqw; color:var(--fg-3); flex:0 0 auto}
+
+/* risk grid: eight cards on one stage */
+#riskgrid .k{font-size:1.18cqw}
+#riskgrid .v{font-size:1.02cqw; line-height:1.55}
+#riskgrid > .card > div{padding:.72cqw .9cqw !important}
 </style>
 
 <div class="deck">
@@ -505,9 +510,9 @@ input[type=range]::-moz-range-thumb{
     <div class="eyebrow" style="--i:0">۰۴ — تعریف</div>
     <div class="quote" style="--i:1">ویستا سوپر اپلیکیشنی است که کاربر با گفت‌وگو آن را به کار می‌گیرد، و زیرش لایه‌ای نشسته که هویت، مجوز، پرداخت و اجرای امن را اداره می‌کند.</div>
     <div class="cols-3" style="--i:2; margin-top:1cqw">
-      <div class="card"><div class="k">یک هویت</div><div class="v">کاربر یک بار وارد می‌شود؛ از آن به بعد دسترسی‌اش به هر قابلیت کنترل‌شده است.</div></div>
+      <div class="card"><div class="k">یک ورود</div><div class="v">کاربر یک بار وارد ویستا می‌شود. سرویسی که هویت ویستا را می‌پذیرد از همان ورود استفاده می‌کند؛ حساب بیرونی یک بار با رضایت او متصل می‌شود.</div></div>
       <div class="card"><div class="k">یک دستیار</div><div class="v">کاربر می‌گوید چه می‌خواهد؛ نه با منوی این برنامه سر و کله می‌زند و نه با API آن یکی.</div></div>
-      <div class="card"><div class="k">یک قرارداد</div><div class="v">هر کاری که وضعیتی را عوض کند قراردادی امضاشده دارد، نه فقط یک دکمهٔ «تأیید».</div></div>
+      <div class="card"><div class="k">یک قرارداد</div><div class="v">پرداخت، مجوز و تعهد سرویس سندی دارند که کاربر دیده و تأیید کرده — نه فقط یک دکمهٔ «تأیید».</div></div>
     </div>
   </section>
 
@@ -580,7 +585,7 @@ input[type=range]::-moz-range-thumb{
         <div class="sigline"><i></i></div>
       </div>
       <ul class="list">
-        <li><strong>قرارداد را اپ تنظیم می‌کند، نه دستیار.</strong> دستیار از اپ می‌خواهد قرارداد را بسازد؛ اپ آن را می‌سازد و امضا می‌کند و همان‌طور امضاشده به دست کاربر می‌رسد.</li>
+        <li><strong>شرایط را طرفِ متعهد می‌دهد، نه دستیار.</strong> در خرید، قیمت و شرایطِ متعهدکننده از فروشنده می‌آید. <strong>نوع قرارداد</strong> تعیین می‌کند چه طرف‌ها و چه اثبات‌هایی لازم‌اند؛ قاعدهٔ همگانیِ «اپ همیشه اول امضا می‌کند» نداریم.</li>
         <li>امضا به <strong>هشِ شرایط</strong> گره می‌خورد. یک بند که عوض شود، همهٔ امضاهای قبلی باطل است.</li>
         <li>هر طرف فقط چیزی را امضا می‌کند که می‌بیند. موجر لازم نیست موجودی حساب مستأجر را ببیند.</li>
         <li>قرارداد مثل <strong>پیوست</strong> رد و بدل می‌شود، درست مثل عکس؛ بین بات و کاربر، بین دو کاربر، بین کاربر و دستیار.</li>
@@ -624,17 +629,17 @@ input[type=range]::-moz-range-thumb{
     <h2 style="--i:1">شش اپ که از روز اول آنجا هستند</h2>
     <div class="cols-3" style="--i:2">
       <div class="card"><div class="k">دستیار</div><div class="v">گفت‌وگوی پیش‌فرض. برنامه که باز می‌شود، اینجاست.</div></div>
-      <div class="card"><div class="k">ویترین</div><div class="v">هر اپ دیگری از اینجا پیدا و نصب می‌شود؛ با نظر کاربران، تصویر، و فهرست مجوزهایی که می‌خواهد.</div></div>
-      <div class="card"><div class="k">مالی</div><div class="v">کیف پول، تراکنش‌ها، و سابقهٔ پرداخت. <strong>این یکی را بانک سینا اداره می‌کند</strong> — واریز و برداشت قراردادهایی‌اند که طرفشان بانک است، با نام.</div></div>
+      <div class="card"><div class="k">ویترین</div><div class="v">بازارچهٔ اپ‌ها. هر اپ دیگری از اینجا پیدا و اضافه می‌شود؛ با نظر کاربران، هویت ناشر، و فهرست مجوزهایی که می‌خواهد. مالک کاتالوگ و سابقهٔ نصب هر کاربر هم همین است.</div></div>
+      <div class="card"><div class="k">مالی</div><div class="v">کیف پول، تراکنش‌ها، و سابقهٔ پرداخت. <strong>متولی وجوه همین‌جا با نام معرفی می‌شود</strong> — و طرفِ واریز و برداشت، متولی واقعیِ همان مرحله است. پس از اتصال بانک سینا، بانک مرجع دفتر مالی می‌شود.</div></div>
       <div class="card"><div class="k">قراردادهای من</div><div class="v">هر قراردادی که تا امروز امضا کرده‌اید، در یک جا. مجوزها هم همین‌جا هستند، چون مجوز خودش یک قرارداد است.</div></div>
       <div class="card"><div class="k">پشتیبانی</div><div class="v">شکایت، اختلاف، و مشکل حساب. هر اختلاف، رویدادی امضاشده روی همان قرارداد است.</div></div>
       <div class="card"><div class="k">تنظیمات</div><div class="v">احراز هویت، کلیدهای امضا، ظاهر، و صفحهٔ پیش‌فرض.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
-      <p>در نخستین اجرا، کاربر می‌بیند چه چیزهایی از پیش نصب است و هر کدام چه می‌کنند — و همان را یک بار امضا می‌کند. <strong>قرارداد آغاز</strong> همین است.</p>
+      <p>در نخستین اجرا، کاربر می‌بیند چه چیزهایی از پیش نصب است، هر کدام چه می‌کنند، و <strong>چه کسی متولی وجوه است</strong> — و همان را یک بار امضا می‌کند. <strong>قرارداد آغاز</strong> همین است.</p>
       <div class="card" style="border-color:var(--accent-2)">
         <div class="k seal-text">قاعده</div>
-        <div class="v">ماژول سیستمی از <strong>اجازه گرفتن</strong> معاف است، نه از <strong>قرارداد دادن</strong>. مالی هیچ‌وقت مجوز نمی‌خواهد، اما هیچ‌وقت هم بدون قرارداد امضاشده پولی جابه‌جا نمی‌کند.</div>
+        <div class="v">ماژول سیستمی از <strong>اجازه گرفتن</strong> معاف است، نه از <strong>قرارداد دادن</strong>. مالی هیچ‌وقت مجوز نمی‌خواهد، اما هیچ‌وقت هم بدون قرارداد امضاشده پولی جابه‌جا نمی‌کند. این قاعده دربارهٔ نصب، مجوز و اجرای تعهد است؛ خواندنِ مجاز و نوشتن سبک قاعدهٔ خودشان را دارند.</div>
       </div>
     </div>
   </section>
@@ -728,6 +733,26 @@ input[type=range]::-moz-range-thumb{
     </div>
   </section>
 
+  <!-- NEW : wallet & custodian -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">۱۲ — کیف پول</div>
+    <h2 style="--i:1">کیف پول از فاز یک — و هر موجودی یک مرجع دارد</h2>
+    <div class="cols-3" style="--i:2">
+      <div class="card"><div class="chip">یک</div><div class="k">تجربهٔ کیف پول</div><div class="v">شارژ از مسیر بانکی، خرج با قرارداد، برگشت وجه، و برداشت به شبای تأییدشدهٔ خودِ کاربر. <strong>این از فاز نخست هست.</strong></div></div>
+      <div class="card" style="border-color:var(--accent-2)"><div class="chip on">دو</div><div class="k">متولی وجوه</div><div class="v">چه کسی پول را نگه می‌دارد، به کاربر بدهکار است و برداشت را می‌پردازد. برای <strong>همین فاز</strong> باید تعیین و تأیید شود — نه موکول به اتصال بعدی.</div></div>
+      <div class="card"><div class="chip">سه</div><div class="k">اتصال بانک سینا</div><div class="v">مرحلهٔ بعد. بانک مرجع دفتر مالی همان کیف پول می‌شود و کاربر از ویستا <em>و</em> از شعبه و اینترنت‌بانک به همان وجوه دسترسی دارد.</div></div>
+    </div>
+    <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:1cqw">
+        <p>شارژ کیف پول از درگاه بانکی می‌گذرد، چون رمز پویا آنجاست — و همین است که خرج کردنِ بی‌تشریفات را امن می‌کند. <strong>موجودی قابل خرج، مبلغ مسدودشده و وجه در انتظار تکمیل از هم جدا دیده می‌شوند.</strong> امضای قرارداد یعنی اختیار، نه یعنی پرداخت موفق؛ نتیجه و شمارهٔ پیگیری به همان قرارداد برمی‌گردند.</p>
+      </div>
+      <div class="card" style="border-color:var(--accent-2)">
+        <div class="k seal-text">اصل ۱۸ — هر موجودی یک مرجع دارد</div>
+        <div class="v">پس از انتقال به بانک، دفتر مالیِ مرجع نزد بانک است و ویستا دفتر قابل‌خرجِ موازی نگه نمی‌دارد. برداشت از اینترنت‌بانک هم موجودی قابل خرج در ویستا را کم می‌کند. دفتر <strong>قرارداد</strong> با دفتر <strong>موجودی</strong> یکی نیست.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- 14 -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">۱۳ — کاربرد ۶</div>
@@ -754,7 +779,7 @@ input[type=range]::-moz-range-thumb{
         <div class="card" style="margin-top:.6cqw">
           <div class="k">چهار کنشگر، یک ساز و کار</div>
           <div class="v">
-            <strong>آدم</strong> با امضا در پله‌های ۱ تا ۴ · <strong>اپ</strong> با کلید نرم‌افزاری یا <span class="mono">HSM</span> و سقف اعلام‌شده · <strong>دستیار</strong> که فقط آماده می‌کند و کلید امضا ندارد · <strong>پردازشگر</strong> که روی بستهٔ اجرا امضای گواهی می‌گذارد تا سرویس انتهایی بداند این کاربر همان کسی است که ادعا شده — بی‌آنکه طرف قرارداد باشد.
+            <strong>آدم</strong> با امضا در پله‌های ۱ تا ۴ · <strong>اپ</strong> با کلید نرم‌افزاری یا <span class="mono">HSM</span> و سقف اعلام‌شده · <strong>دستیار</strong> که آماده می‌کند و نوشتن سبکِ مجاز را انجام می‌دهد، اما کلید امضا و اعتبارنامهٔ اجرا ندارد · <strong>پردازشگر</strong> که روی بستهٔ اجرا امضای گواهی می‌گذارد تا سرویس انتهایی بداند این کاربر همان کسی است که ادعا شده — بی‌آنکه طرف قرارداد باشد.
           </div>
         </div>
       </div>
@@ -780,15 +805,15 @@ input[type=range]::-moz-range-thumb{
         <div class="foot"><div class="inp" id="p2inp">پیام…</div><button class="snd">↑</button></div>
       </div>
       <div class="side">
-        <h2 style="font-size:2.8cqw">هر اپی، از هر آدرسی</h2>
-        <p>سرویس‌دهنده اپش را هر جا که خواست بالا می‌آورد و آدرسش را می‌دهد. کاربر آن را اضافه می‌کند، قرارداد استارت را می‌خواند، مجوزها را تیک می‌زند و امضا می‌کند.</p>
+        <h2 style="font-size:2.8cqw">توسعه‌دهنده اپش را عرضه می‌کند</h2>
+        <p>سرویس‌دهنده اپش را هر جا که خواست بالا می‌آورد و در ویترین عرضه می‌کند. افزودن با آدرس هم به همان پروندهٔ انتشار و همان سیاست پذیرش می‌رسد. کاربر قرارداد شروع را می‌خواند، مجوزها را تیک می‌زند و امضا می‌کند.</p>
         <div class="row" style="gap:.8cqw">
           <button class="btn primary" id="p2go">اجرا کن</button>
           <button class="btn" id="p2rst">از نو</button>
         </div>
         <div class="card" style="border-color:var(--accent-2)">
           <div class="k seal-text">مرز باز و بسته</div>
-          <div class="v">هر کسی می‌تواند هر اپی را اضافه کند. اما فقط اپِ احرازشده — همان که نشان آبی دارد — می‌تواند از کاربر پول بگیرد. باز، جایی که بازبودن ارزش دارد؛ بسته، دقیقاً همان‌جا که خسارت می‌زند.</div>
+          <div class="v">انتشار از سیاست ویترین و احراز توسعه‌دهنده می‌گذرد. اما استفاده از <strong>کیف پول ویستا</strong> یک سطح احراز بیشتر می‌خواهد: مستندات شرکت، مقصد تسویه، و فعال شدن اختیار مالیِ همان اپ. باز، جایی که بازبودن ارزش دارد؛ بسته، دقیقاً همان‌جا که خسارت می‌زند.</div>
         </div>
       </div>
     </div>
@@ -809,18 +834,57 @@ input[type=range]::-moz-range-thumb{
       </div>
       <div class="side">
         <h2 style="font-size:2.6cqw">پیدا کردن اپ، با گفتن نیاز</h2>
-        <p>کاربر نمی‌داند چه اپی وجود دارد و لازم هم نیست بداند. نیازش را می‌گوید؛ دستیار در ویترین می‌گردد و قرارداد استارت را می‌آورد.</p>
+        <p>کاربر نمی‌داند چه اپی وجود دارد و لازم هم نیست بداند. نیازش را می‌گوید؛ دستیار <strong>اول میان اتصال‌های خودِ کاربر و بعد در ویترین</strong> می‌گردد و قرارداد شروع را می‌آورد.</p>
         <div class="row" style="gap:.8cqw">
           <button class="btn primary" id="p5go">اجرا کن</button>
           <button class="btn" id="p5rst">از نو</button>
         </div>
         <div class="card" style="background:var(--surface-2)">
           <div class="k">کاری که فهرست نمی‌تواند بکند</div>
-          <div class="v">در یک فروشگاه، کاربر باید بداند دنبال چه بگردد. اینجا نیاز را می‌گوید و پاسخ می‌آید. این یکی از معدود جاهایی است که دستیار کاری می‌کند که هیچ منویی از پسش برنمی‌آید.</div>
+          <div class="v">در یک فروشگاه، کاربر باید بداند دنبال چه بگردد. اینجا نیاز را می‌گوید و پاسخ می‌آید. و جستجو در همین دو جا می‌ماند: <strong>در سه فاز نخست، دستیار به رجیستری‌های بیرونی نمی‌رود.</strong></div>
         </div>
       </div>
     </div>
   </section>
+  <!-- NEW : two doors, one start mechanism -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">افزودن اپ</div>
+    <h2 style="--i:1">دو در، یک سازوکار شروع</h2>
+    <div class="row" style="--i:2; align-items:center; gap:1.2cqw">
+      <div class="toggle" id="tg-door">
+        <button class="on" data-v="a">دستیار پیشنهاد می‌دهد</button>
+        <button data-v="b">کاربر از ویترین اضافه می‌کند</button>
+      </div>
+      <span class="hint">در را عوض کنید</span>
+    </div>
+    <div class="cols-3" style="--i:3" id="door-grid"></div>
+    <div class="cols-2" style="--i:4; gap:2.4cqw; margin-top:.2cqw; align-items:start">
+      <p id="door-note"></p>
+      <div class="card" style="border-color:var(--accent-2)">
+        <div class="k seal-text">یک شناسه، سه نما</div>
+        <div class="v">قرارداد در دستیار یا ویترین، در گفت‌وگوی خودِ اپ، و در «قراردادهای من» <strong>یک شناسه دارد</strong> — سه نسخهٔ مستقل نیست. امضا رابطه را مجاز می‌کند، نه اینکه موفقیت سفارش را تضمین کند: اگر خرید بعداً شکست بخورد اپ حذف نمی‌شود، و اگر اتصال کامل نشود وضعیت «نیازمند اتصال» دیده می‌شود.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW : three verification levels -->
+  <section class="slide" data-sec="کاربردها">
+    <div class="eyebrow" style="--i:0">احراز</div>
+    <h2 style="--i:1">سه سطح — و سه چیزی که با هم اشتباه می‌شوند</h2>
+    <div class="cols-3" style="--i:2">
+      <div class="card"><div class="chip">سطح ۱</div><div class="k">کاربر</div><div class="v">شمارهٔ موبایل، کد ملی و تاریخ تولدِ احرازشده. <strong>برای مشترک ایرانسل</strong>، نتیجهٔ معتبر احراز اپراتور جای ورود دوبارهٔ این اطلاعات را می‌گیرد — اما صرفِ پیش‌شمارهٔ ایرانسل این نتیجه نیست.</div></div>
+      <div class="card"><div class="chip">سطح ۲</div><div class="k">توسعه‌دهنده</div><div class="v">کسی که اپ منتشر می‌کند: احراز قوی‌تر، راه تماس پاسخ‌گو، و اثبات کنترل سرویس. جزئیات مدرک اضافه در سیاست پذیرش تعیین می‌شود.</div></div>
+      <div class="card" style="border-color:var(--accent-2)"><div class="chip on">سطح ۳</div><div class="k">توسعه‌دهندهٔ متصل به کیف پول</div><div class="v">کسی که می‌خواهد اپش از کیف پول ویستا استفاده کند: مستندات شرکت، احراز مسئول و مقصد تسویه، و فعال شدن عملیات مالی مجاز برای همان اپ.</div></div>
+    </div>
+    <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw; align-items:start">
+      <p>احراز توسعه‌دهنده، بررسی فنی اپ، و اجازهٔ استفاده از کیف پول <strong>یک چیز نیستند</strong> و در یک پرچم واحد جمع نمی‌شوند. توسعه‌دهنده می‌تواند احراز شده باشد و اپش هنوز «بررسی‌نشده» باشد؛ چنین اپی می‌تواند با وضعیت روشن عرضه شود — بدون اختیار کیف پول.</p>
+      <div class="card">
+        <div class="k">نشان مالی</div>
+        <div class="v">یعنی این اپ اجازهٔ مشخصِ استفاده از مسیر مالی ویستا را دارد. <strong>تضمین سود یا کیفیت خدماتش نیست.</strong> هویت شرکت یک بار بررسی و برای اپ‌هایش استفاده می‌شود، اما اپ تازه یا مقصد تسویهٔ تازه خودبه‌خود اختیار مالی نمی‌گیرد.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- P3 : prototype — the app list -->
   <section class="slide" data-sec="کاربردها">
     <div class="eyebrow" style="--i:0">نمونهٔ کار — فهرست اپ‌ها</div>
@@ -926,6 +990,7 @@ input[type=range]::-moz-range-thumb{
         <li>پرتکرارترین تراکنش‌های کل این سبد، و کاملاً در اختیار خودمان.</li>
         <li>هیچ مذاکره‌ای لازم ندارد. هیچ شریکی لازم ندارد.</li>
         <li>و دقیقاً همان بخشی است که قرار است اداره‌اش کنیم.</li>
+        <li class="x">یکی از <strong>چهار مسیر عرضه</strong> — و تنها مسیری که به مذاکره با بیرون نیاز ندارد.</li>
       </ul>
       <div style="display:flex; flex-direction:column; gap:1cqw">
         <div class="card"><div class="k">ارزش قابل اندازه‌گیری در چند ماه</div><div class="v"><strong>کاهش هزینه:</strong> هر تماسی که دستیار حل کند به‌جای اپراتور انسانی، صرفه‌جویی مستقیم و قابل انتساب است.<br><br><strong>درآمد هر مشترک:</strong> «بسته‌ات فردا تمام می‌شود، همان را تمدید کنم؟» فروشی است که منوی USSD هرگز انجام نمی‌دهد.<br><br><strong>ریزش:</strong> مشترکی که خدمات دیجیتال اپراتور را مصرف می‌کند، کمتر می‌رود.</div></div>
@@ -936,21 +1001,24 @@ input[type=range]::-moz-range-thumb{
   <!-- 20 : the invariant -->
   <section class="slide" data-sec="امنیت">
     <div class="eyebrow" style="--i:0">۱۹ — اصل بنیادی</div>
-    <div class="quote" style="--i:1; font-size:2.9cqw; max-width:44ch">خواندن آزاد است. پول فقط از راه قرارداد جابه‌جا می‌شود. کلید امضا هیچ‌وقت دست دستیار نیست. اجرا هم جایی انجام می‌شود که دستیار اصلاً به آن دسترسی ندارد.</div>
-    <p style="--i:2">هر چه پول یا تعهد در آن باشد، قراردادی دارد که کاربر آن را دیده و امضا کرده. هر چه بی‌اثر است — دیدن، پرسیدن، جستجو — آزاد و بدون اصطکاک انجام می‌شود.</p>
+    <div class="quote" style="--i:1; font-size:2.7cqw; max-width:46ch">خواندن در محدودهٔ اتصال و مجوز است. پول ویستا فقط از راه قرارداد جابه‌جا می‌شود. کلید امضا هیچ‌وقت دست دستیار نیست. اجرای قرارداد از مسیری می‌گذرد که دستیار به آن دسترسی ندارد.</div>
+    <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
+      <p>پرداخت، مجوز و تعهد سندی دارند که کاربر دیده و تأیید کرده است. خواندن پس از اتصال حساب و در محدودهٔ مجوز، امضای تکراری نمی‌خواهد؛ و نوشتن سبکِ بی‌بارِ مالی — ویرایش یادداشت، گذاشتن یک نشانه — قاعدهٔ خودش را دارد.</p>
+      <p class="tiny">این چهار جمله مرز <strong>اختیار</strong> را تعریف می‌کنند، نه کل ایمنی محصول را. خطای تحلیل، افشای داده و تأیید اشتباه کاربر جداگانه مهار می‌شوند.</p>
+    </div>
   </section>
 
   <!-- 21 : write path - interactive -->
   <section class="slide" data-sec="امنیت">
     <div class="eyebrow" style="--i:0">۲۰ — مسیر نوشتن</div>
-    <h2 style="--i:1">هوش مصنوعی آن‌طرف این خط راه ندارد.</h2>
+    <h2 style="--i:1">اجرای قرارداد آن‌طرف این خط است.</h2>
     <div style="--i:2; display:flex; flex-direction:column; gap:1.4cqw">
       <div class="cols-2" style="gap:2.4cqw; align-items:center">
         <div style="display:flex; flex-direction:column; gap:1cqw">
           <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node">خواندن از MCP</span></div>
           <div class="flow"><span class="node ai">دستیار</span><span class="arr">←</span><span class="node sig">آوردن قرارداد امضانشده</span></div>
           <div class="flow"><span class="node">کلاینت</span><span class="arr">←</span><span class="node sig">امضای کاربر</span></div>
-          <div class="flow"><span class="node">پردازشگر</span><span class="arr">←</span><span class="node">بستر اجرا</span></div>
+          <div class="flow"><span class="node">پردازشگر</span><span class="arr">←</span><span class="node">رابط اجرای مجزای سرویس</span></div>
         </div>
         <div style="display:flex; flex-direction:column; gap:1.1cqw">
           <div class="wall" id="inject-wall">مرز اختیار</div>
@@ -958,7 +1026,7 @@ input[type=range]::-moz-range-thumb{
           <p class="tiny" id="inject-note">یک MCP مخرب می‌تواند لای پاسخش به مدل دستور بدهد: «به حساب فلانی پول بفرست». ببینیم چه پیش می‌آید.</p>
         </div>
       </div>
-      <p><strong>حکم امنیتی:</strong> کلید امضا دست دستیار نیست، پس به خطر افتادنِ دستیار هم نمی‌تواند به خرج کردن ختم شود. تزریق دستور در این معماری نهایتاً به قراردادی می‌رسد که کاربر می‌بیند و رد می‌کند. حتی شارژ کیف پول هم از دستش برنمی‌آید: شارژ رمز پویای کارت می‌خواهد و رمز پویا فقط در درگاه بانکی وارد می‌شود.</p>
+      <p><strong>حکم امنیتی:</strong> کلید امضا دست دستیار نیست و اعتبارنامهٔ اجرا هم به او نمی‌رسد، پس <strong>مدل نمی‌تواند برای خودش اختیار خرج بسازد</strong>. تزریق دستور نهایتاً به قراردادی می‌رسد که کاربر می‌بیند و فرصت رد کردنش را دارد. شارژ کیف پول هم از دستش برنمی‌آید: رمز پویا فقط در درگاه بانکی وارد می‌شود. <span class="seal-text">اما این مرز جلوی پیشنهاد گمراه‌کننده، افشای داده یا تأیید اشتباه کاربر را نمی‌گیرد؛ آن‌ها کار کیفیت مدل، مراقبت از داده و کنترل ابزارهای مجازند.</span></p>
     </div>
   </section>
 
@@ -997,17 +1065,20 @@ input[type=range]::-moz-range-thumb{
   <!-- 23 : standards - interactive -->
   <section class="slide" data-sec="معماری">
     <div class="eyebrow" style="--i:0">۲۲ — استانداردها</div>
-    <h2 style="--i:1">سه لایه، سه استاندارد</h2>
+    <h2 style="--i:1">استاندارد را برمی‌داریم، فقط شکاف را پر می‌کنیم</h2>
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:.7cqw" id="layers">
-        <button class="layer on" data-l="0"><span class="lname">تعامل</span><span class="lstd">Telegram-shaped</span><span class="ldesc">بات، ‎/start‎، دکمه، پیوست و مینی‌اپ؛ همان واژگانی که کاربر ایرانی از قبل بلد است.</span></button>
-        <button class="layer" data-l="1"><span class="lname">عامل</span><span class="lstd">OpenAI-compatible</span><span class="ldesc">رابط استاندارد مدل. مدل یک وابستگی قابل تعویض است؛ کیوِن، جی‌ال‌ام، یا میزبانی داخلی.</span></button>
-        <button class="layer" data-l="2"><span class="lname">قابلیت</span><span class="lstd">MCP + MCP Apps</span><span class="ldesc">تنها استاندارد یکپارچه‌سازی. از یک اعلام واحد، هم ابزار برای دستیار ساخته می‌شود و هم رابط تصویری برای آدم. خواندن، ساختن قرارداد، و نوشتن‌های بی‌بارِ مالی که خودِ اپ اعلامشان کرده. پول هیچ‌وقت — مسیر پول از پردازشگر می‌گذرد و ابزار MCP راهی به آن ندارد.</span></button>
-        <button class="layer" data-l="3"><span class="lname">تسویه</span><span class="lstd">اجرای سکو</span><span class="ldesc">قرارداد امضاشده اجرا می‌شود، پول جابه‌جا می‌شود، کارمزد همان لحظه تقسیم می‌شود و ردّ حسابرسی می‌ماند. هیچ چیزی اجرا نمی‌شود که در متن امضاشده نباشد.</span></button>
+        <button class="layer on" data-l="0"><span class="lname">قابلیت</span><span class="lstd">MCP</span><span class="ldesc"><strong>سطح پایه.</strong> سرویس با MCP معمولی و احراز استاندارد وصل می‌شود. برای استفادهٔ پایه، قرارداد و کلید امضای ویستا لازم نیست — پس هزینهٔ پیوستن کوچک می‌ماند.</span></button>
+        <button class="layer" data-l="1"><span class="lname">رابط تصویری</span><span class="lstd">MCP Apps</span><span class="ldesc">اختیاری. مینی‌اپ می‌تواند از همین استاندارد بیاید. اما پشتیبانی از ابزار به‌تنهایی رابط کامل نمی‌سازد؛ مسیر مستقیم هر قابلیتِ عرضه‌شده باید آزموده شود.</span></button>
+        <button class="layer" data-l="2"><span class="lname">اتصال حساب</span><span class="lstd">OAuth · OIDC</span><span class="ldesc">شریک همکار می‌تواند هویت ویستا را بپذیرد؛ سرویس مستقل از روش مجوز خودش استفاده می‌کند. ورود با رمز یک‌بارمصرف روش احراز است، نه جایگزین این‌ها. توکن به مدل نمی‌رسد و تازه‌شدنش اختیار تازه نمی‌سازد.</span></button>
+        <button class="layer" data-l="3"><span class="lname">انتشار</span><span class="lstd">MCP Registry</span><span class="ldesc">قالب فرادادهٔ انتشار، با افزونهٔ نسخه‌دار ویستا. <strong>اما جستجوی رجیستری‌های بیرونی در سه فاز نخست نداریم:</strong> دستیار اول میان اتصال‌های کاربر و بعد در ویترین خودمان می‌گردد.</span></button>
+        <button class="layer" data-l="4"><span class="lname">اختیار مالی</span><span class="lstd">AP2</span><span class="ldesc"><strong>افزودهٔ اختیاری روی MCP.</strong> اختیار خرید را به شرایط امضاشدهٔ فروشنده و اختیار پرداخت را به همان خرید گره می‌زند و برای نتیجه رسید دارد. الگوی Trusted Agent Provider برای شریکی که به سطح تأیید ویستا اعتماد می‌کند.</span></button>
+        <button class="layer" data-l="5"><span class="lname">مدل</span><span class="lstd">Provider API</span><span class="ldesc">مدل یک وابستگی قابل تعویض پشت رابطی استاندارد است؛ کیوِن، جی‌ال‌ام، یا میزبانی داخلی. عوض کردنش یک تغییر پیکربندی است، نه بازنویسی.</span></button>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.2cqw">
-        <div class="quote" style="font-size:1.95cqw">‏MCP می‌گوید سرویس‌ها چطور در دسترس‌اند، رابط OpenAI می‌گوید مدل چطور عوض می‌شود، و تلگرام می‌گوید همهٔ این‌ها چه شکلی‌اند. تسویه هم کار خودِ سکوست.</div>
-        <p class="tiny">این‌ها سه استاندارد جدا نیستند که کنار هم بچینیم. ‏MCP Apps همان الگوی بات و مینی‌اپ است، منتها به شکل یک استاندارد باز و ساخته‌شده برای دستیارها؛ و Apps SDK شرکت اوپن‌ای‌آی هم لایه‌ای است روی همان. امروز حدود ۹۷ میلیون دانلود ماهانهٔ کتابخانه‌های MCP ثبت می‌شود و این استاندارد در دسامبر ۲۰۲۵ به بنیاد لینوکس واگذار شد؛ یعنی سرمایه‌گذاری روی آن، سرمایه‌گذاری روی یک شرکت خاص نیست.</p>
+        <div class="quote" style="font-size:1.9cqw">‏MCP می‌گوید سرویس چطور در دسترس است، AP2 می‌گوید اختیار خرید چطور اثبات می‌شود، و OAuth می‌گوید حساب چطور متصل می‌شود. آنچه خودمان تعریف می‌کنیم فقط شکاف‌هاست.</div>
+        <p class="tiny"><strong>یک MCP، دو سطح یکپارچه‌سازی.</strong> مشتری معمولی MCP می‌تواند ابزارها را صدا بزند؛ اما فهم و اجرای قرارداد ویستا به پشتیبانی <strong>پروفایل قرارداد</strong> نیاز دارد، که سطح دوم و اختیاری است. اجرای قرارداد رابط جدا و اعتبارنامهٔ جدا دارد — پنهان کردن یک ابزار اجرایی MCP همان جداسازی نیست.</p>
+        <p class="tiny">امروز حدود ۹۷ میلیون دانلود ماهانهٔ کتابخانه‌های MCP ثبت می‌شود و این استاندارد در دسامبر ۲۰۲۵ به بنیاد لینوکس واگذار شد؛ یعنی سرمایه‌گذاری روی آن، سرمایه‌گذاری روی یک شرکت خاص نیست. <span class="seal-text">و مجوز غیرمالی، اختیار فروش دارایی و شرایط سرمایه‌گذاری صرفاً با تغییر نام به سند پرداخت تبدیل نمی‌شوند؛ هر کدام نگاشت صریح خودش را می‌خواهد.</span></p>
       </div>
     </div>
   </section>
@@ -1036,16 +1107,36 @@ input[type=range]::-moz-range-thumb{
       <div style="display:flex; flex-direction:column; gap:1.2cqw">
         <div class="quote" style="font-size:2cqw">آنچه سکوها را زمین می‌زند هزینهٔ یکپارچه‌سازی است، نه بی‌انگیزگی شرکا.</div>
         <p>مدیر محصولِ یک سرویس، سه ماه کار مهندسی را می‌گذارد کنار بازدهی نامعلوم و تصمیم را عقب می‌اندازد. باید این محاسبه را عوض کرد.</p>
+        <p class="tiny">و صادق باشیم: هزینهٔ اتصال فقط نوشتن MCP نیست. ورود و مجوز، میزبانی، عملیات و پشتیبانی — و برای اپ مالی، تسویه — هم جزو آن‌اند. محیط آزمایشی برای همین است که شروع پیش از توافق تجاری ممکن باشد.</p>
       </div>
       <div style="display:flex; flex-direction:column; gap:1.1cqw">
         <div class="card" style="border-color:var(--accent)">
-          <div class="k az">یک مشخصات، و تمام</div>
-          <div class="v">ما یک سند مشخصات منتشر می‌کنیم. شریک همان را به دستیار کدنویسِ خودش می‌دهد و یکپارچه‌سازی را می‌سازد. تصمیم از «سرمایه‌گذاری» تبدیل می‌شود به «یک بار امتحان کردن».</div>
+          <div class="k az">یک SDK، دو مسیر</div>
+          <div class="v">راهنمای ماشین‌خوان، مهارت برای دستیار کدنویس، طرح‌واره، نمونه و آزمون انطباق. دو مسیر در یک ورودی مستند می‌شوند: <strong>MCP معمولی</strong>، و <strong>MCP همراه پروفایل قرارداد مبتنی بر AP2</strong>. شریک همان را به دستیار کدنویسِ خودش می‌دهد.</div>
         </div>
         <div class="card" style="border-color:var(--green)">
           <div class="k" style="color:var(--green)">و اگر از قبل بات دارید</div>
-          <div class="v">همین حالا بات تلگرام یا بله دارید؟ با تغییری اندک، همان بات در ویستا کار می‌کند. کاری که کرده‌اید دور ریخته نمی‌شود.</div>
+          <div class="v">سرویسی که بات تلگرام یا بله دارد، منطقش را نوشته است؛ آنچه می‌ماند تطبیق است، نه ساختن. وعدهٔ سازگاری سیم‌به‌سیم نمی‌دهیم، اما کاری که کرده‌اید دور ریخته نمی‌شود.</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW : four supply routes -->
+  <section class="slide" data-sec="اکوسیستم">
+    <div class="eyebrow" style="--i:0">عرضه</div>
+    <h2 style="--i:1">چهار مسیر برای ساختن طرف عرضه</h2>
+    <div class="cols-4" style="--i:2">
+      <div class="card"><div class="chip">۱</div><div class="k">خدمات خودمان و گروه</div><div class="v">کنکوریا و خدمات ایرانسل. دسترسی به تیم محصول و کاربران بالقوه — و مسیری که به مذاکره با بیرون نیاز ندارد.</div></div>
+      <div class="card"><div class="chip">۲</div><div class="k">اپ‌های دوستان</div><div class="v">ایتلا، مانیرو، آموزیم، زنبیل. مذاکره با کسب‌وکارهای موجود از راه رابطهٔ قبلی. صرفِ بودن در یک دسته، دلیل مشترک بودن مشتریشان نیست.</div></div>
+      <div class="card"><div class="chip">۳</div><div class="k">سرویس‌های بین‌المللی منتخب</div><div class="v">جستجو و ویکی‌پدیا، اطلاعات فیلم، پادکست، تقویم گوگل. چند قابلیت مفید بدون ساخت دوبارهٔ سرویس — <strong>در صورت دسترسی و امکان استفادهٔ مجاز</strong>.</div></div>
+      <div class="card" style="border-color:var(--green)"><div class="chip ok">۴</div><div class="k">بوت‌کمپ «داشت»</div><div class="v">حدود شش ماه؛ نامش از کاشت و داشت و برداشت. پرورش تیمی که محصول تازه بسازد و نگهش دارد، بر پایهٔ کشف مستمر نیاز و تحویل مداوم.</div></div>
+    </div>
+    <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw; align-items:start">
+      <p>این‌ها چهار کار متفاوت می‌کنند و جای هم را نمی‌گیرند. اتصال یک تقویم به یک کاربر ارزش فردی می‌دهد، اما به‌تنهایی شبکه‌ای از عرضه‌کنندگان فعال نمی‌سازد. و داشتن چند دوستِ صاحب اپ، جای تعهد عملیاتی و بازگشت کاربران را نمی‌گیرد.</p>
+      <div class="card" style="border-color:var(--green)">
+        <div class="k" style="color:var(--green)">«داشت» شرط شروع ویستا نیست</div>
+        <div class="v">تیم مسئلهٔ خودش را انتخاب می‌کند و SDK و محیط آزمایشی و مربی و دسترسی به مشتری می‌گیرد. در پایان، پیشنهاد این است که روی طرح‌های دارای <strong>کاربر ماندگار</strong> سرمایه‌گذاری شود — نه نمایش پایان دوره. مالکیت و شرایط پیش از جذب دوره روشن می‌شوند و سرمایه‌گذاری برای همه تضمین نیست؛ وابستگی مالکیتی اعلام می‌شود و توصیهٔ دستیار را نمی‌خرد.</div>
       </div>
     </div>
   </section>
@@ -1055,13 +1146,13 @@ input[type=range]::-moz-range-thumb{
     <div class="eyebrow" style="--i:0">۲۸ — درآمد</div>
     <h2 style="--i:1">سه جریان، به ترتیب سرعت تحقق</h2>
     <div class="cols-3" style="--i:2">
-      <div class="card"><div class="chip">ماه‌های نخست</div><div class="k">ارزش مخابراتی</div><div class="v">کاهش هزینهٔ مرکز تماس و شعب، بالا رفتن درآمد هر مشترک و کم شدن ریزش؛ عددی که مدیر مالی خودش می‌تواند راستی‌آزمایی کند.</div></div>
-      <div class="card"><div class="chip">میان‌مدت</div><div class="k">پمپاژ هوش</div><div class="v">فروش هوشمندی به سرویس‌ها به‌صورت اشتراک و مصرف، مستقل از حجم تراکنش. و اشتراکی برای کاربر، اگر بخواهد پیشنهادهای اسپانسری را نبیند.</div></div>
+      <div class="card"><div class="chip">ماه‌های نخست</div><div class="k">ارزش مخابراتی</div><div class="v">کاهش هزینهٔ مرکز تماس و شعب، بالا رفتن درآمد هر مشترک و کم شدن ریزش؛ عددی که مدیر مالی خودش می‌تواند راستی‌آزمایی کند. این مسیر اندازه‌گیری در <strong>خدمات ایرانسل</strong> است؛ اگر مسیر دیگری برای شروع انتخاب شود، اقتصادش از ابتدا جدا سنجیده می‌شود.</div></div>
+      <div class="card"><div class="chip">میان‌مدت</div><div class="k">پمپاژ هوش</div><div class="v">فروش هوشمندی به سرویس‌ها به‌صورت اشتراک و مصرف، مستقل از حجم تراکنش — اما وابسته به قرارداد خدمت. وجود یک MCP عمومی یا اتصال حساب گوگل به معنی پذیرش این هزینه از سوی ارائه‌دهنده نیست.</div></div>
       <div class="card"><div class="chip">مقیاس</div><div class="k">کارمزد تراکنش</div><div class="v">در بازارگاه‌ها سهم از کارمزدِ خودِ سرویس، در کالای دیجیتال درصدی از مبلغ، و در تراکنش مالی کارمزد ثابت.</div></div>
     </div>
     <div class="cols-2" style="--i:3; gap:2.4cqw; margin-top:.4cqw">
       <p class="tiny"><strong>هیچ‌وقت درصدی از گردش بازارگاه برنمی‌داریم:</strong> اگر کارمزد خود اسنپ از یک سفر ۲۰٪ باشد، ۳۰٪ روی مبلغ سفر از کل درآمد او بیشتر می‌شود. سهم ما از کارمزد اوست، نه از مبلغ تراکنش.</p>
-      <p class="tiny"><strong>و اجباری در کار نیست:</strong> پرداخت ما داخل خودِ گفت‌وگو انجام می‌شود؛ دستیار با یک قدم پرداخت را تمام می‌کند، بی‌آنکه کاربر به درگاه بیرونی برود. یعنی از چیزی که خودِ اپ می‌سازد آسان‌تر است. اپی هم که ترجیح بدهد درگاه خودش را بیاورد، با او نمی‌جنگیم؛ فقط این راحتی را از دست می‌دهد.</p>
+      <p class="tiny"><strong>و اجباری در کار نیست:</strong> پرداخت ما داخل خودِ گفت‌وگو انجام می‌شود و از چیزی که خودِ اپ می‌سازد آسان‌تر است. اپی هم که ترجیح بدهد درگاه خودش را بیاورد، با او نمی‌جنگیم. <span class="seal-text">این سیاست عمومی است؛ مسیر پرداخت پیشنهادی برای ایتلا موضوع مذاکرهٔ همان یکپارچه‌سازی است.</span> و خدمات غیرتراکنشی — جستجو، تقویم، پادکست — هزینهٔ مدل دارند که باید از بودجهٔ آزمایش یا اشتراک پوشش داده شود؛ تعداد اتصال‌ها درآمد نیست.</p>
     </div>
   </section>
 
@@ -1104,6 +1195,39 @@ input[type=range]::-moz-range-thumb{
     <p style="--i:3"><strong>هوش مصنوعی می‌گوید چرا حالا؛ دارایی‌های اپراتوری می‌گویند چرا ماندگار.</strong> و چهار مورد از این پنج تا اختیار سازمانی نباشد آزاد نمی‌شوند.</p>
   </section>
 
+  <!-- NEW : Eitala, the proposed first partner -->
+  <section class="slide" data-sec="برنامه">
+    <div class="eyebrow" style="--i:0">پیشنهاد شروع</div>
+    <h2 style="--i:1">ایتلا — پیشنهاد من برای نخستین یکپارچه‌سازی مالی</h2>
+    <div class="row" style="--i:2; gap:.7cqw; flex-wrap:wrap">
+      <span class="chip on">پیشنهاد — تصمیم نهایی با ایرانسل</span>
+      <span class="chip ok">اصل اتصال: موافقت شده</span>
+      <span class="chip on">درگاه پرداخت و تسویه: توافق نشده</span>
+    </div>
+    <div class="cols-2" style="--i:3; gap:2.4cqw; align-items:start">
+      <div style="display:flex; flex-direction:column; gap:1cqw">
+        <div class="flow">
+          <span class="node">قیمت و دارایی</span><span class="arr">←</span><span class="node ai">دیدگاه تحلیلی</span><span class="arr">←</span><span class="node">انتخاب کار</span>
+        </div>
+        <div class="flow">
+          <span class="node sig">تأیید قرارداد</span><span class="arr">←</span><span class="node">نتیجه و رسید</span><span class="arr">←</span><span class="node">پشتیبانی، در همان گفت‌وگو</span>
+        </div>
+        <p>گروه آغازین پیشنهادی، <strong>مشتریان فعلی ایتلا</strong> هستند که برای پس‌انداز طلا می‌خرند. نخست یک خرید، یک فروش، برگشت وجه و یک گفت‌وگوی پشتیبانی از ابتدا تا انتها آزموده می‌شود؛ سپس بقیهٔ چرخه‌های خدمت کامل می‌شوند.</p>
+        <p class="tiny"><strong>سهمتو</strong> شمار دیدگاه‌های خرید و فروش تحلیلگران را می‌دهد: «۶ رأی خرید از ۱۰ رأی جهت‌دار» — نه «۶۰٪ احتمال سود». و اگر دستیار پاسخ پشتیبانی را نیابد، با <strong>قرارداد پلهٔ یک</strong> پرسش و زمینهٔ انتخاب‌شده را به endpoint پشتیبانی می‌فرستد و شمارهٔ پرونده به همان قرارداد می‌چسبد.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1cqw">
+        <div class="card" style="border-color:var(--accent-2)">
+          <div class="k seal-text">آنچه هنوز توافق نشده</div>
+          <div class="v">مدیرعامل ایتلا با <strong>اصل اتصال</strong> موافقت کرده، با این ترتیب که توسعهٔ اولیه را من انجام دهم. اما پذیرش ویستا به‌عنوان درگاه پرداخت، برگشت وجوه به کیف پول، و سقف‌های اعتبار و موعد تسویه هنوز توافق تجاری می‌خواهند. <strong>موافقت با اتصال، موافقت با این شرایط نیست.</strong></div>
+        </div>
+        <div class="card">
+          <div class="k">اعتبار دوطرفه و تسویهٔ خالص</div>
+          <div class="v">پیشنهاد: هر طرف تا سقف مشخصی به دیگری اعتبار می‌دهد و فقط <strong>خالص</strong> بدهی در پایان روز تسویه می‌شود. اگر خریدها ۸۰ واحد بدهی بسازند و فروش‌ها ۵۰ واحد در جهت عکس، ۳۰ واحد پرداخت می‌شود. سقف هر جهت پیش از تعهد سنجیده می‌شود و بدهی تا تأیید تسویه باقی می‌ماند.<br><br><span class="seal-text">اما اعتبار تجاری جای نقدینگی را نمی‌گیرد: متولی کیف پول باید وجه برداشتی را که وعده داده فراهم کند.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 32 -->
   <section class="slide" data-sec="برنامه">
     <div class="eyebrow" style="--i:0">۳۱ — مسیر</div>
@@ -1112,20 +1236,20 @@ input[type=range]::-moz-range-thumb{
       <div class="phase">
         <span class="pn">STAGE 01</span>
         <span class="pt">اثبات</span>
-        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">کنکوریا با حدود ۲۳٬۰۰۰ کاربر، و خدمات خود ایرانسل.<br><br>شش اپ سیستمی · موتور قرارداد · <strong>امضای پلهٔ ۱ و ۲</strong>، با پله بر حسب مقصد پول · بات و مینی‌اپ · استارت ضمنی و ماژول اطلاع‌رسانی · پرداخت روی ریل بانک سینا · اشتراک‌گذاری قرارداد با لینک و پیامک · نسخهٔ اول SDK و محیط آزمایشی شرکا · رسیدگی به اختلاف.</div>
+        <div class="v" style="font-size:1.2cqw; color:var(--fg-2); line-height:1.62">یک گروه مشخص، یک کار کامل و تکرارشونده، با پول واقعی.<br><br><strong>کیف پول دارای موجودی از همین فاز</strong> — با متولی وجوه و ترتیبات مالی دورهٔ نخست · شش اپ سیستمی · دروازهٔ قابلیت · قرارداد از پیش‌نویس تا اجرا · <strong>امضای پلهٔ ۱ و ۲</strong> · دو مسیر افزودن اپ و اتصال حساب · اعلان و پشتیبانی · اشتراک‌گذاری قرارداد · نسخهٔ اول SDK بر پایهٔ MCP و AP2 و محیط آزمایشی.<br><br><span class="seal-text">وکالت در این فاز نیست؛ کاربر در لحظهٔ تأیید حاضر است.</span></div>
       </div>
       <div class="phase p2">
         <span class="pn">STAGE 02</span>
         <span class="pt">مقیاس</span>
-        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">پایگاه مشترکان ایرانسل.<br><br><strong>امضای پلهٔ ۳ و ۴</strong> — کلید گوشی و سیم‌کارت · وکالت، هم به اپ و هم به دستیار · کیف پول زیر مجوز بانک، با واریز و برداشت · اپ‌های شخص ثالث در سطح احرازشده · پمپاژ هوش به‌عنوان محصول · مسیریابی چندلایهٔ مدل و آغاز میزبانی داخلی.</div>
+        <div class="v" style="font-size:1.2cqw; color:var(--fg-2); line-height:1.62">پایگاه مشترکان ایرانسل.<br><br><strong>امضای پلهٔ ۳ و ۴</strong> — کلید گوشی و سیم‌کارت · <strong>وکالت</strong>، هم به اپ و هم به دستیار، با سقف و انقضا · <strong>بانک سینا به‌عنوان backend و مرجع دفتر مالیِ همان کیف پول</strong> · پذیرش گسترده‌تر توسعه‌دهندگان احرازشده · پمپاژ هوش به‌عنوان محصول · مسیریابی چندلایهٔ مدل و آغاز میزبانی داخلی · ورود تیم‌های «داشت».</div>
       </div>
       <div class="phase p3">
         <span class="pn">STAGE 03</span>
         <span class="pt">گشایش</span>
-        <div class="v" style="font-size:1.24cqw; color:var(--fg-2); line-height:1.65">افزودن آزاد اپ با آدرس، در مقیاس · درآمد بازارچه · گفت‌وگوی کاربر با کاربر، پشت مجوز پیام‌رسان · صدا · و برای بررسی، نه وعده: دارایی توکن‌شده و قرارداد خوداجرا.</div>
+        <div class="v" style="font-size:1.2cqw; color:var(--fg-2); line-height:1.62">انتشار گسترده‌تر در ویترین، در مقیاس · درآمد بازارچه و حضور اسپانسری · گفت‌وگوی کاربر با کاربر، پشت مجوز پیام‌رسان · صدا · و برای بررسی، نه وعده: دارایی توکن‌شده، قرارداد خوداجرا، و جستجوی رجیستری‌های بیرونی.</div>
       </div>
     </div>
-    <p style="--i:3" class="tiny">فاز اول به هیچ شریک بیرونی نیاز ندارد. نکتهٔ سنجیده در این ترتیب، جای نردبان امضاست: پله‌های ۱ و ۲ همان چیزی است که کاربر ایرانی از هر اپ بانکی می‌شناسد و از روز اول کار می‌کند؛ پله‌های ۳ و ۴ — که مزیت تکرارناپذیر اپراتور است — به زیرساخت کلید عمومی وابسته‌اند و در فاز دوم می‌آیند.</p>
+    <p style="--i:3" class="tiny"><strong>نخست یک گروه مشخص باید کاری واقعی را کامل انجام دهد و برای آن برگردد</strong> — تعداد اپ یا بزرگیِ پایگاه مشترکان این را ثابت نمی‌کند. نردبان امضا عمداً میان دو فاز اول شکسته: پله‌های ۱ و ۲ از روز اول؛ پله‌های ۳ و ۴ وابسته به زیرساخت کلید. و در <strong>هیچ‌یک از سه فاز</strong>، دستیار برای پیدا کردن اپ به رجیستری بیرونی نمی‌رود.</p>
   </section>
 
   <!-- 33 -->
@@ -1134,14 +1258,14 @@ input[type=range]::-moz-range-thumb{
     <h2 style="--i:1">کارهایی که از امروز باید شروع شوند</h2>
     <div class="cols-2" style="--i:2; gap:2.4cqw; align-items:start">
       <div style="display:flex; flex-direction:column; gap:.8cqw">
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">شریک مدل</div><div class="v">پیدا کردن دو شرکت چینی که مدل ما را تأمین کنند، و بستن قرارداد با هر دو.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">شریک مدل</div><div class="v">سنجش کیفیت فارسی <strong>پیش از انتخاب</strong>، و قرارداد با دو شرکت — با شرط وزن باز، اجازهٔ آموزش روی دادهٔ فارسی، و بند خروج.</div></div>
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">زیرساخت کلید</div><div class="v">کلید و هویت برای اپ‌ها و برای امضای کاربر. طولانی‌ترین کار است و امضای درون سیم‌کارت به آن وابسته است، پس باید زودتر از همه شروع شود.</div></div>
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">نمونهٔ کارِ لایهٔ قرارداد</div><div class="v">ساختن، امضا کردن و اجرای یک قرارداد واقعی از ابتدا تا انتها — پیش از آنکه چیزی به کسی وعده بدهیم.</div></div>
       </div>
       <div style="display:flex; flex-direction:column; gap:.8cqw">
-        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">شرایط قرارداد مدل</div><div class="v">وزن باز، اجازهٔ آموزش روی دادهٔ فارسی، و بند خروج.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">مشخصات مشترک و SDK</div><div class="v">نسخهٔ نخست بر پایهٔ MCP و پروفایل قرارداد مبتنی بر AP2، با آزمون انطباق و محیط آزمایشی — که فقط قابلیت‌های عرضه‌شدنی را پوشش دهند.</div></div>
         <div class="card" style="padding:1.1cqw 1.4cqw"><div class="k" style="font-size:1.45cqw">سخت‌افزار</div><div class="v">کارت‌های گرافیکی که بعداً باید میزبان مدل باشند. تهیه‌شان از همه دیرتر طول می‌کشد.</div></div>
-        <div class="card" style="padding:1.1cqw 1.4cqw; border-color:var(--accent-2)"><div class="k seal-text" style="font-size:1.45cqw">مسیر حقوقی — کارِ ایرانسل</div><div class="v">مجوز پرداخت‌یاری، کیف پول زیر مجوز بانک، اتصال به شاپرک، و یک پاسخ روشن از بانک مرکزی دربارهٔ تراکنش‌هایی که دستیار شروع می‌کند.</div></div>
+        <div class="card" style="padding:1.1cqw 1.4cqw; border-color:var(--accent-2)"><div class="k seal-text" style="font-size:1.45cqw">مسیر حقوقی — کارِ ایرانسل</div><div class="v">مجوز پرداخت‌یاری · <strong>ترتیبات کیف پول فاز نخست</strong>: متولی وجوه، حساب‌های پشت موجودی، واریز و برداشت و نقدینگی · اتصال به شاپرک · توافق انتقال backend به بانک سینا · و یک پاسخ روشن از بانک مرکزی دربارهٔ تراکنش‌هایی که دستیار شروع می‌کند.</div></div>
       </div>
     </div>
   </section>
@@ -1150,14 +1274,14 @@ input[type=range]::-moz-range-thumb{
   <section class="slide" data-sec="برنامه">
     <div class="eyebrow" style="--i:0">ریسک</div>
     <h2 style="--i:1">آنچه می‌تواند شکست بخورد</h2>
-    <div class="cols-3" style="--i:2">
+    <div class="cols-4" id="riskgrid" style="--i:2; gap:.9cqw">
       <div class="card" style="gap:0; padding:0; overflow:hidden">
         <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر پیوستن گران باشد</div><div class="v">سرویس‌ها نمی‌آیند و سکو خالی می‌ماند.</div></div>
-        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — یک سند مشخصات که دستیار کدنویسِ شریک بخواند، و فاز اولی که به هیچ شریکی نیاز ندارد.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — یک سند مشخصات که دستیار کدنویسِ شریک بخواند، و <strong>چهار مسیر عرضه</strong> که وابستگی را به یک شریک کاهش می‌دهند.</div></div>
       </div>
       <div class="card" style="gap:0; padding:0; overflow:hidden">
         <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر فارسیِ مدل ضعیف باشد</div><div class="v">دستیار درست نمی‌فهمد و کاربر بار دوم سراغش نمی‌آید.</div></div>
-        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — دو شریک به‌جای یکی، و آموزش مدل روی دادهٔ فارسی.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — سنجش فارسی پیش از انتخاب، دو شریک به‌جای یکی، و آموزش روی دادهٔ فارسی. مدل برای خودش اختیار مالی نمی‌سازد؛ اما خطای پیشنهاد ممکن است و اندازه‌گیری می‌شود.</div></div>
       </div>
       <div class="card" style="gap:0; padding:0; overflow:hidden">
         <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر کاربر اعتماد نکند</div><div class="v">هنوز معلوم نیست مردم چقدر حاضرند پولشان را دست نرم‌افزار بدهند.</div></div>
@@ -1172,6 +1296,14 @@ input[type=range]::-moz-range-thumb{
         <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — قرارداد امضاشده به‌عنوان مدرک، شرایط استفاده به‌عنوان کف کار، و صندوق جبران در سال اول.</div></div>
       </div>
       <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر تسویه یا اتصال شریک آماده نباشد</div><div class="v">موافقت با اصل اتصال، پذیرش ویستا به‌عنوان درگاه پرداخت نیست.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — شرایط پرداخت جداگانه مذاکره می‌شود. سقف هر جهت پیش از تعهد اعمال می‌شود و بدهی تا تأیید تسویه باقی می‌ماند.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
+        <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر تحلیل با تضمین سود اشتباه شود</div><div class="v">کاربر نسبت آرای خرید و فروش را احتمال سود بداند.</div></div>
+        <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — منبع و معنای عدد روشن می‌شود: «۶ رأی خرید از ۱۰ رأی جهت‌دار»، نه «۶۰٪ احتمال سود». شرایط اجرایی از خودِ سرویس می‌آید و تأیید سفارش جداست.</div></div>
+      </div>
+      <div class="card" style="gap:0; padding:0; overflow:hidden">
         <div style="padding:1.1cqw 1.3cqw"><div class="k" style="font-size:1.4cqw">اگر کار میان تیم‌ها بماند</div><div class="v">گارتنر می‌گوید بیش از ۴۰٪ پروژه‌های این‌چنینی تا ۲۰۲۷ لغو می‌شوند؛ بیشترشان به‌خاطر حکمرانی ضعیف.</div></div>
         <div style="padding:1cqw 1.3cqw; background:var(--azure-soft); border-top:1px solid var(--line)"><div class="v"><strong class="az">پاسخ ما</strong> — همین معماری، خودش حکمرانی است. و اختیارِ روشن، که در اسلاید آخر می‌آید.</div></div>
       </div>
@@ -1183,11 +1315,11 @@ input[type=range]::-moz-range-thumb{
     <div class="eyebrow" style="--i:0">۳۴ — گسترهٔ کار</div>
     <h2 style="--i:1">هستهٔ کار، گسترش، و افق</h2>
     <div class="cols-3" style="--i:2">
-      <div class="card" style="border-color:var(--accent)"><div class="chip" style="border-color:var(--accent); color:var(--accent)">هسته</div><div class="k">بدون این‌ها پروژه معنا ندارد</div><div class="v">هویت · دستیار · قرارداد و امضا · بستر تسویه · پرداخت زیر مجوز بانک · بات و SDK · چند سرویس واقعی</div></div>
-      <div class="card"><div class="chip">گسترش</div><div class="k">ارزش محصول را چند برابر می‌کند</div><div class="v">بازارچه · وکالت · پمپاژ هوش · امضای سیم‌کارت در مقیاس · اکوسیستم توسعه‌دهنده · گفت‌وگوی کاربر با کاربر</div></div>
-      <div class="card"><div class="chip">افق</div><div class="k">جهت آینده را مشخص می‌کند</div><div class="v">دارایی توکن‌شده · وام با وثیقه · دارایی باثبات · صدا · و در بلندمدت نوسازی و جایگزینی هستهٔ بانک سینا</div></div>
+      <div class="card" style="border-color:var(--accent)"><div class="chip" style="border-color:var(--accent); color:var(--accent)">هسته</div><div class="k">بدون این‌ها پروژه معنا ندارد</div><div class="v">هویت و اتصال حساب · دستیار · قرارداد و امضا · پردازشگر و اجرا · <strong>کیف پول و متولی وجوه</strong> · ویترین و دو مسیر افزودن · بات و SDK · یک مسیر خدمت کامل</div></div>
+      <div class="card"><div class="chip">گسترش</div><div class="k">ارزش محصول را چند برابر می‌کند</div><div class="v">وکالت · بانک سینا به‌عنوان مرجع دفتر مالی · بازارچه · پمپاژ هوش · امضای سیم‌کارت در مقیاس · اکوسیستم توسعه‌دهنده · «داشت» · گفت‌وگوی کاربر با کاربر</div></div>
+      <div class="card"><div class="chip">افق</div><div class="k">جهت آینده را مشخص می‌کند</div><div class="v">دارایی توکن‌شده · جستجوی رجیستری‌های بیرونی · وام با وثیقه · دارایی باثبات · صدا · و در بلندمدت نوسازی و جایگزینی هستهٔ بانک سینا</div></div>
     </div>
-    <p style="--i:3">همین تفکیک است که اجازه می‌دهد طرح هم جسورانه باشد و هم شدنی. برنامهٔ بانک سینا مسیر مستقل خودش را دارد و <strong>پیش‌نیاز سوپر اپلیکیشن نیست</strong>.</p>
+    <p style="--i:3">همین تفکیک است که اجازه می‌دهد طرح هم جسورانه باشد و هم شدنی. <strong>کیف پول از فاز یک هست و منتظر اتصال بانک نمی‌ماند</strong>؛ برنامهٔ نوسازی بانک سینا هم مسیر مستقل خودش را دارد و پیش‌نیاز سوپر اپلیکیشن نیست.</p>
   </section>
 
   <!-- 35b : corporate map -->
@@ -1206,7 +1338,7 @@ input[type=range]::-moz-range-thumb{
       <div class="card">
         <div class="chip">یلوبانک</div>
         <div class="k">بانک و کیف پول</div>
-        <div class="v">کیف پول زیر مجوز بانک سینا، اپ «مالی»، واریز و برداشت. نوسازی زیرساخت بانک مسیر مستقل خودش را دارد.</div>
+        <div class="v">کیف پول فاز نخست، اپ «مالی»، برداشت و تطبیق — با متولی وجوهی که برای همین دوره تعیین می‌شود. انتقال backend به بانک سینا مرحلهٔ بعد است.</div>
       </div>
       <div class="card">
         <div class="chip">یلوهاب</div>
@@ -1219,7 +1351,7 @@ input[type=range]::-moz-range-thumb{
         <div class="v">زیرساخت کلید عمومی و اپلت سیم‌کارت. پله‌های ۳ و ۴ امضا از اینجا می‌آیند.</div>
       </div>
     </div>
-    <p style="--i:4" class="tiny"><strong>یلوهاب مسیر است، نه مرجع.</strong> هیچ نوشتنی از راه آن انجام نمی‌شود که قراردادی امضاشده پشتش نباشد. معنای نوشتن — قرارداد، امضا، مجوز — همان‌جایی می‌ماند که ساخته می‌شود.</p>
+    <p style="--i:4" class="tiny"><strong>یلوهاب مسیر است، نه مرجع.</strong> هیچ نوشتنی از راه آن انجام نمی‌شود که قراردادی امضاشده پشتش نباشد. و مدل اتصال حساب و مجوز، سابقهٔ نصب ویترین، و مشخصات SDK در مالکیت خط سوپر اپلیکیشن‌اند؛ یلوهاب می‌تواند زیرساخت اتصال و نگهداری اعتبارنامه را <em>تحت همان قواعد</em> فراهم کند. مالکیت ابزار حمل داده، اختیار تصمیم دربارهٔ رضایت کاربر نیست.</p>
   </section>
 
   <!-- 36 -->
@@ -1238,7 +1370,7 @@ input[type=range]::-moz-range-thumb{
         <div class="v">من سوپر اپ و سکوی آن را می‌سازم و بقیه را خطوط محصول دیگر. اما با <strong>تعهد مکتوب تحویل</strong> برای هر وابستگی، <strong>اختیار تعریف رابط‌ها</strong>، حق پذیرش یا رد تحویل، و مسیر ارجاع با مهلت مشخص.<br><br><strong>و صریح بگویم کجا شکست می‌خورد:</strong> بدون این سه، گزینهٔ ب یعنی پاسخگو بودن در برابر نتیجه‌ای که به وعدهٔ دیگران بند است — و وقتی همه ذیل یک شرکت‌اند، تعهد تحویل سندی نیست که بشود به آن استناد کرد.</div>
       </div>
     </div>
-    <p style="--i:3" class="tiny">مسائل حقوقی و مجوزها تعهد ایرانسل است، نه من. هم‌راستایی درون‌سازمانی و با سهامداران هم باید <strong>پیش از</strong> قرارداد حاصل شده باشد.</p>
+    <p style="--i:3" class="tiny">مسائل حقوقی و مجوزها — از جمله <strong>ترتیبات متولی کیف پول فاز نخست</strong> — تعهد ایرانسل است، نه من. هم‌راستایی درون‌سازمانی و با سهامداران هم باید <strong>پیش از</strong> قرارداد حاصل شده باشد. سنجهٔ دوازده‌ماهه: کار کامل و تکرارشونده، بازگشت داوطلبانهٔ کاربر، هزینهٔ هر کار موفق، و خطاهای تطبیق مالی — نه صرفاً تعداد اتصال.</p>
   </section>
 
   <!-- 37 -->
@@ -1262,8 +1394,8 @@ input[type=range]::-moz-range-thumb{
     </div>
     <div class="cols-3" style="--i:1; margin-top:1cqw">
       <div class="card"><div class="k">کارپرداز آماده می‌کند</div><div class="v">دستیار می‌خواند، استدلال می‌کند و قرارداد را کامل می‌کند.</div></div>
-      <div class="card"><div class="k">مدیر امضا می‌کند</div><div class="v">اختیار همیشه دست آدم می‌ماند؛ هرچه در میان بیشتر باشد، امضا سنگین‌تر.</div></div>
-      <div class="card"><div class="k">ویستا تسویه می‌کند</div><div class="v">قرارداد اجرا می‌شود، کارمزد تقسیم می‌شود و همه‌چیز ثبت می‌ماند.</div></div>
+      <div class="card"><div class="k">مدیر امضا می‌کند</div><div class="v">اختیار از تأیید کاربر یا وکالت معتبر می‌آید، نه از استدلال مدل؛ هرچه در میان بیشتر باشد، امضا سنگین‌تر.</div></div>
+      <div class="card"><div class="k">ویستا تسویه می‌کند</div><div class="v">قرارداد اجرا می‌شود، سهم‌ها در همان عملیات ثبت می‌شوند و همه‌چیز قابل حسابرسی می‌ماند.</div></div>
     </div>
     <p style="--i:2" class="tiny">سند مفهوم و معماری · شهریور ۱۴۰۵</p>
   </section>
@@ -1275,7 +1407,7 @@ input[type=range]::-moz-range-thumb{
 <nav class="rail" id="rail" aria-label="پیمایش اسلایدها"></nav>
 <div class="hud">
   <button id="prev" title="قبلی" aria-label="اسلاید قبلی">‹</button>
-  <span class="count" id="count">1 / 38</span>
+  <span class="count" id="count">۱ / ۴۳</span>
   <button id="next" title="بعدی" aria-label="اسلاید بعدی">›</button>
   <button id="ovbtn" title="نمای کلی" aria-label="نمای کلی">▦</button>
   <button id="themebtn" title="تم" aria-label="تغییر تم">◐</button>
@@ -1382,11 +1514,11 @@ input[type=range]::-moz-range-thumb{
       superNote.innerHTML = 'چیزی که امروز در ایران به آن سوپر اپلیکیشن می‌گویند، مشتی کاشی است کنار هم؛ هر کاشی یک صفحهٔ وب جدا که از بقیه بی‌خبر است. نه هویت مشترکی در کار است، نه پرداخت مشترکی، نه حافظه‌ای. این سوپر اپلیکیشن نیست، فهرست برنامه‌هاست.';
     } else {
       superTiles.innerHTML =
-        '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک هویت</span><span class="td">یک بار ورود، همه‌جا</span></div>' +
+        '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک ورود</span><span class="td">یک بار ورود، حساب‌ها متصل</span></div>' +
         '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک پرداخت</span><span class="td">کیف پول مشترک</span></div>' +
         '<div class="tile" style="border-color:var(--accent)"><span class="tn">یک اطلاع‌رسانی</span><span class="td">جریان واحد رویدادها</span></div>' +
-        '<div class="tile" style="border-color:var(--accent-2)"><span class="tn">یک قرارداد</span><span class="td">هر تغییر وضعیت، قرارداد دارد</span></div>';
-      superNote.innerHTML = 'سوپر اپلیکیشن واقعی یک <strong>مدل تعامل</strong> واحد دارد، نه فقط یک پوستهٔ واحد. کاربر همیشه با یک دستیار، یک هویت، یک روش پرداخت و یک جریان اطلاع‌رسانی سر و کار دارد؛ و هر سطح ساختاریافته‌ای که می‌بیند، از یک اعلامِ قابلیتِ مشترک ساخته شده است.';
+        '<div class="tile" style="border-color:var(--accent-2)"><span class="tn">یک قرارداد</span><span class="td">پرداخت، مجوز و تعهد قرارداد دارند</span></div>';
+      superNote.innerHTML = 'سوپر اپلیکیشن واقعی یک <strong>مدل تعامل</strong> واحد دارد، نه فقط یک پوستهٔ واحد. کاربر همیشه با یک دستیار، یک ورود، یک روش پرداخت و یک جریان اطلاع‌رسانی سر و کار دارد؛ و هر قابلیتی که عرضه می‌شود، مسیر مستقیمِ آزموده‌شدهٔ خودش را هم دارد.';
     }
   });
 
@@ -1410,7 +1542,7 @@ input[type=range]::-moz-range-thumb{
       d:'مهمان چیزی امضا نمی‌کند، چون تعهدی برایش ایجاد نمی‌شود؛ فقط آدرس خانه‌اش را می‌گذارد — یا به دستیار خودش می‌گوید این کار را بکند.',
       btn:'حالا اسنپ امضا می‌کند' },
     { t:'پیش‌نویس تبدیل به قرارداد می‌شود',
-      d:'حالا که مبدأ و مقصد معلوم است، کرایه هم معلوم می‌شود. <strong>اینجاست که اسنپ امضا می‌کند</strong> — اولین امضا همیشه مال اپ است.',
+      d:'حالا که مبدأ و مقصد معلوم است، کرایه هم معلوم می‌شود. <strong>اینجاست که اسنپ شرایط متعهدکننده را امضا می‌کند</strong> — در قرارداد خرید، مبلغ از طرفِ متعهد می‌آید، نه از مدل.',
       btn:'برای میزبان برگردان' },
     { t:'هر که پرداخت می‌کند، همان امضا می‌کند',
       d:'قرارداد برمی‌گردد پیش میزبان. او امضا می‌زند، کرایه از کیف پولش کم می‌شود و ماشین برای مهمان می‌رود. نه تماس تلفنی لازم بود، نه کارت‌به‌کارت.',
@@ -1485,11 +1617,11 @@ input[type=range]::-moz-range-thumb{
     void injectWall.offsetHeight;
     injectWall.classList.add('shake');
     if(injectTries === 1){
-      injectNote.innerHTML = '<strong>رد شد.</strong> دستیار کلید امضا ندارد. کلید دست کاربر است و درخواست امضا از خود برنامه شروع می‌شود، روی مسیری که مدل اصلاً به آن دسترسی ندارد.';
+      injectNote.innerHTML = '<strong>رد شد.</strong> دستیار کلید امضا ندارد و اعتبارنامهٔ اجرا هم به او نمی‌رسد. درخواست تأیید از خودِ برنامه شروع می‌شود، روی مسیری که مدل به آن راه ندارد.';
     } else if(injectTries === 2){
-      injectNote.innerHTML = '<strong>باز هم رد شد.</strong> حتی اگر مدل قراردادی بسازد که پول را به حساب مهاجم بفرستد، همان قرارداد به کاربر نشان داده می‌شود و کاربر ردش می‌کند.';
+      injectNote.innerHTML = '<strong>باز هم رد شد.</strong> حتی اگر مدل قراردادی بسازد که پول را به حساب مهاجم بفرستد، همان قرارداد با همان مبلغ و همان گیرنده به کاربر نشان داده می‌شود و کاربر فرصت رد کردن دارد.';
     } else {
-      injectNote.innerHTML = '<strong>این مرز نرم‌افزاری نیست، معماری است.</strong> بیشتر ادبیات امنیت دستیارها دربارهٔ محدود کردن کاری است که مدلِ به‌خطر‌افتاده می‌تواند بکند. اینجا مدل اساساً توان انجام هیچ کاری ندارد.';
+      injectNote.innerHTML = '<strong>و این دقیقاً همان چیزی است که تضمین می‌شود:</strong> مدل نمی‌تواند اختیار خرج تازه‌ای برای خودش بسازد. آنچه تضمین نمی‌شود این است که پیشنهادش درست باشد یا کاربر اشتباه تأیید نکند — و ما همین را هم صریح می‌گوییم.';
     }
   });
 
@@ -1631,7 +1763,7 @@ input[type=range]::-moz-range-thumb{
       { wait:600, do:function(){
           var a = attach({
             tone:'#2C7A5B', logo:'ک', name:'کنکوریا', code:'#S0001',
-            rows:[['موضوع','قرارداد استارت'],['آدرس','konkooria.ir/mcp'],['وضعیت','احرازشده ✓']],
+            rows:[['موضوع','قرارداد شروع'],['آدرس','konkooria.ir/mcp'],['ناشر','احرازشده ✓ · بدون اختیار مالی']],
             parties:[['کنکوریا',true],['شما',false]],
             action:'استارت و اعطای مجوزها'
           });
@@ -1821,7 +1953,7 @@ input[type=range]::-moz-range-thumb{
     pane.appendChild(el('h5', null, 'افزودن اپ'));
     pane.appendChild(el('div','pc','<span>آدرس اپ را وارد کنید</span>'));
     pane.appendChild(el('div','pc','<span class="mono" style="font-size:.85cqw">https://…/mcp</span>'));
-    pane.appendChild(el('div','v','<div class="split-note">اپ لازم نیست جای خاصی میزبانی شود. کافی است آدرسش را بدهید، قرارداد استارت را بخوانید و امضا کنید.</div>'));
+    pane.appendChild(el('div','v','<div class="split-note">اپ لازم نیست جای خاصی میزبانی شود، اما آدرس بخشی از پروندهٔ انتشار است: افزودن با آدرس هم از همان احراز ناشر و سیاست پذیرش می‌گذرد.</div>'));
     p3body.innerHTML=''; p3body.appendChild(pane);
   });
 
@@ -1867,12 +1999,12 @@ input[type=range]::-moz-range-thumb{
       { wait:450, do:function(){ p5chat.appendChild(typing(p5chat)); } },
       { wait:1200, do:function(){
           var t=p5chat.querySelector('.typing'); if(t) t.remove();
-          say(p5chat,'them','در ویترین گشتم. «زبان‌یار» بیشترین امتیاز را دارد و فقط دو مجوز ساده می‌خواهد. «واژه‌بان» هم اسپانسر ماست.');
+          say(p5chat,'them','اول میان اتصال‌های خودتان گشتم، بعد در ویترین. «زبان‌یار» بیشترین امتیاز را دارد و فقط دو مجوز ساده می‌خواهد. «واژه‌بان» هم اسپانسر ماست.');
         } },
       { wait:700, do:function(){
           var a = attach({
             tone:'#7A4FA3', logo:'ز', name:'زبان‌یار', code:'#S1140',
-            rows:[['موضوع','قرارداد استارت'],['امتیاز','۴٫۷ از ۵ · ۲٬۳۰۰ نظر'],['مجوزها','اعلان · پروفایل'],['وضعیت','احرازشده ✓']],
+            rows:[['موضوع','قرارداد شروع'],['امتیاز','۴٫۷ از ۵ · ۲٬۳۰۰ نظر'],['مجوزها','اعلان · پروفایل'],['ناشر','احرازشده ✓']],
             parties:[['زبان‌یار',true],['شما',false]],
             action:'نصب و استارت'
           });
@@ -1934,6 +2066,56 @@ input[type=range]::-moz-range-thumb{
       ? '<strong>کاربر آدرس ارائه‌دهنده و کلید خودش را می‌گذارد.</strong> از این پس چیزی به ما نمی‌پردازد؛ هزینه را مستقیم به همان ارائه‌دهنده می‌دهد.'
       : 'مدلی که ما تأمین می‌کنیم. مصرفش رایگان نیست و کاربر بابتش به ما پول می‌دهد.';
   });
+
+  /* ===== interaction: standards layers ===== */
+  var layersBox = document.getElementById('layers');
+  if(layersBox){
+    layersBox.addEventListener('click', function(e){
+      var b = e.target.closest('.layer'); if(!b) return;
+      Array.prototype.forEach.call(this.children, function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+    });
+  }
+
+  /* ===== interaction: two doors ===== */
+  var doorGrid = document.getElementById('door-grid');
+  var doorNote = document.getElementById('door-note');
+  var DOORS = {
+    a: {
+      cards: [
+        ['دستیار','اول میان اتصال‌های خودِ کاربر و بعد در ویترین می‌گردد، از دروازهٔ قابلیت پیش‌نویس می‌خواهد، و قرارداد نخست را در گفت‌وگو نشان می‌دهد: طرف معامله، مبلغ، و افزودن اپ — هر سه روشن.'],
+        ['ویترین','هویت ثبت‌شدهٔ ناشر و شرایط افزودن را می‌دهد. <strong>هنوز اپ را نصب‌شده نمی‌داند</strong>؛ اعلام دستیار به‌تنهایی چیزی را نصب نمی‌کند.'],
+        ['اپ پیشنهادی','با دادهٔ مجاز، قیمت یا پیش‌نویس می‌سازد. خرید انجام نمی‌دهد و حساب خصوصی نمی‌خواند. فقط پیشنهاد داده است.']
+      ],
+      note: 'اگر شرایط معامله پیش از اتصال کامل شود، <strong>همان قرارداد معامله اپ را هم استارت می‌زند</strong>؛ قرارداد نصب جداگانه لازم نیست. اگر نه، قرارداد نخست «اتصال» است و معامله پس از آن می‌آید — تأیید دوم برای شرایط تازه است، نه تکرار مراسم نصب.'
+    },
+    b: {
+      cards: [
+        ['دستیار','در این مسیر پیامی تولید نمی‌کند و فعالیت کاربر در ویترین را دستور تازه نمی‌گیرد. فقط در جستجوی بعدی، اپ را میان اتصال‌های آمادهٔ کاربر پیدا می‌کند.'],
+        ['ویترین','کاربر «افزودن» را می‌زند؛ ویترین از همان دروازه پیش‌نویس شروع یا اتصال را می‌گیرد و در <strong>همان جزء استاندارد نمایش و امضا</strong> نشان می‌دهد. امضا همان‌جا انجام می‌شود و رفتن به دستیار لازم نیست.'],
+        ['اپ افزوده‌شده','شروع مجاز را دریافت می‌کند، حساب را متصل یا ایجاد می‌کند، و آمادگی و در صورت نیاز پیام خوشامد را برمی‌گرداند. سپس ویترین «باز کردن» را نشان می‌دهد.']
+      ],
+      note: 'هیچ خریدی اختراع نمی‌شود؛ آنچه امضا می‌شود قرارداد شروع یا اتصال است. درخواست بعدی کاربر از دستیار، از <strong>همان اتصال</strong> استفاده می‌کند و فقط قرارداد معامله می‌آید.'
+    }
+  };
+  function doorRender(k){
+    if(!doorGrid) return;
+    var d = DOORS[k];
+    doorGrid.innerHTML = d.cards.map(function(c){
+      return '<div class="card"><div class="k">' + c[0] + '</div><div class="v">' + c[1] + '</div></div>';
+    }).join('');
+    doorNote.innerHTML = '<strong>در هر دو در، پردازشگر همان اثر نصب و مجوز را اعمال می‌کند و ویترین سابقهٔ نصب را نگه می‌دارد.</strong> ' + d.note;
+  }
+  var tgDoor = document.getElementById('tg-door');
+  if(tgDoor){
+    tgDoor.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if(!b) return;
+      Array.prototype.forEach.call(this.children, function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      doorRender(b.dataset.v);
+    });
+    doorRender('a');
+  }
 
   go(0);
 })();

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "versions/V0.3/02-round1-analysis-en.md",
+                "file": "versions/V0.4/01-transcription.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02-round1-analysis-en"
+              "title": "01-transcription"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "versions/V0.3/02-round1-analysis-en.md",
+                "file": "versions/V0.4/01-transcription.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "versions/V0.3/02-round1-analysis-en.md",
+                "file": "versions/V0.4/01-transcription.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "versions/V0.3/02-round1-analysis-en.md",
+                "file": "versions/V0.4/01-transcription.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,9 +190,13 @@
   },
   "active": "94062f718cedd57b",
   "lastOpenFiles": [
+    "versions/V0.3/05-round4-analysis-en.md",
+    "versions/V0.4/01-transcription.md",
+    "versions/V0.4",
+    "versions/V0.3/04-round3-analysis-en.md",
     "versions/V0.3/03-round2-analysis-en.md",
-    "versions/V0.3/01-transcription.md",
     "versions/V0.3/02-round1-analysis-en.md",
+    "versions/V0.3/01-transcription.md",
     "SDK/vista-app/scripts/conformance.mjs",
     "SDK/vista-app/reference/tools.md",
     "SDK/vista-app/reference/mini-app.md",
@@ -218,13 +222,9 @@
     "skills/vista-app/reference/konkooria-example.md",
     "skills/vista-app/reference/contract.md",
     "skills/vista-app/scripts/conformance.mjs",
-    "skills/vista-app/lib/vista-sign.mjs",
     "skills/vista-app/SKILL.md",
     "skills/vista-app/README.md",
     "versions/V0.2/04-round3-analysis-en.md",
-    "versions/V0.2/05-code-plan.md",
-    "versions/V0.2/03-round2-analysis-en.md",
-    "versions/V0.2/02-round1-analysis-en.md",
-    "versions/V0.2/01-transcription.md"
+    "versions/V0.2/05-code-plan.md"
   ]
 }
