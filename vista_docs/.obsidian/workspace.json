@@ -188,8 +188,12 @@
       "bases:Create new base": false
     }
   },
-  "active": "94062f718cedd57b",
+  "active": "b103490e081c1526",
   "lastOpenFiles": [
+    "versions/V0.4/02-applied-changes-en.md",
+    "versions/V0.4/02-applied-changes-en.md.tmp.468023.5fc3d2d6aae5",
+    "presentation/sedZiiROO",
+    "book/05-مسیر-اجرا/05-01-نقشه-راه.md.tmp.468023.6b739841577f",
     "versions/V0.3/05-round4-analysis-en.md",
     "versions/V0.4/01-transcription.md",
     "versions/V0.4",
@@ -212,8 +216,6 @@
     "SDK/vista-app/lib",
     "SDK/vista-app/SKILL.md",
     "SDK/vista-app/README.md",
-    "SDK/vista-app",
-    "SDK",
     "skills/vista-app/reference/tools.md",
     "skills/vista-app/reference/manifest.md",
     "skills/vista-app/reference/mini-app.md",
@@ -221,10 +223,8 @@
     "skills/vista-app/reference/events-and-delegation.md",
     "skills/vista-app/reference/konkooria-example.md",
     "skills/vista-app/reference/contract.md",
-    "skills/vista-app/scripts/conformance.mjs",
     "skills/vista-app/SKILL.md",
     "skills/vista-app/README.md",
-    "versions/V0.2/04-round3-analysis-en.md",
-    "versions/V0.2/05-code-plan.md"
+    "versions/V0.2/04-round3-analysis-en.md"
   ]
 }
