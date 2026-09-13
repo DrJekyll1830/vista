@@ -4,6 +4,8 @@
 **Against:** the Vista book as left by V0.4 (46 chapters under `vista_docs/book`), the SDK skill under `vista_docs/SDK/vista-app`, the live product's `app/README.md`, and the workshop repository (`workshop/book`, `workshop/codo`, `workshop/workshop_docs/versions` V0.1–V1.1).
 **Status:** analysis and recommendations, not an approved specification. The book, presentation, SDK and application are **not changed** by this document. Section 12 lists what would change if the idea is accepted.
 
+> **Superseded in part by [03-round2-analysis-en.md](03-round2-analysis-en.md).** Five corrections from امید after this round: the name is **AppFather** (after BotFather), not Fader; AppFather is separate from the developer console, which is for apps running on their owners' servers; the cluster is a colleague's Kubernetes-as-a-service, not Hamravesh; Vista also offers good, more expensive models that AppFather users switch to; and the assistant itself is the coding agent, using AppFather's MCP so code runs and is tested on Vista's servers. Round 2 revises the executive judgment, sections 2, 4, 5, 6 and 9 accordingly. Kept here as the record of the first reading.
+
 **Reading the transcript.** Four speech-to-text artefacts matter for what follows:
 
 | Transcript says | Read as | Basis |
